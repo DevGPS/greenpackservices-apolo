@@ -17,11 +17,11 @@
         </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header">Mantenimientos</li>
+                <li class="nav-header"><b>Mantenedores</b> </li>
                 
                 <li class="nav-item">
                     <a href="{% url 'transporte_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-truck-loading"></i>
+                        <i class="nav-icon fas fa-truck"></i>
                         <p>
                             Transportes
                         </p>
@@ -29,44 +29,42 @@
                 </li>
                 <li class="nav-item">
                     <a href="{% url 'exportadora_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-truck-loading"></i>
+                        <i class="nav-icon fas fa-industry"></i>
                         <p>
                             Exportadoras
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'product_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-boxes"></i>
+                    <a href="{% url 'especie_list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-apple-alt"></i>
                         <p>
-                            Productos
+                            Especies
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'client_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
+                    <a href="{% url 'variedad_list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-shapes"></i>
                         <p>
-                            Clientes
+                            Variedades
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'sale_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-cart"></i>
+                    <a href="{% url 'productor_list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-seedling"></i>
                         <p>
-                            Ventas
+                            Productores
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'sale_report' %}" class="nav-link">
-                        <i class="nav-icon fas fa-chart-bar"></i>
-                        <p>
-                            Reporte de Ventas
-                        </p>
-                    </a>
-                </li>
+                </li> 
+            </ul>
+        </nav>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header"><b>Usuarios</b> </li>   
+               
                 <li class="nav-item">
                     <a href="{% url 'user_list' %}" class="nav-link">
                         <i class="nav-icon fas fa-user-friends"></i>
@@ -82,16 +80,34 @@
                             Control de Accesos
                         </p>
                     </a>
-                </li>
-
+                </li>              
+                
+            </ul>
+        </nav>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header"><b>Reportes</b> </li>                
+               
                 <li class="nav-item">
-                    <a href="{% url 'access_users_list' %}" class="nav-link">
-                        <i class="fas fa-user-clock"></i>
+                    <a href="{% url 'sale_report' %}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-bar"></i>
                         <p>
-                            Control de Accesos
+                            Reporte de Recepciones
                         </p>
                     </a>
-                </li>
+                    <a href="{% url 'sale_report' %}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Reporte de Producciones
+                        </p>
+                    </a>
+                    <a href="{% url 'sale_report' %}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Reporte de Despachos
+                        </p>
+                    </a>
+                </li>               
                 
             </ul>
         </nav>
