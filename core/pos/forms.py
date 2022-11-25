@@ -3,18 +3,58 @@ from django.forms import ModelForm
 
 from core.pos.models import *
 
-
-class CategoryForm(ModelForm):
+class ExportadoraForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs['autofocus'] = True
+        self.fields['nombre'].widget.attrs['autofocus'] = True
+   
+    class Meta:
+        model = Exportadora
+        fields = ['codigo','nombre', 'direccion', 'telefono', 'email']
+        labels = {
+            'codigo': 'Código',
+            'nombre': 'Nombre Exportadora',
+            'direccion': 'Dirección',
+            'telefono': 'Telefono',
+            'email': 'Correo Electrónico',            
+        }
+        widgets = {
+            'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo","type": "text"}),
+            'nombre': forms.TextInput(attrs={"class": "form-control","name": "nombre","type": "text"}),
+            'direccion': forms.TextInput(attrs={"class": "form-control","name": "direccion",}),
+            'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),
+            'email': forms.EmailInput(attrs={"class": "form-control"}),            
+        }
+        
+class TransporteForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nombres'].widget.attrs['autofocus'] = True
 
     class Meta:
-        model = Category
-        fields = '__all__'
+        model = Transporte
+        fields = ['codigo', 'nombres', 'apellidos', 'rut', 'patente1',
+                  'patente2', 'telefono', 'exportadora']
+        labels = {
+            'codigo': 'Código',
+            'nombres': 'Nombres (Chofer)',
+            'apellidos': 'Apellidos (Chofer)',
+            'rut': 'Rut (Dni)',
+            'patente1': 'Patente Camión',
+            'patente2': 'Patente Carro',
+            'telefono': 'Telefono Chofer',
+            'exportadora': 'Nombre Exportadora',
+        }
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'Ingrese un nombre'}),
-            'desc': forms.Textarea(attrs={'placeholder': 'Ingrese una descripción', 'rows': 3, 'cols': 3}),
+            'codigo': forms.TextInput(attrs={"class": "form-control", "name": "codigo", "type": "text"}),
+            'nombres': forms.TextInput(attrs={"class": "form-control"}),
+            'apellidos': forms.TextInput(attrs={"class": "form-control"}),
+            'rut': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "00.000.000-A", }),
+            'patente1': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "AA-AA-00", }),
+            'patente2': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "AA-AA-00", }),
+            'telefono': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "(+56) 0 0000 0000", }),
+            'exportadora': forms.Select(attrs={"class": "form-control"}),
+
         }
 
     def save(self, commit=True):
@@ -123,7 +163,7 @@ class SaleForm(ModelForm):
                 'data-target': '#date_joined',
                 'data-toggle': 'datetimepicker'
             }
-                                           ),
+            ),
             'iva': forms.TextInput(attrs={
                 'class': 'form-control',
             }),

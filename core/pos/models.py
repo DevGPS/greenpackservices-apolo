@@ -9,6 +9,114 @@ from config import settings
 from core.pos.choices import genders
 
 
+class Exportadora(models.Model):
+    codigo = models.CharField(
+        max_length=70, verbose_name='Código', unique=True)
+    nombre = models.CharField(
+        max_length=70, verbose_name='Nombre Exportadora', unique=True)
+    direccion = models.CharField(
+        max_length=70, verbose_name='Dirección')
+    telefono = models.CharField(max_length=20, null=True)
+    email = models.EmailField(max_length=70,
+                               verbose_name='Correo Electrónico')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+            return '{}'.format(self.nombre)       
+
+    def toJSON(self):
+            item = model_to_dict(self)
+            return item
+
+    class Meta:
+            verbose_name = 'Exportadora'
+            verbose_name_plural = 'Exportadoras'      
+
+
+class Transporte(models.Model):
+    codigo = models.CharField(
+        max_length=70, verbose_name='Código', unique=True)
+    nombres = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100)
+    rut = models.CharField(max_length=13, unique=True)
+    patente1 = models.CharField(max_length=10, null=True, unique=True)
+    patente2 = models.CharField(max_length=10, null=True, unique=True)
+    telefono = models.CharField(max_length=20, null=True)
+    exportadora = models.ForeignKey(
+        Exportadora, on_delete=models.CASCADE, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}/{}'.format(self.patente1, self.patente2)
+    name = models.CharField(max_length=150, verbose_name='Nombre', unique=True)
+    desc = models.CharField(max_length=500, null=True,
+                            blank=True, verbose_name='Descripción')
+
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
+
+    class Meta:
+        verbose_name = 'Transporte'
+        verbose_name_plural = 'Transportes'
+        ordering = ['id']
+
+class Productores(models.Model):
+    codigo = models.CharField(
+        max_length=70, verbose_name='Código', unique=True)
+    nombre = models.CharField(max_length=70, unique=True)
+    CSG = models.IntegerField(null=False, unique=True)
+    direccion = models.CharField(max_length=70, null=True)
+    telefono = models.CharField(max_length=20, null=True)
+    email = models.EmailField(max_length=70,
+                              verbose_name='Correo Electrónico')
+    exportadora = models.ForeignKey(
+        Exportadora, on_delete=models.CASCADE, verbose_name='Exportadora')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Productor'
+        verbose_name_plural = 'Productores'
+
+    def __str__(self):
+        return self.nombre
+    
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
+class Especie(models.Model):
+    codigo = models.CharField(
+        max_length=70, verbose_name='Código', unique=True)
+    nombre = models.CharField(max_length=70, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Especie'
+        verbose_name_plural = 'Especies'
+
+    def __str__(self):
+        return self.nombre
+
+class Variedad(models.Model):
+    codigo = models.CharField(
+        max_length=70, verbose_name='Código', unique=True)
+    nombre = models.CharField(max_length=70, unique=True)
+    especie = models.ForeignKey(Especie, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Variedad'
+        verbose_name_plural = 'Variedades'
+
+    def __str__(self):
+        return '{}'.format(self.nombre)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='Nombre', unique=True)
     desc = models.CharField(max_length=500, null=True, blank=True, verbose_name='Descripción')
@@ -25,14 +133,17 @@ class Category(models.Model):
         verbose_name_plural = 'Categorias'
         ordering = ['id']
 
-
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Nombre', unique=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Categoría')
-    image = models.ImageField(upload_to='product/%Y/%m/%d', null=True, blank=True, verbose_name='Imagen')
-    is_inventoried = models.BooleanField(default=True, verbose_name='¿Es inventariado?')
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, verbose_name='Categoría')
+    image = models.ImageField(
+        upload_to='product/%Y/%m/%d', null=True, blank=True, verbose_name='Imagen')
+    is_inventoried = models.BooleanField(
+        default=True, verbose_name='¿Es inventariado?')
     stock = models.IntegerField(default=0, verbose_name='Stock')
-    pvp = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, verbose_name='Precio de venta')
+    pvp = models.DecimalField(
+        default=0.00, max_digits=9, decimal_places=2, verbose_name='Precio de venta')
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'
@@ -58,10 +169,14 @@ class Product(models.Model):
 
 class Client(models.Model):
     names = models.CharField(max_length=150, verbose_name='Nombres')
-    dni = models.CharField(max_length=10, unique=True, verbose_name='Número de cedula')
-    birthdate = models.DateField(default=datetime.now, verbose_name='Fecha de nacimiento')
-    address = models.CharField(max_length=150, null=True, blank=True, verbose_name='Dirección')
-    gender = models.CharField(max_length=10, choices=genders, default='male', verbose_name='Genero')
+    dni = models.CharField(max_length=10, unique=True,
+                           verbose_name='Número de cedula')
+    birthdate = models.DateField(
+        default=datetime.now, verbose_name='Fecha de nacimiento')
+    address = models.CharField(
+        max_length=150, null=True, blank=True, verbose_name='Dirección')
+    gender = models.CharField(
+        max_length=10, choices=genders, default='male', verbose_name='Genero')
 
     def __str__(self):
         return self.get_full_name()
@@ -85,11 +200,14 @@ class Client(models.Model):
 class Company(models.Model):
     name = models.CharField(max_length=150, verbose_name='Razón Social')
     ruc = models.CharField(max_length=13, verbose_name='Ruc')
-    address = models.CharField(max_length=150, null=True, blank=True, verbose_name='Dirección')
+    address = models.CharField(
+        max_length=150, null=True, blank=True, verbose_name='Dirección')
     mobile = models.CharField(max_length=10, verbose_name='Teléfono Celular')
-    phone = models.CharField(max_length=7, verbose_name='Teléfono Convencional')
+    phone = models.CharField(
+        max_length=7, verbose_name='Teléfono Convencional')
     website = models.CharField(max_length=150, verbose_name='Website')
-    image = models.ImageField(upload_to='company/%Y/%m/%d', null=True, blank=True, verbose_name='Imagen')
+    image = models.ImageField(
+        upload_to='company/%Y/%m/%d', null=True, blank=True, verbose_name='Imagen')
 
     def __str__(self):
         return self.name
@@ -115,12 +233,15 @@ class Company(models.Model):
 
 
 class Sale(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(
+        Company, on_delete=models.CASCADE, null=True, blank=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     date_joined = models.DateField(default=datetime.now)
-    subtotal = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
+    subtotal = models.DecimalField(
+        default=0.00, max_digits=9, decimal_places=2)
     iva = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
-    total_iva = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
+    total_iva = models.DecimalField(
+        default=0.00, max_digits=9, decimal_places=2)
     total = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
 
     def __str__(self):
@@ -154,7 +275,8 @@ class Sale(models.Model):
         super(Sale, self).delete()
 
     def calculate_invoice(self):
-        subtotal = self.saleproduct_set.all().aggregate(result=Coalesce(Sum(F('price') * F('cant')), 0.00, output_field=FloatField())).get('result')
+        subtotal = self.saleproduct_set.all().aggregate(result=Coalesce(
+            Sum(F('price') * F('cant')), 0.00, output_field=FloatField())).get('result')
         self.subtotal = subtotal
         self.total_iva = self.subtotal * float(self.iva)
         self.total = float(self.subtotal) + float(self.total_iva)
@@ -171,7 +293,8 @@ class SaleProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     cant = models.IntegerField(default=0)
-    subtotal = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
+    subtotal = models.DecimalField(
+        default=0.00, max_digits=9, decimal_places=2)
 
     def __str__(self):
         return self.product.name
