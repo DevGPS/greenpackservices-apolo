@@ -18,6 +18,7 @@ class ExportadoraForm(ModelForm):
             'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),
             'email': forms.EmailInput(attrs={"class": "form-control"}),            
         }
+        
     def save(self, commit=True):
         data = {}
         form = super()
