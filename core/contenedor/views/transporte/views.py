@@ -2,9 +2,9 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from core.pos.forms import TransporteForm
+from core.contenedor.forms import TransporteForm
 from core.pos.mixins import ValidatePermissionRequiredMixin
-from core.pos.models import Transporte
+from core.contenedor.models import Transporte
 
 
 class TransporteListView(ValidatePermissionRequiredMixin, ListView):
@@ -59,7 +59,7 @@ class TransporteCreateView(ValidatePermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Creación una Transporte'
+        context['title'] = 'Creación de un Transporte'
         context['entity'] = 'Transporte'
         context['list_url'] = self.success_url
         context['action'] = 'add'

@@ -7,6 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from core.api.serializers import *
 from core.pos.models import Category, Product, Client
+from core.contenedor.models import Exportadora
 
 
 class ClientViewSet(ModelViewSet):
@@ -15,6 +16,29 @@ class ClientViewSet(ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         return Response({'id': 4})
+
+
+class ExportadoraListAPIView(ListAPIView):
+    queryset = Exportadora.objects.all()
+    serializer_class = ExportadoraSerializers
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    # def get_queryset(self):
+    #     return self.get_serializer().Meta.model.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        # print(self.request.query_params['name'])
+        # print(self.request.query_params.get('name', 'William Vargas'))
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        print(self.queryset)
+        # items = [i.toJSON() for i in Category.objects.all()]
+        # queryset = self.get_serializer().Meta.model.objects.all()
+        serializer = self.serializer_class(self.queryset.all(), many=True)
+        # return self.list(request, *args, **kwargs)
+        return Response(serializer.data)
 
 
 class CategoryListAPIView(ListAPIView):
@@ -43,6 +67,14 @@ class CategoryListAPIView(ListAPIView):
 class ProductListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+
+class ExportadoraCreateAPIView(CreateAPIView):
+    serializer_class = ExportadoraSerializers
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.data)
+        return self.create(request, *args, **kwargs)
+
 
 
 class CategoryCreateAPIView(CreateAPIView):

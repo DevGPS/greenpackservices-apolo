@@ -2,9 +2,9 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from core.pos.forms import ExportadoraForm
+from core.contenedor.forms import ExportadoraForm
 from core.pos.mixins import ValidatePermissionRequiredMixin
-from core.pos.models import Exportadora
+from core.contenedor.models import Exportadora
 
 
 

@@ -1,4 +1,4 @@
-var category = {
+var transporte = {
     list: function () {
         $('#data').DataTable({
             responsive: true,
@@ -19,10 +19,12 @@ var category = {
             columns: [
                 {"data": "id"},
                 {"data": "codigo"},
-                {"data": "nombre"},
-                {"data": "direccion"},
+                {"data": "nombres"},
+                {"data": "apellidos"},
+                {"data": "rut"},
+                {"data": "patente1"},
+                {"data": "patente2"},
                 {"data": "telefono"},
-                {"data": "email"},
 
             ],
             columnDefs: [
@@ -45,5 +47,5 @@ var category = {
 };
 
 $(function () {
-    category.list();
+    transporte.list();
 });
