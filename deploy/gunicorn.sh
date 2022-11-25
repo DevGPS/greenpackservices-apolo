@@ -1,11 +1,11 @@
 #!/bin/bash
 
-NAME="apolo"
+NAME="GPS"
 DJANGODIR=$(dirname $(cd `dirname $0` && pwd))
 SOCKFILE=/tmp/gunicorn-apolo.sock
 LOGDIR=${DJANGODIR}/logs/gunicorn.log
-USER=william
-GROUP=william
+USER=saraya
+GROUP=saraya
 NUM_WORKERS=5
 DJANGO_WSGI_MODULE=config.wsgi
 

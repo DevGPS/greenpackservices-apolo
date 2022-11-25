@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export FECHA=`date +%d_%m_%Y_%H_%M_%S`
-export NAME=apolo_${FECHA}.dump
+export NAME=GPS${FECHA}.dump
 export DIR=/home/william/backup/
 USER_DB=postgres
 NAME_DB=apolo
