@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.25/css/dataTables.bootstrap4.min.css' %}" />
+<link rel="stylesheet"
+    href="{% static 'lib/datatables-1.10.25/plugins/responsive-2.2.9/css/responsive.bootstrap4.min.css' %}" />
+<script src="{% static 'lib/datatables-1.10.25/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.25/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.25/plugins/responsive-2.2.9/js/dataTables.responsive.min.js' %}"></script>
+
+
+
+<!-- third party css end -->
+
+
+{% endblock %}
+
+
+
+{% block javascript %}
+<script type="application/javascript">
+    $(function () {
+        $('#data').DataTable({
+            responsive: true,
+            autoWidth: false
+        });
+    });
+</script>
+
+
+
+<!-- demo app -->
+<script src="{% static 'hyper/js/pages/demo.datatable-init.js' %}"></script>
+<!-- end demo js-->
+
+
+{% endblock %}

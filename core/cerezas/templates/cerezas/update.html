@@ -1,0 +1,1228 @@
+{% extends 'list.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h2 class="text-center"  style="color: #007bff;" >
+                    <strong><u>ACTUALIZAR REGISTRO DE RECEPCIÓN CEREZAS FRESCAS</u></strong>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="row col-xl-12 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form id="form_create_cereza" action="#" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row text-center">
+                            <div class="col-xl-5 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="row p-2">
+                                        <div class="col-xl-12 col-md-12 col-sm-12">
+                                            <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                class="text-center">
+                                                <strong>INFORMACIÓN GENERAL</strong>
+                                            </h6>
+                                            <div class="col-xl-12">
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label for="Precalibre"
+                                                        class="col-3 col-form-label font-12">Lote</label>
+                                                    <div class="col-3">
+                                                        {{ r.Lote }}
+                                                    </div>
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">Fecha
+                                                        Recepción</label>
+                                                    <div class="col-3">
+                                                        {{ r.Fecha_Recepcion }}
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">N° de
+                                                        Guia</label>
+                                                    <div class="col-3">
+                                                        {{ r.Nguia }}
+                                                    </div>
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">Hora
+                                                        Recepción</label>
+                                                    <div class="col-3">
+                                                        {{ r.Hora_Recepcion }}
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+
+                                                    <label for="Precalibre"
+                                                        class="col-3 col-form-label font-12">Exportadora</label>
+                                                    <div class="col-3">
+                                                        {{ r.Exportadora }}
+                                                    </div>
+
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">Hora
+                                                        Análisis</label>
+                                                    <div class="col-3">
+                                                        {{ r.Hora_Analisis }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+
+
+                                                    <label for="Precalibre"
+                                                        class="col-3 col-form-label font-12">Productor</label>
+                                                    <div class="col-3">
+                                                        {{ r.Productor }}
+                                                    </div>
+                                                    <label for="Precalibre"
+                                                        class="col-3 col-form-label font-12">Variedad</label>
+                                                    <div class="col-3">
+                                                        {{ r.Variedad }}
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">Tipo
+                                                        Transporte</label>
+                                                    <div class="col-3">
+                                                        {{ r.Tip_Trans }}
+                                                    </div>
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">T°
+                                                        Minima</label>
+                                                    <div class="col-3">
+                                                        {{ r.Tmin }}
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="Precalibre"
+                                                        class="col-3 col-form-label font-12">Patente</label>
+                                                    <div class="col-3">
+                                                        {{ r.Patente }}
+                                                    </div>
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">T°
+                                                        Maxima</label>
+                                                    <div class="col-3">
+                                                        {{ r.Tmax }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">Tipo de
+                                                        Envase</label>
+                                                    <div class="col-3">
+                                                        {{ r.Tip_Env }}
+                                                    </div>
+
+                                                    <label for="Precalibre" class="col-3 col-form-label font-12">Kilos
+                                                        Netos</label>
+                                                    <div class="col-3">
+                                                        {{ r.KNeto }}
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="Precalibre"
+                                                        class="col-3 col-form-label font-12">Cantidad
+                                                        Envases</label>
+                                                    <div class="col-3">
+                                                        {{ r.NEnv }}
+                                                    </div>
+
+                                                    <label for="Precalibre"
+                                                        class="col-3 col-form-label font-12">Cantidad
+                                                        Frutos</label>
+                                                    <div class="col-3">
+                                                        {{ r.NFruto }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="form-label col-3 font-12 my-2">Hidro
+                                                        Campo</label>
+                                                    <div class="col-3 my-2">
+                                                        {{ r.Hidro }}
+                                                        <label for="switch3" data-on-label="Si"
+                                                            data-off-label="No"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="row p-2">
+                                        <div class="col-xl-6 col-md-6 col-sm-12">
+                                            <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                class="text-center"> <strong>Por Calibre</strong>
+                                            </h6>
+
+                                            <div class="col-xl-12 col-md-12 col-sm-12">
+
+
+                                                <div class="form-group row" style=" margin-right: 2px;">
+                                                    <label for="Precalibre"
+                                                        class="col-6 col-form-label"><u><strong>CALIBRES</strong></u></label>
+                                                    <label for="Precalibre" class="col-6 col-form-label"><u><strong>N°
+                                                                FRUTOS</strong></u></label>
+
+                                                </div>
+                                                <div class="form-group row " style=" margin-right: 2px;">
+                                                    <label for="Precalibre"
+                                                        class="col-6 col-form-label font-12">Pre-Calibre</label>
+                                                    <div class="col-6">
+                                                        {{ r.PC }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" style=" margin-right: 2px;">
+                                                    <label for="Precalibre" class="col-6 col-form-label font-12">Large
+                                                        (L)</label>
+                                                    <div class="col-6">
+                                                        {{ r.L }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" style=" margin-right: 2px;">
+                                                    <label for="Precalibre" class="col-6 col-form-label font-11">Extra
+                                                        Large
+                                                        (XL)</label>
+                                                    <div class="col-6">
+                                                        {{ r.XL }}
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row" style=" margin-right: 2px;">
+                                                    <label for="Precalibre" class="col-6 col-form-label font-12">Jumbo
+                                                        (J)</label>
+                                                    <div class="col-6">
+                                                        {{ r.J }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" style=" margin-right: 2px;">
+                                                    <label for="Precalibre" class="col-6 col-form-label font-12">2
+                                                        Jumbo
+                                                        (2J)</label>
+                                                    <div class="col-6">
+                                                        {{ r.J2 }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" style=" margin-right: 2px;">
+                                                    <label for="Precalibre" class="col-6 col-form-label font-12">3
+                                                        Jumbo
+                                                        (3J)</label>
+                                                    <div class="col-6">
+                                                        {{ r.J3 }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" style=" margin-right: 2px;">
+                                                    <label for="Precalibre" class="col-6 col-form-label font-12">4
+                                                        Jumbo
+                                                        (4J)</label>
+                                                    <div class="col-6">
+                                                        {{ r.J4 }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6 col-sm-12">
+                                            <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                class="text-center">
+                                                <strong>Por Color</strong>
+                                            </h6>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label"><u><strong>COLOR</strong></u></label>
+                                                <label for="Precalibre" class="col-6 col-form-label"><u><strong>N°
+                                                            FRUTOS</strong></u></label>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label font-12">Rojo</label>
+                                                <div class="col-6">
+                                                    {{ r.Rojo }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">Rojo
+                                                    Caoba</label>
+                                                <div class="col-6">
+                                                    {{ r.RojoCaoba }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label font-12">Caoba</label>
+                                                <div class="col-6">
+                                                    {{ r.Caoba }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">Caoba
+                                                    Oscuro</label>
+                                                <div class="col-6">
+                                                    {{ r.CaobaOscuro }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label font-12">Negro</label>
+                                                <div class="col-6">
+                                                    {{ r.Negro }}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="row p-2">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 ">
+                                            <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                class="text-center">
+                                                <strong>Distribución FirmPro</strong>
+                                            </h6>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label"><u><strong>COLOR</strong></u></label>
+                                                <label for="Precalibre" class="col-6 col-form-label"><u><strong>N°
+                                                            FRUTOS</strong></u></label>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label font-12">Blandos</label>
+                                                <div class="col-6">
+                                                    {{ r.Blando }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label font-12">Sensibles</label>
+                                                <div class="col-6">
+                                                    {{ r.Sensible }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-6 col-form-label font-12">Firmes</label>
+                                                <div class="col-6">
+                                                    {{ r.Firme }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">Muy
+                                                    Firmes</label>
+                                                <div class="col-6">
+                                                    {{ r.MuyFirme }}
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">Large
+                                                    (L)</label>
+                                                <div class="col-6">
+                                                    {{ r.FP_L }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-11">Extra
+                                                    Large
+                                                    (XL)</label>
+                                                <div class="col-6">
+                                                    {{ r.FP_XL }}
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">Jumbo
+                                                    (J)</label>
+                                                <div class="col-6">
+                                                    {{ r.FP_J }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">2
+                                                    Jumbo
+                                                    (2J)</label>
+                                                <div class="col-6">
+                                                    {{ r.FP_J2 }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">3
+                                                    Jumbo
+                                                    (3J)</label>
+                                                <div class="col-6">
+                                                    {{ r.FP_J3 }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">4
+                                                    Jumbo
+                                                    (4J)</label>
+                                                <div class="col-6">
+                                                    {{ r.FP_J4 }}
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row text-center">
+
+                                                <label for="Precalibre" class="col-6 col-form-label font-12">
+                                                    <u>PROMEDIO</u> </label>
+                                                <div class="col-6">
+                                                    {{ r.FPProm }}
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row text-center">
+
+                            <div class="col-xl-3 col-md-6 col-sm-12">
+                                <div class="card ">
+                                    <div class="row p-2">
+                                        <div class="col-xl-12 col-sm-12">
+                                            <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                class="text-center">
+                                                <strong>Análisis de Masa</strong>
+                                            </h6>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-4 col-form-label font-12"><U>CALIBRES</U>
+                                                </label>
+                                                <div class="col-4">
+                                                    {{ r.CalibreLight }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.CalibreDark }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
+                                                    1</label>
+                                                <div class="col-4">
+                                                    {{ r.C1F1 }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.C2F1 }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
+                                                    2</label>
+                                                <div class="col-4">
+                                                    {{ r.C1F2 }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.C2F2 }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
+                                                    3</label>
+                                                <div class="col-4">
+                                                    {{ r.C1F3 }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.C2F3 }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
+                                                    4</label>
+                                                <div class="col-4">
+                                                    {{ r.C1F4 }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.C2F4 }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
+                                                    5</label>
+                                                <div class="col-4">
+                                                    {{ r.C1F5 }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.C2F5 }}
+                                                </div>
+                                            </div>
+
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <div class="row text-center">
+                                                <hr>
+                                                <div class="mb-3 col-6 col-form-label font-12 ">
+                                                    <label for="example-readonly" class="form-label">Promedio Calibre
+                                                        1</label>
+                                                    {{ r.PromMasa1 }}
+                                                </div>
+                                                <div class="mb-3 col-6 col-form-label font-12">
+                                                    <label for="example-readonly" class="form-label">Promedio Calibre
+                                                        2</label>
+                                                    {{ r.PromMasa2 }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6 col-sm-12">
+                                <div class="card">
+                                    <div class="row p-2">
+                                        <div class="col-xl-12 col-sm-12 text-center">
+                                            <h6 style="background-color:  #007bff ; color: aliceblue;"
+                                                class="text-center">
+                                                <strong>Sólido Soluble</strong>
+                                            </h6>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-4 col-form-label"><u><strong>Calibre</strong></u></label>
+                                                <label for="Precalibre"
+                                                    class="col-4 col-form-label"><u><strong>LIGHT</strong></u></label>
+                                                <label for="Precalibre"
+                                                    class="col-4 col-form-label"><u><strong>DARK</strong></u></label>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Large
+                                                    (L)</label>
+                                                <div class="col-4">
+                                                    {{ r.ssLL }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.ssLD }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Extra Large
+                                                    (XL)</label>
+                                                <div class="col-4">
+                                                    {{ r.ssXLL }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.ssXLD }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">Jumbo
+                                                    (J)</label>
+                                                <div class="col-4">
+                                                    {{ r.ssJL }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.ssJD }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">2 Jumbo
+                                                    (2J)</label>
+                                                <div class="col-4">
+                                                    {{ r.ss2JL }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.ss2JD }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">3 Jumbo
+                                                    (3J)</label>
+                                                <div class="col-4">
+                                                    {{ r.ss3JL }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.ss3JD }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-4 col-form-label font-12">4 Jumbo
+                                                    (4J)</label>
+                                                <div class="col-4">
+                                                    {{ r.ss4JL }}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ r.ss4JD }}
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <div class="row text-center">
+                                                <hr>
+                                                <div class="mb-2 col-6 col-form-label font-12 ">
+                                                    <label for="example-readonly" class="form-label">Promedio
+                                                        Light</label>
+                                                    {{ r.PromLight }}
+                                                </div>
+                                                <div class="mb-2 col-6 col-form-label font-12">
+                                                    <label for="example-readonly" class="form-label">Promedio
+                                                        Dark</label>
+                                                    {{ r.PromDark }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="row p-2">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 text-center">
+                                            <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                class="text-center">
+                                                <strong>Defecto de Calidad</strong>
+                                            </h6>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label"><u><strong></strong></u></label>
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label text-center"><u><strong>N°</strong></u></label>
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label"><u><strong></strong></u></label>
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label text-center"><u><strong>N°</strong></u></label>
+
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Daño
+                                                    Trips</label>
+                                                <div class="col-3">
+                                                    {{ r.DTrips }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Falta
+                                                    Color</label>
+                                                <div class="col-3">
+                                                    {{ r.FaltaColor }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
+                                                    Deforme</label>
+                                                <div class="col-3">
+                                                    {{ r.FrutoDeforme }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
+                                                    Doble</label>
+                                                <div class="col-3">
+                                                    {{ r.FrutoDoble }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Sin
+                                                    Pedicelo</label>
+                                                <div class="col-3">
+                                                    {{ r.SinPedicelo }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Guata
+                                                    Blanca</label>
+                                                <div class="col-3">
+                                                    {{ r.GuataBlanca }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Herida
+                                                    Cicatrizada</label>
+                                                <div class="col-3">
+                                                    {{ r.HeridaCicatrizada }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Piel de
+                                                    Lagarto</label>
+                                                <div class="col-3">
+                                                    {{ r.PielLagarto }}
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Daño
+                                                    Insecto</label>
+                                                <div class="col-3">
+                                                    {{ r.DInsecto }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Con
+                                                    Hijuelos</label>
+                                                <div class="col-3">
+                                                    {{ r.Hijuelo }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Manchas</label>
+                                                <div class="col-3">
+                                                    {{ r.Manchas }}
+                                                </div>
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Medialuna</label>
+                                                <div class="col-3">
+                                                    {{ r.Medialuna }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Mezcla
+                                                    Variedad</label>
+                                                <div class="col-3">
+                                                    {{ r.MezclaVariedad }}
+                                                </div>
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Roce</label>
+                                                <div class="col-3">
+                                                    {{ r.Roce }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Russet</label>
+                                                <div class="col-3">
+                                                    {{ r.Russet }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Restos
+                                                    Florales</label>
+                                                <div class="col-3">
+                                                    {{ r.RestosFlorales }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Golpe de
+                                                    Sol</label>
+                                                <div class="col-3">
+                                                    {{ r.GolpeSol }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Residuo
+                                                    Productos</label>
+                                                <div class="col-3">
+                                                    {{ r.ResiduoProducto }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center p-2">
+
+                                        <label for="totDFC" class="col-6 col-form-label font-12"> <u>TOTAL DEFECTO
+                                                CALIDAD</u> </label>
+                                        <div class="col-3">
+                                            {{ r.TotCalidad }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+
+                            <div class="col-xl-6 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="row p-2">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 text-center">
+                                            <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                class="text-center">
+                                                <strong>Defecto de Condición</strong>
+                                            </h6>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label"><u><strong></strong></u></label>
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label text-center"><u><strong>N°</strong></u></label>
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label"><u><strong></strong></u></label>
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label text-center"><u><strong>N°</strong></u></label>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Daño
+                                                    Pajaros</label>
+                                                <div class="col-3">
+                                                    {{ r.DPajaro }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Depresion
+                                                    Severa</label>
+                                                <div class="col-3">
+                                                    {{ r.DepresionSevera }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
+                                                    BLando</label>
+                                                <div class="col-3">
+                                                    {{ r.FrutoBlando }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
+                                                    Deshidratado</label>
+                                                <div class="col-3">
+                                                    {{ r.FrutoDeshidratado }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Herida
+                                                    Abierta</label>
+                                                <div class="col-3">
+                                                    {{ r.HeridaAbierta }}
+                                                </div>
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Machucón</label>
+                                                <div class="col-3">
+                                                    {{ r.Machucon }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Mancha
+                                                    Pudrición</label>
+                                                <div class="col-3">
+                                                    {{ r.ManchaPudricion }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Descarro
+                                                    Pedicelar</label>
+                                                <div class="col-3">
+                                                    {{ r.DescarroPedicelar }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Adhesion</label>
+                                                <div class="col-3">
+                                                    {{ r.Adhesion }}
+                                                </div>
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Partidura</label>
+                                                <div class="col-3">
+                                                    {{ r.Partidura }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Partidura
+                                                    Apical</label>
+                                                <div class="col-3">
+                                                    {{ r.PartiduraApical }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Pedicelo
+                                                    Deshidratado</label>
+                                                <div class="col-3">
+                                                    {{ r.PediceloDeshidratado }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Pitting
+                                                    Punteadura</label>
+                                                <div class="col-3">
+                                                    {{ r.PittingPunteadura }}
+                                                </div>
+
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Pudrición</label>
+                                                <div class="col-3">
+                                                    {{ r.Pudricion }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre"
+                                                    class="col-3 col-form-label font-12">Sobremadurez</label>
+                                                <div class="col-3">
+                                                    {{ r.Sobremadurez }}
+                                                </div>
+
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Sutura
+                                                    Abierta</label>
+                                                <div class="col-3">
+                                                    {{ r.SuturaAbierta }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Precalibre" class="col-3 col-form-label font-12">Partidura
+                                                    Basal</label>
+                                                <div class="col-3">
+                                                    {{ r.PartiduraBasal }}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row text-center p-2">
+
+                                            <label for="totDFC" class="col-6 col-form-label font-12"> <u>TOTAL DEFECTO
+                                                    CALIDAD</u> </label>
+                                            <div class="col-3">
+                                                {{ r.TotCondicion }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-md-12 col-sm-12" style="border-color: #313a46;">
+                                <div style="border-inline-color: #313a46;">
+                                    <div class="card">
+                                        <div class="row p-2">
+                                            <div class="col-xl-6 col-md-6 col-sm-12 ">
+                                                <h6 style="background-color:  #007bff; color: aliceblue;"
+                                                    class="text-center">
+                                                    <strong>RESULTADOS DE LA MUESTRA</strong>
+                                                </h6>
+                                                <div class="row text-center p-2">
+                                                    <label for="totDFC" class="col-9 col-form-label font-14">
+                                                        <u>PRECALIBRE
+                                                            (%)</u> </label>
+                                                    <div class="col-3">
+                                                        {{ r.PrecalibreTot }}
+                                                    </div>
+                                                </div>
+                                                <div class="row text-center p-2">
+
+                                                    <label for="totDFC" class="col-9 col-form-label font-14"> <u>DEFECTO
+                                                            DE
+                                                            CALIDAD (%)</u> </label>
+                                                    <div class="col-3">
+                                                        {{ r.CalidadTotal }}
+                                                    </div>
+
+                                                </div>
+                                                <div class="row text-center p-2">
+
+                                                    <label for="totDFC" class="col-9 col-form-label font-14"> <u>DEFECTO
+                                                            DE
+                                                            CODICIÓN (%)</u> </label>
+                                                    <div class="col-3">
+                                                        {{ r.CondicionTotal }}
+                                                    </div>
+
+                                                </div>
+                                                <div class="card my-3"
+                                                    style="background-color: #007bff; color: aliceblue;">
+                                                    <div class="row text-center p-4">
+
+                                                        <label for="totDFC" class="col-9 col-form-label font-14">
+                                                            <strong><u>TOTAL EXPORTABLE MUESTRA (%)</u></strong>
+                                                        </label>
+                                                        <div class="col-3">
+                                                            {{ r.TotalExportable }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6 col-md-6 col-sm-12 ">
+                                                <h4 style="background-color:  #007bff; color: aliceblue;"
+                                                    class="text-center">
+                                                    <strong>Observaciones:</strong>
+                                                </h4>
+                                                <div class="col-xl-12 col-md-12 col-sm-12 my-4 ">
+                                                    {{ r.observaciones }}
+                                                </div>
+                                                <!-- <div class="row col-xl-12 col-md-12 col-sm-12 my-4 text-center"
+                                                    style="border: 1px solid; padding: auto;">
+                                                    <p><b> Usuario Responsable de Análisis:</b> {{ user.username | upper }}
+                                                    </p>
+                                                </div> -->
+                                                <hr style="border: 2px solid; background-color: #313a46;">
+
+                                                <div class="col-xl-12 col-md-12 col-sm-12 my-2">
+
+                                                    <a class="btn btn-secondary mb-2 me-2 col-12" type="submit"
+                                                        id="submit" style="background-color: #007bff;"
+                                                        target="_blank"><i class="fas fa-marker"></i>
+                                                        Editar Registro
+                                                    </a>
+                                                    <!-- fas fa-marker  || icono para actualizar -->
+                                                    <br>
+                                                    <br>
+
+                                                    <a class="btn btn-secondary  mb-2 me-2 col-12" type="back" id="back"
+                                                        style="background-color: #1D6F42;" target="_blank"><i
+                                                            class="fas fa-minus "></i>
+                                                        No realizar ningun cambio
+                                                    </a>
+                                                    <br>
+                                                    <br>
+                                                    <a class="btn btn-secondary  mb-2 me-2 col-12" type="reset"
+                                                        id="reset" style="background-color: #F40F02;" target="_blank"><i
+                                                            class="fas fa-trash "></i>
+                                                        Limpiar Formulario
+                                                    </a>
+
+                                                </div>
+
+                                                <hr style="border: 2px solid; background-color: #313a46;">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <!-- Imagenes -->
+                        <hr style="border: 2px solid; background-color: #007bff;">
+                        <div class="row col-xl-12 col-sm-12" style="background-color: #007bff;">
+                            <div class="row col-xl-12 col-sm-12 text-center">
+                                <h4 class="text-center p-2" style="color: rgb(255, 255, 255);"><b><u>CAMBIAR IMAGENES DEL
+                                            INFORME:</u></b></h4>
+                            </div>
+
+                            <div class="col-xl-6 col-sm-6 p-2">
+                                {{ r.images1 }}
+                            </div>
+                            <div class="col-xl-6 col-sm-6 p-2">
+                                {{ r.images2 }}
+                            </div>
+                            <br>
+                            <div class="col-xl-6 col-sm-6 p-2">
+
+                                {{ r.images3 }}
+                            </div>
+                            <br>
+                            <div class="col-xl-6 col-sm-6 p-2">
+
+                                {{ r.images4 }}
+                                <br>
+
+                            </div>
+
+                        </div>
+                        <hr style="border: 2px solid; background-color: #313a46;">
+                        <!-- end imagenes -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end card-body -->
+</div> <!-- end card-->
+</div> <!-- end col -->
+</div>
+
+</div> <!-- container -->
+
+<script type="text/javascript">
+
+    function calcularTodo() {
+
+        Resultados();
+        PromFirmPro();
+        PromC1Masa();
+        PromC2Masa();
+        PromSD();
+        PromSL();
+        DefCal();
+        DefCon();
+
+    }
+
+
+    function Resultados() {
+        var precalibre = parseInt(document.getElementById('PCalibre').value);
+
+        var num1 = parseInt(document.getElementById('DFC1').value);
+        var num2 = parseInt(document.getElementById('DFC2').value);
+        var num3 = parseInt(document.getElementById('DFC3').value);
+        var num4 = parseInt(document.getElementById('DFC4').value);
+        var num5 = parseInt(document.getElementById('DFC5').value);
+        var num6 = parseInt(document.getElementById('DFC6').value);
+        var num7 = parseInt(document.getElementById('DFC7').value);
+        var num8 = parseInt(document.getElementById('DFC8').value);
+        var num9 = parseInt(document.getElementById('DFC9').value);
+        var num10 = parseInt(document.getElementById('DFC10').value);
+        var num11 = parseInt(document.getElementById('DFC11').value);
+        var num12 = parseInt(document.getElementById('DFC12').value);
+        var num13 = parseInt(document.getElementById('DFC13').value);
+        var num14 = parseInt(document.getElementById('DFC14').value);
+        var num15 = parseInt(document.getElementById('DFC15').value);
+        var num16 = parseInt(document.getElementById('DFC16').value);
+        var num17 = parseInt(document.getElementById('DFC17').value);
+        var num18 = parseInt(document.getElementById('DFC18').value);
+
+        var DefCal;
+        DefCal = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9 + num10 + num11 + num12 + num13 + num14 + num15 + num16 + num17 + num18;
+
+        var nu1 = parseInt(document.getElementById('DFCo1').value);
+        var nu2 = parseInt(document.getElementById('DFCo2').value);
+        var nu3 = parseInt(document.getElementById('DFCo3').value);
+        var nu4 = parseInt(document.getElementById('DFCo4').value);
+        var nu5 = parseInt(document.getElementById('DFCo5').value);
+        var nu6 = parseInt(document.getElementById('DFCo6').value);
+        var nu7 = parseInt(document.getElementById('DFCo7').value);
+        var nu8 = parseInt(document.getElementById('DFCo8').value);
+        var nu9 = parseInt(document.getElementById('DFCo9').value);
+        var nu10 = parseInt(document.getElementById('DFCo10').value);
+        var nu11 = parseInt(document.getElementById('DFCo11').value);
+        var nu12 = parseInt(document.getElementById('DFCo12').value);
+        var nu13 = parseInt(document.getElementById('DFCo13').value);
+        var nu14 = parseInt(document.getElementById('DFCo14').value);
+        var nu15 = parseInt(document.getElementById('DFCo15').value);
+        var nu16 = parseInt(document.getElementById('DFCo16').value);
+        var nu17 = parseInt(document.getElementById('DFCo17').value);
+
+        var DefCon;
+        DefCon = nu1 + nu2 + nu3 + nu4 + nu5 + nu6 + nu7 + nu8 + nu9 + nu10 + nu11 + nu12 + nu13 + nu14 + nu15 + nu16 + nu17;
+
+        var exportable;
+        exportable = 100 - (precalibre + DefCal + DefCon)
+        $('input[id="PrecalibreTot"]').val(precalibre);
+        $('input[id="TotalExportable"]').val(exportable);
+    }
+
+    function PromFirmPro() {
+        var num2 = parseInt(document.getElementById('FP_L').value);
+        var num3 = parseInt(document.getElementById('FP_XL').value);
+        var num4 = parseInt(document.getElementById('FP_J').value);
+        var num5 = parseInt(document.getElementById('FP_J2').value);
+        var num6 = parseInt(document.getElementById('FP_J3').value);
+        var num7 = parseInt(document.getElementById('FP_J4').value);
+        var prom;
+        prom = (num2 + num3 + num4 + num5 + num6 + num7) / 6;
+        $('input[id="promedioFP1"]').val(prom.toFixed(2));
+    }
+
+    function PromC1Masa() {
+        var num1 = parseInt(document.getElementById('C1F1').value);
+        var num2 = parseInt(document.getElementById('C1F2').value);
+        var num3 = parseInt(document.getElementById('C1F3').value);
+        var num4 = parseInt(document.getElementById('C1F4').value);
+        var num5 = parseInt(document.getElementById('C1F5').value);
+        var prom1;
+        prom1 = (num1 + num2 + num3 + num4 + num5) / 5;
+        $('input[id="PromMasa1"]').val(prom1.toFixed(2));
+    }
+
+    function PromC2Masa() {
+        var num1 = parseInt(document.getElementById('C2F1').value);
+        var num2 = parseInt(document.getElementById('C2F2').value);
+        var num3 = parseInt(document.getElementById('C2F3').value);
+        var num4 = parseInt(document.getElementById('C2F4').value);
+        var num5 = parseInt(document.getElementById('C2F5').value);
+        var prom2;
+        prom2 = (num1 + num2 + num3 + num4 + num5) / 5;
+        $('input[id="PromMasa2"]').val(prom2.toFixed(2));
+    }
+
+    function PromSL() {
+        var num1 = parseInt(document.getElementById('ssLL').value);
+        var num2 = parseInt(document.getElementById('ssXLL').value);
+        var num3 = parseInt(document.getElementById('ssJL').value);
+        var num4 = parseInt(document.getElementById('ss2JL').value);
+        var num5 = parseInt(document.getElementById('ss3JL').value);
+        var num6 = parseInt(document.getElementById('ss4JL').value);
+        var prom3;
+
+        prom3 = (num1 + num2 + num3 + num4 + num5 + num6) / 6;
+        $('input[id="PromLight"]').val(prom3.toFixed(2));
+    }
+
+    function PromSD() {
+        var num1 = parseInt(document.getElementById('ssLD').value);
+        var num2 = parseInt(document.getElementById('ssXLD').value);
+        var num3 = parseInt(document.getElementById('ssJD').value);
+        var num4 = parseInt(document.getElementById('ss2JD').value);
+        var num5 = parseInt(document.getElementById('ss3JD').value);
+        var num6 = parseInt(document.getElementById('ss4JD').value);
+
+
+        var prom4;
+        prom4 = (num1 + num2 + num3 + num4 + num5 + num6) / 6;
+        $('input[id="PromDark"]').val(prom4.toFixed(2));
+    }
+
+    function DefCal() {
+        var num1 = parseInt(document.getElementById('DFC1').value);
+        var num2 = parseInt(document.getElementById('DFC2').value);
+        var num3 = parseInt(document.getElementById('DFC3').value);
+        var num4 = parseInt(document.getElementById('DFC4').value);
+        var num5 = parseInt(document.getElementById('DFC5').value);
+        var num6 = parseInt(document.getElementById('DFC6').value);
+        var num7 = parseInt(document.getElementById('DFC7').value);
+        var num8 = parseInt(document.getElementById('DFC8').value);
+        var num9 = parseInt(document.getElementById('DFC9').value);
+        var num10 = parseInt(document.getElementById('DFC10').value);
+        var num11 = parseInt(document.getElementById('DFC11').value);
+        var num12 = parseInt(document.getElementById('DFC12').value);
+        var num13 = parseInt(document.getElementById('DFC13').value);
+        var num14 = parseInt(document.getElementById('DFC14').value);
+        var num15 = parseInt(document.getElementById('DFC15').value);
+        var num16 = parseInt(document.getElementById('DFC16').value);
+        var num17 = parseInt(document.getElementById('DFC17').value);
+        var num18 = parseInt(document.getElementById('DFC18').value);
+
+
+        var suma;
+        suma = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9 + num10 + num11 + num12 + num13 + num14 + num15 + num16 + num17 + num18;
+        $('input[id="TotCalidad"]').val(suma);
+        $('input[id="CalidadTotal"]').val(suma);
+    }
+
+    function DefCon() {
+        var num1 = parseInt(document.getElementById('DFCo1').value);
+        var num2 = parseInt(document.getElementById('DFCo2').value);
+        var num3 = parseInt(document.getElementById('DFCo3').value);
+        var num4 = parseInt(document.getElementById('DFCo4').value);
+        var num5 = parseInt(document.getElementById('DFCo5').value);
+        var num6 = parseInt(document.getElementById('DFCo6').value);
+        var num7 = parseInt(document.getElementById('DFCo7').value);
+        var num8 = parseInt(document.getElementById('DFCo8').value);
+        var num9 = parseInt(document.getElementById('DFCo9').value);
+        var num10 = parseInt(document.getElementById('DFCo10').value);
+        var num11 = parseInt(document.getElementById('DFCo11').value);
+        var num12 = parseInt(document.getElementById('DFCo12').value);
+        var num13 = parseInt(document.getElementById('DFCo13').value);
+        var num14 = parseInt(document.getElementById('DFCo14').value);
+        var num15 = parseInt(document.getElementById('DFCo15').value);
+        var num16 = parseInt(document.getElementById('DFCo16').value);
+        var num17 = parseInt(document.getElementById('DFCo17').value);
+
+
+        var suma;
+        suma = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9 + num10 + num11 + num12 + num13 + num14 + num15 + num16 + num17;
+        $('input[id="TotCondicion"]').val(suma);
+        $('input[id="CondicionTotal"]').val(suma);
+
+    }
+
+</script>
+
+<!-- Validar Formulario js -->
+<script src="{% static 'js/validarForm.js' %}"></script>
+<!-- -->
+{% endblock %}

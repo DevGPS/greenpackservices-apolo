@@ -1,0 +1,57 @@
+<table border="1" style="text-align:center;width:auto;height:50px;">
+    <thead class="table-light">
+        <tr>
+           
+            <th class="all" width="130px" rowspan="2">Logotipo.png</th>
+            <th scope="col" width="600px" rowspan="2" style="background-color: rgb(245, 238, 174); color: rgb(0, 0, 0);">
+                <h1>LISTADO DE INFORMES DE RECEPCIÓN CEREZAS FRESCAS</h1>
+
+                {{fecha}}
+            </th>
+            <th scope="col" width="130px">Versión: 002 </th>
+        </tr>
+        <tr>
+
+            <th scope="col" width="139px">Código: form-Ce-001-23 </th>
+        </tr>
+    </thead>
+</table>
+<br>
+<div class="table-responsive">
+
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:25px;">
+        <thead class="table-light">
+            <tr style="background-color: rgb(245, 238, 174); color: rgb(0, 0, 0);">
+                <th class="all" width="40">Lote</th>
+                <th scope="col" width="70">Exportadora</th>
+                <th scope="col" width="70">N° de Guia</th>
+                <th scope="col" width="80">Fecha de Recepción</th>
+                <th scope="col" width="80">Hora de Recepción</th>
+                <th scope="col" width="80">PreCalibre</th>
+                <th scope="col" width="80">% Def Calidad</th>
+                <th scope="col" width="80">% Def Condición</th>
+                <th scope="col" width="80">% Exportable</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for registro in registros %}
+            <tr>
+                <td>{{registro.Lote}}</td>
+                <td>{{registro.Exportadora}}</td>
+                <td>{{registro.Nguia}}</td>
+                <td>{{registro.Fecha_Recepcion}}</td>
+                <td>{{registro.Hora_Recepcion}}</td>
+                <td>{{registro.PrecalibreTot}}</td>
+                <td>{{registro.CalidadTotal}}</td>
+                <td>{{registro.CondicionTotal}}</td>
+                <td style="background-color: rgb(245, 238, 174); color: rgb(0, 0, 0);">{{registro.TotalExportable}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>

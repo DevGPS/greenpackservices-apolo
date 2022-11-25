@@ -1,0 +1,417 @@
+<table border="1" style="text-align:center;width:auto;height:50px;">
+    <thead class="table-light">
+        <tr>
+           
+            <th class="all" width="130px" rowspan="2">Logotipo.png</th>
+            <th scope="col" width="600px" rowspan="2" style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <h1>REGISTRO DE CONTROL DE RECEPCIÓN CEREZAS FRESCAS</h1>
+
+                {{fecha}}
+            </th>
+            <th scope="col" width="130px">Versión: 07 </th>
+        </tr>
+        <tr>
+
+            <th scope="col" width="139px">Código: RG 3.6.1 RC </th>
+        </tr>
+    </thead>
+</table>
+<br>
+
+
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:17px;">
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="col" width="100px" rowspan="2" style="font-size: 32px; background-color: rgb(255, 255, 255)"> <u><b>Lote</b></u><br>
+                    {{registros.Lote}}</th>
+                <th scope="col">Exportadora</th>
+                <th scope="col" width="290px">Productor</th>
+                <th scope="col" width="60px">CSG</th>
+                <th scope="col">Variedad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{registros.Exportadora}}</td>
+                <td>{{registros.Productor}}</td>
+                <td>{{registros.Productor.CSG}}</td>
+                <td>{{registros.Variedad}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:17px;">
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all">Fecha de Recepción</th>
+                <th scope="col">Hora de Recepción</th>
+                <th scope="col">Hora Análisis</th>
+                <th class="col" colspan="2">Temperatura</th>
+                <th scope="col">Tipo Transporte</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{registros.Fecha_Recepcion}}</td>
+                <td>{{registros.Hora_Recepcion}} Hrs</td>
+                <td>{{registros.Hora_Analisis}} Hrs</td>
+                <td>Minima: {{registros.Tmin}}°</td>
+                <td>Maxima: {{registros.Tmax}}°</td>
+
+                {% if registros.Tip_Trans == "T" %}
+                <td>Termo</td>
+                {% else %}
+                <td>Container</td>
+                {% endif %}
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:17px;">
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all">N° Guia</th>
+                <th scope="col">Patente</th>
+                <th scope="col">Tipo Envases</th>
+                <th scope="col">N° Envases</th>
+                <th scope="col">Kilos Netos</th>
+                <th scope="col">¿Hidro Campo?</th>
+                <th scope="col">N° de Frutos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{registros.Nguia}}</td>
+                <td>{{registros.Patente}}</td>
+                {% if registros.Tip_Env == "T" %}
+                <td>Totem</td>
+                {% else %}
+                <td>Bins</td>
+                {% endif %}
+                <td>{{registros.NEnv}} Unidades</td>
+                <td>{{registros.KNeto}} Kgs</td>
+                {% if registros.Hidro == "True" %}
+                <td>SI</td>
+                {% else %}
+                <td>NO</td>
+                {% endif %}
+                <td>{{registros.NFruto}} Unidades</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:17px;">
+        <h3 style="margin-bottom: -3px; margin-top: 20px;"><u><b>DISTRIBUCIÓN POR CALIBRES (mm)</b></u></h3>
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all"><b><u>PreCalibre</u></b> (- 22) </th>
+                <th scope="col"><b><u>L</u></b> (22-23,9)</th>
+                <th scope="col"><b><u>XL</u></b> (24-25,9)</th>
+                <th scope="col"><b><u>J</u></b> (26-27,9)</th>
+                <th scope="col"><b><u>2J</u></b> (26-29,9)</th>
+                <th scope="col"><b><u>3J</u></b> (30-31,9)</th>
+                <th scope="col"><b><u>4J</u></b> (+32)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{registros.PC}}</td>
+                <td>{{registros.L}}</td>
+                <td>{{registros.XL}}</td>
+                <td>{{registros.J}}</td>
+                <td>{{registros.J2}}</td>
+                <td>{{registros.J3}}</td>
+                <td>{{registros.J4}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:17px;">
+        <h3 style="margin-bottom: -3px; margin-top: 20px;"><u><b>DISTRIBUCIÓN POR COLOR</b></u></h3>
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all"><b><u>ROJO</u></b> (2) </th>
+                <th scope="col"><b><u>ROJO CAOBA</u></b> (3)</th>
+                <th scope="col"><b><u>CAOBA</u></b> (3.5)</th>
+                <th scope="col"><b><u>CAOBA OSCURO</u></b> (4)</th>
+                <th scope="col"><b><u>NEGRO</u></b> (5)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{registros.Rojo}}</td>
+                <td>{{registros.RojoCaoba}}</td>
+                <td>{{registros.Caoba}}</td>
+                <td>{{registros.CaobaOscuro}}</td>
+                <td>{{registros.Negro}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:17px;">
+        <h3 style="margin-bottom: -3px; margin-top: 20px;"><u><b>ANÁLISIS DE MASA (grs)</b></u></h3>
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all"><b>CALIBRES</b></th>
+                <th class="all"><b>FRUTO 1</b></th>
+                <th scope="col"><b>FRUTO 2</b></th>
+                <th scope="col"><b>FRUTO 3</b></th>
+                <th scope="col"><b>FRUTO 4</b></th>
+                <th scope="col"><b>FRUTO 5</b></th>
+                <th scope="col"style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);"><b>PROMEDIO</b></th>                 
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Calibre: {{registros.CalibreLight}}</td>
+                <td>{{registros.C1F1}}</td>
+                <td>{{registros.C1F2}}</td>
+                <td>{{registros.C1F3}}</td>
+                <td>{{registros.C1F4}}</td>
+                <td>{{registros.C1F5}}</td>
+                <td style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">{{registros.PromMasa1}}</td>
+            </tr>
+            <tr>
+                <td>Calibre: {{registros.CalibreDark}}</td>
+                <td>{{registros.C2F1}}</td>
+                <td>{{registros.C2F2}}</td>
+                <td>{{registros.C2F3}}</td>
+                <td>{{registros.C2F4}}</td>
+                <td>{{registros.C2F5}}</td>
+                <td style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">{{registros.PromMasa2}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:20px;">
+        <h3 style="margin-bottom: -3px; margin-top: 20px;"><u><b>DISTRIBUCIÓN POR FIRMEZA FIRMPRO (gf/mm)</b></u></h3>
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all"><b>Blando</b> (-200)</th>
+                <th scope="col"><b>Sensible</b> (201-270)</th>
+                <th scope="col"><b>Firme</b> (271-300)</th>
+                <th scope="col"><b>Muy Firme</b> (+300)</th>
+                <th scope="col"style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);"><b>MINIMO</b></th>
+                <th scope="col"style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);"><b>MAXIMO</b></th>             
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding-top: 2px;">{{registros.Blando}}</td>
+                <td style="padding-top: 2px;">{{registros.Sensible}}</td>
+                <td style="padding-top: 2px;">{{registros.Firme}}</td>
+                <td style="padding-top: 2px;">{{registros.MuyFirme}}</td>
+                <td style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0); padding-top: 2px;">{{registros.FPProm}}</td>  
+                <td style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0); padding-top: 2px;">{{registros.FPProm}}</td> 
+            </tr>
+        </tbody>     
+    </table>
+</div>
+
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:20px;">
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all"><b>Large (L)</b></th>
+                <th scope="col"><b>Extra Large (XL)</b></th>
+                <th scope="col"><b>Jumbo (J)</b></th>
+                <th scope="col"><b>2 Jumbo (2J)</b></th>  
+                <th scope="col"><b>3 Jumbo (3J)</b></th>
+                <th scope="col"><b>4 Jumbo (4J)</b></th>
+                <th scope="col"style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);"><b>PROMEDIO</b></th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding-top: 2px;">{{registros.FP_L}}</td>
+                <td style="padding-top: 2px;">{{registros.FP_XL}}</td>
+                <td style="padding-top: 2px;">{{registros.FP_J}}</td>
+                <td style="padding-top: 2px;">{{registros.FP_J2}}</td>
+                <td style="padding-top: 2px;">{{registros.FP_J3}}</td>                
+                <td style="padding-top: 2px;">{{registros.FP_J4}}</td> 
+                <td style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0); padding-top: 2px;">{{registros.FPProm}}</td>  
+            </tr>
+        </tbody>
+      
+        
+    </table>
+</div>
+
+
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:20px;">
+        <h3 style="margin-bottom: -3px; margin-top: 20px;"><u><b>DEFECTOS DE CALIDAD (%)</b></u></h3>
+
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all" width="85px"><b>Daño por Insecto</b></th>
+                <th scope="col" width="60px"><b>Daño Trips</b></th>
+                <th scope="col" width="75px"><b>Falta de Color</b></th>
+                <th scope="col" width="75px"><b>Fruto Deforme</b></th>  
+                <th scope="col" width="85px"><b>Fruto Doble</b></th>  
+                <th scope="col" width="60px"><b>Sin Pedicelo</b></th>
+                <th scope="col" width="75px"><b>Guata Blanca</b></th>
+
+                <th scope="col" width="85px"><b>Restos Florales</b></th>
+                <th scope="col" width="75px"><b>Piel Lagarto</b></th>
+
+                <th class="col" rowspan="4" style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">TOTAL <br> {{ registros.TotCalidad }}</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr>                
+                <td>{{registros.DInsecto}}</td>
+                <td>{{registros.DTrips}}</td>
+                <td>{{registros.FaltaColor}}</td>
+                <td>{{registros.FrutoDeforme}}</td>
+                <td>{{registros.FrutoDoble}}</td>
+                <td>{{registros.SinPedicelo}}</td>
+                <td>{{registros.GuataBlanca}}</td>
+
+                <td>{{registros.RestosFlorales}}</td> 
+                <td>{{registros.PielLagarto}}</td>         
+
+            </tr>            
+        </tbody>     
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all" width="85px"><b>Herida Cicatr.</b></th>
+                <th scope="col" width="60px"><b>Hijuelo</b></th>
+                <th scope="col" width="75px"><b>Manchas</b></th>
+                <th scope="col" width="75px"><b>Medialuna</b></th>  
+                <th scope="col" width="85px"><b>Mezcla Variedad</b></th>  
+                <th scope="col" width="60px"><b>Roce</b></th>
+                <th scope="col" width="75px"><b>Russet</b></th>
+
+                <th scope="col" width="85px"><b>Golpe de Sol</b></th>   
+                <th scope="col" width="75px"><b>Resd. Productos</b></th>   
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>                
+                <td>{{registros.HeridaCicatrizada}}</td>
+                <td>{{registros.Hijuelo}}</td>
+                <td>{{registros.Manchas}}</td>
+                <td>{{registros.Medialuna}}</td>
+                <td>{{registros.MezclaVariedad}}</td>
+                <td>{{registros.Roce}}</td>
+                <td>{{registros.Russet}}</td>
+
+                <td>{{registros.GolpeSol}}</td>         
+                <td>{{registros.ResiduoProducto}}</td>         
+
+            </tr>            
+        </tbody>  
+    </table>
+</div>
+<div class="table-responsive">
+    <table id="selection-datatable" class="table dt-responsive nowrap w-100 table-bordered table-hover" border="1"
+        style="text-align:center;width:auto;height:20px;">
+        <h3 style="margin-bottom: -3px; margin-top: 20px;"><u><b>DEFECTOS DE CONDICIÓN (%)</b></u></h3>
+
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all" width="60px"><b>Adhesion</b></th>
+                <th scope="col" width="75px"><b>Daño Pajaro</b></th>
+                <th scope="col" width="95px"><b>Depresión Severa</b></th>
+                <th scope="col" width="75px"><b>Fruto Blando</b></th>  
+                <th scope="col" width="100px"><b>Fruto Deshidratado</b></th>  
+                <th scope="col" width="75px"><b>Herida Abierta</b></th>
+                <th scope="col" width="60px"><b>Machucón</b></th>
+                <th scope="col" width="100px"><b>ManchaPudricion</b></th>
+                <th scope="col" width="100px"><b>Partidura Basal</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>                
+                <td width="60px">{{registros.Adhesion}}</td>
+                <td width="75px">{{registros.DPajaro}}</td>
+                <td width="95px">{{registros.DepresionSevera}}</td>
+                <td width="75px">{{registros.FrutoBLando}}</td>
+                <td width="100px">{{registros.FrutoDeshidratado}}</td>
+                <td width="75px">{{registros.HeridaAbierta}}</td>
+                <td width="60px">{{registros.Machucon}}</td> 
+                <td width="100px">{{registros.ManchaPudricion}}</td>
+                <td width="100px">{{registros.PartiduraBasal}}</td> 
+
+            </tr>
+            
+        </tbody> 
+
+        <thead class="table-light">
+            <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+                <th class="all" width="60px"><b>Medialuna</b></th>
+                <th scope="col" width="75px"><b>Partidura Long.</b></th>
+                <th scope="col" width="95px"><b>Pedic. Deshid.</b></th>
+                <th scope="col" width="75px"><b>Pudricion</b></th>  
+                <th scope="col" width="100px"><b>Pitting Punteadura</b></th>                 
+                <th scope="col" width="75px"><b>Sobremadurez</b></th>
+                <th scope="col" width="60px"><b>Sutura</b></th>
+                <th scope="col" width="100px"><b>Descarro Pedicelar</b></th>
+                <th scope="col" width="100px" style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);"><b>TOTAL</b></th> 
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="60px">{{registros.Partidura}}</td>
+                <td width="75px">{{registros.PartiduraApical}}</td>
+                <td width="95px">{{registros.PediceloDeshidratado}}</td>
+                <td width="75px">{{registros.Pudricion}}</td>
+                <td width="100px">{{registros.PittingPunteadura}}</td>                
+                <td width="75px">{{registros.Sobremadurez}}</td>
+                <td width="60px">{{registros.SuturaAbierta}}</td> 
+                <td width="100px">{{registros.DescarroPedicelar}}</td>
+                <td width="100px" style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">{{ registros.TotCondicion }}</td>         
+
+            </tr>            
+        </tbody>         
+    </table>
+</div>
+<br>
+<table border="1" style="text-align:center;width:auto;height:50px;">
+    <thead class="table-light">
+        <tr>
+            <th class="all" width="110px" style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);"><u>Observaciones: </u> </th>
+            <th scope="col" style="font-size: 13px; padding-top: 8px;" >{{registros.observaciones}} </th>
+        </tr>
+        
+    </thead>
+</table>
+    <br>
+<table border="1" style="text-align:center;width:auto;height:50px;">
+    <thead class="table-light">
+        <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
+            <th class="all" width="110px" rowspan="2" style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">RESULTADOS DE LA MUESTRA</th>
+            <th scope="col" style="font-size: 11px;" >Precalibre (%)</th>
+            <th scope="col" style="font-size: 11px;">Defectos de Calidad (%)</th>
+            <th scope="col" style="font-size: 11px;">Defectos de Condición (%)</th>
+            <th scope="col" style="font-size: 11px;">TOTAL EXPORTABLE (%)</th>
+        </tr>
+        <tr>
+            <th scope="col" style="font-size: 26px; padding-top: 8px;" >{{registros.PrecalibreTot}} </th>
+            <th scope="col" style="font-size: 26px; padding-top: 8px;">{{registros.CalidadTotal}} </th>
+            <th scope="col" style="font-size: 26px; padding-top: 8px;">{{registros.CondicionTotal}} </th>
+            <th scope="col" style="font-size: 26px; padding-top: 8px;">{{registros.TotalExportable}} </th>
+        </tr>
+    </thead>
+</table>
