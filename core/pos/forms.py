@@ -11,13 +11,7 @@ class ExportadoraForm(ModelForm):
     class Meta:
         model = Exportadora
         fields = ['codigo','nombre', 'direccion', 'telefono', 'email']
-        labels = {
-            'codigo': 'Código',
-            'nombre': 'Nombre Exportadora',
-            'direccion': 'Dirección',
-            'telefono': 'Telefono',
-            'email': 'Correo Electrónico',            
-        }
+        
         widgets = {
             'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo","type": "text"}),
             'nombre': forms.TextInput(attrs={"class": "form-control","name": "nombre","type": "text"}),
