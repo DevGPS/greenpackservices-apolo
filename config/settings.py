@@ -24,10 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+-q801b67uu&j)5jt*tc)7d#58^(r2pvacn=mxm12khm^)1p2u'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -178,3 +175,8 @@ os.makedirs(STATIC_ROOT, exist_ok=True)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ["apolo-gps.herokuapp.com/"]
