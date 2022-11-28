@@ -176,14 +176,9 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-STATIC_TMP = os.path.join(BASE_DIR, 'static/')
-STATIC_URL = '/static/'
-
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+# STATIC_TMP = os.path.join(BASE_DIR, 'static/')
+# STATIC_URL = '/static/'
 
 
 ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
