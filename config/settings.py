@@ -179,4 +179,4 @@ STATICFILES_DIRS = [
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["apolo-gps.herokuapp.com/"]
+ALLOWED_HOSTS = ["https://apolo-gps.herokuapp.com/"]
