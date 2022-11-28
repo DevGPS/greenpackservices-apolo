@@ -114,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-ec'
+LANGUAGE_CODE = 'es-eu'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
@@ -182,7 +182,7 @@ STATIC_TMP = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 
 
-ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
+# ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []

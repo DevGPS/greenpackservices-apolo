@@ -8,10 +8,10 @@ from core.user.models import User
 
 user = User()
 user.username = 'admin'
-user.first_name = 'William Jair'
-user.last_name = 'Dávila Vargas'
-user.email = 'williamjair94@hotmail.com'
-user.set_password('admin123')
+user.first_name = 'Sebastian Alejandro'
+user.last_name = 'Araya Torres'
+user.email = 'sebastian.araya@greenps.cl'
+user.set_password('Seba0017')
 user.is_superuser = True
 user.save()
 print('Usuario creado correctamente')
@@ -27,7 +27,7 @@ print('Compañia creado correctamente')
 
 
 def insert_products():
-    with open(f'{settings7777.BASE_DIR}/deploy/json/products.json', encoding='utf8') as json_file:
+    with open(f'{settings.BASE_DIR}/deploy/json/products.json', encoding='utf8') as json_file:
         data = json.load(json_file)
         for p in data['rows'][0:100]:
             row = p['value']
