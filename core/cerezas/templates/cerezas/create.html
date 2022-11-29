@@ -85,7 +85,7 @@
                                                     </div>
                                                     <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Variedad }}
+                                                        {{ r.Especie }}
                                                     </div>
 
                                                 </div>
@@ -93,15 +93,15 @@
                                                 <div class="form-group row">
 
                                                     <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Tipo
-                                                        Transporte</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
+                                                        Transporte</label>  
+                                                        <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Tip_Trans }}
                                                     </div>
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">T°
-                                                        Minima</label>
+                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Tmin }}
+                                                        {{ r.Variedad }}
                                                     </div>
+                                                   
 
                                                 </div>
                                                 <div class="form-group row">
@@ -109,11 +109,13 @@
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Patente }}
                                                     </div>
+
                                                     <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">T°
-                                                        Maxima</label>
+                                                        Minima</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Tmax }}
+                                                        {{ r.Tmin }}
                                                     </div>
+                                                    
                                                 </div>
 
                                                 <div class="form-group row">
@@ -122,12 +124,12 @@
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Tip_Env }}
                                                     </div>
-
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Kilos
-                                                        Netos</label>
+                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">T°
+                                                        Maxima</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.KNeto }}
+                                                        {{ r.Tmax }}
                                                     </div>
+                                                   
 
                                                 </div>
                                                 <div class="form-group row">
@@ -136,12 +138,12 @@
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.NEnv }}
                                                     </div>
-
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
-                                                        Frutos</label>
+                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Kilos
+                                                        Netos</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.NFruto }}
+                                                        {{ r.KNeto }}
                                                     </div>
+                                                    
                                                 </div>
 
                                                 <div class="form-group row">
@@ -151,6 +153,12 @@
                                                         {{ r.Hidro }}
                                                         <label for="switch3" data-on-label="Si"
                                                             data-off-label="No"></label>
+                                                    </div>
+
+                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
+                                                        Frutos</label>
+                                                    <div class="col-xl-3 col-md-6 col-sm-6">
+                                                        {{ r.NFruto }}
                                                     </div>
                                                 </div>
                                             </div>
