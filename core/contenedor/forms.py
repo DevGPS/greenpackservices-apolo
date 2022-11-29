@@ -48,7 +48,7 @@ class TransporteForm(ModelForm):
             'rut': 'Rut (Dni)',
             'patente1': 'Patente Camión',
             'patente2': 'Patente Carro',
-            'telefono': 'Telefono Chofer',
+            'telefono': 'Telefono',
             'exportadora': 'Nombre Exportadora',
         }
         widgets = {
@@ -58,7 +58,7 @@ class TransporteForm(ModelForm):
             'rut': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "00.000.000-A", }),
             'patente1': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "AA-AA-00", }),
             'patente2': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "AA-AA-00", }),
-            'telefono': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "(+56) 0 0000 0000", }),
+            'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono","data-toggle": "input-mask", "data-mask-format": "(+56) 0 0000 0000",}),
             'exportadora': forms.Select(attrs={"class": "form-control"}),
 
         }

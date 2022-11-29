@@ -8,7 +8,6 @@ from core.contenedor.views.variedad.views import *
 from core.contenedor.views.productor.views import *
 
 
-
 urlpatterns = [
    
     # transporte

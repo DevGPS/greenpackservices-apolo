@@ -1,4 +1,19 @@
 {% load static %}
+
+<!-- third party css -->
+<link href="{% static 'css/vendor/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css" />
+<!-- third party css end -->
+<!-- App css -->
+<link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/app.min.css' %}" rel="stylesheet" type="text/css" id="app-style" />
+<!-- third party css -->
+<link href="{% static 'css/vendor/dataTables.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/vendor/responsive.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/vendor/buttons.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/vendor/select.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/vendor/fixedHeader.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/vendor/fixedColumns.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<!-- third party css end -->
 <aside class="main-sidebar sidebar-light-primary elevation-1">
     <a href="{% url 'dashboard' %}" class="brand-link">
         <img src="{% static 'img/logo.png' %}"
@@ -61,7 +76,7 @@
                 </li> 
             </ul>
         </nav>
-        
+        {% if request.user.is_staff %}
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"><b>Usuarios</b> </li>   
@@ -76,15 +91,14 @@
                 </li>
                 <li class="nav-item">
                     <a href="{% url 'access_users_list' %}" class="nav-link">
-                        <i class="fas fa-user-clock"></i>
-                        <p>
-                            Control de Accesos
-                        </p>
+                        <i class="fas fa-user-clock"></i> &nbsp;&nbsp;<p>Control de Accesos</p>
                     </a>
                 </li>              
                 
             </ul>
         </nav>
+        {% endif %}
+
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"><b>Reportes</b> </li>                
