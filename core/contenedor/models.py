@@ -1,6 +1,24 @@
 from django.db import models
 from django.forms import model_to_dict
 
+class Temporada(models.Model):
+    codigo = models.CharField(max_length=70, unique=True)
+    nombre = models.CharField(max_length=70, unique=True)
+    nombre_sec = models.CharField(max_length=70, unique=True)  
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+            return '{}'.format(self.nombre)       
+
+    def toJSON(self):
+            item = model_to_dict(self)
+            return item
+
+    class Meta:
+            verbose_name = 'Temporada'
+            verbose_name_plural = 'Temporadas'
 
 class Exportadora(models.Model):
     codigo = models.CharField(max_length=70, unique=True)
@@ -8,6 +26,7 @@ class Exportadora(models.Model):
     direccion = models.CharField(max_length=70)
     telefono = models.CharField(max_length=20, null=True)
     email = models.EmailField(max_length=70)
+    temporada = models.ForeignKey(Temporada, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
