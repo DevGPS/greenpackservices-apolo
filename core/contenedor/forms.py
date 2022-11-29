@@ -9,14 +9,15 @@ class ExportadoraForm(ModelForm):
         self.fields['codigo'].widget.attrs['autofocus'] = True
     class Meta:
         model = Exportadora
-        fields = ['codigo','nombre', 'direccion', 'telefono', 'email']
+        fields = ['codigo','nombre', 'direccion','temporada', 'telefono', 'email']
         
         widgets = {
             'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo","type": "text"}),
             'nombre': forms.TextInput(attrs={"class": "form-control","name": "nombre","type": "text"}),
             'direccion': forms.TextInput(attrs={"class": "form-control","name": "direccion",}),
-            'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),
-            'email': forms.EmailInput(attrs={"class": "form-control"}),            
+            'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),            
+            'email': forms.EmailInput(attrs={"class": "form-control"}),  
+            'temporada': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),          
         }
         
     def save(self, commit=True):
