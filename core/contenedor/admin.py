@@ -4,7 +4,6 @@ from core.contenedor.models import *
 # Register your models here.
 class TemporadasAdmin(admin.ModelAdmin):
     list_display = ("codigo","nombre",)
-    search_fields = ("nombre")
     list_filter = ("nombre",)
     readonly_fields = ('created_at', 'updated_at')
 

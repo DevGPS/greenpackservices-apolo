@@ -13,24 +13,25 @@ user.last_name = 'Araya Torres'
 user.email = 'sebastian.araya@greenps.cl'
 user.set_password('Seba0017')
 user.is_superuser = True
+user.is_staff = True
 user.save()
 print('Usuario creado correctamente')
 
-company = Temporada()
-company.codigo = 'T11'
-company.nombre = 'Temp. 11'
-company.nombre_sec = 'Temp. 2022/2023'
-company.save()
+temp = Temporada()
+temp.codigo = 'T11'
+temp.nombre = 'Temp. 11'
+temp.nombre_sec = 'Temp. 2022/2023'
+temp.save()
 print('Temporada creado correctamente')
 
-company = Exportadora()
-company.codigo = 'C&D'
-company.nombre = 'CYD COMERCIO Y DESARROLLO INTERNACIONAL S.A.'
-company.direccion = 'LAS CONDES s/n'
-company.telefono = '0979014552'
-company.email = 'contacto@cyd.cl'
-company.temporada = 'T11'
-company.save()
+exportadora = Exportadora()
+exportadora.codigo = 'C&D'
+exportadora.nombre = 'CYD COMERCIO Y DESARROLLO INTERNACIONAL S.A.'
+exportadora.direccion = 'LAS CONDES s/n'
+exportadora.telefono = '0979014552'
+exportadora.email = 'contacto@cyd.cl'
+exportadora.temporada = Temporada(pk=1) 
+exportadora.save()
 print('Exportadora creado correctamente')
 
 
