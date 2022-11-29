@@ -23,6 +23,8 @@
         <span class="brand-text font-weight-bold" style="color:rgb(245, 84, 35) ; font-size: 18px;  margin-left: -10px;"><b style="color: rgba(7, 170, 21, 0.644);">Green</b> Pack
             Services</span>
     </a>
+    
+    
    
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">            
@@ -30,6 +32,7 @@
                 <a  style="color:rgb(29, 35, 54) ; font-size: 16px; margin-left: 33px;" >{{ request.user.get_short_name }}</a>
             </div>
         </div>
+        
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"><b>Mantenedores</b> </li>
@@ -76,6 +79,9 @@
                 </li> 
             </ul>
         </nav>
+        
+        
+
         {% if request.user.is_staff %}
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -98,7 +104,7 @@
             </ul>
         </nav>
         {% endif %}
-
+        {% if request.user.is_staff %}
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"><b>Reportes</b> </li>                
@@ -126,7 +132,7 @@
                 
             </ul>
         </nav>
-
+        {% endif %}
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"><b>Todo Cerezas</b> </li>                
@@ -150,6 +156,6 @@
             </ul>
         </nav>
     </div>
-
+    
  
 </aside>

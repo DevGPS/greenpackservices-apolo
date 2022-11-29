@@ -39,6 +39,8 @@ class LoginFormView(FormView):
         context['title'] = 'Iniciar sesión'
         return context
 
+    
+
 
 class LoginFormView2(FormView):
     form_class = AuthenticationForm
