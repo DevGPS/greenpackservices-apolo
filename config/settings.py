@@ -182,7 +182,7 @@ STATIC_TMP = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 
 
-ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
+# ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []

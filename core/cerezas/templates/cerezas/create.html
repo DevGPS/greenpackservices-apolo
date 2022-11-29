@@ -1,5 +1,12 @@
 {% extends 'list.html' %}
 {% load static %}
+{% block head_form %}
+<link href="{% static 'cereza/lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet" />
+<link href="{% static 'cereza/lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet" />
+<script src="{% static 'cereza/lib/select2-4.0.13/js/select2.min.js' %}"></script>
+<script src="{% static 'cereza/lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+<script src="{% static 'cereza/js/form.js' %}"></script>
+{% endblock %}
 
 
 {% block content %}
@@ -10,7 +17,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h2 class="text-center"  style="color: #007bff;" >
+                <h2 class="text-center" style="color: #007bff;">
                     <strong><u>REGISTRO DE CONTROL DE RECEPCIÓN CEREZAS FRESCAS</u></strong>
                 </h2>
             </div>
@@ -37,7 +44,8 @@
                                             <div class="col-xl-12">
                                                 <br>
                                                 <div class="form-group row">
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 form-label font-12">Lote</label>
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 form-label font-12">Lote</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Lote }}
                                                     </div>
@@ -64,13 +72,14 @@
                                                 </div>
                                                 <div class="form-group row">
 
-                                                    <label 
+                                                    <label
                                                         class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Exportadora</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Exportadora }}
                                                     </div>
 
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Hora
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Hora
                                                         Análisis</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Hora_Analisis }}
@@ -79,11 +88,13 @@
                                                 <div class="form-group row">
 
 
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Productor</label>
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Productor</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Productor }}
                                                     </div>
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Variedad }}
                                                     </div>
@@ -92,7 +103,8 @@
 
                                                 <div class="form-group row">
 
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Tipo
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Tipo
                                                         Transporte</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Tip_Trans }}
@@ -105,7 +117,8 @@
 
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Patente</label>
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Patente</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Patente }}
                                                     </div>
@@ -117,13 +130,16 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Tipo de
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Tipo
+                                                        de
                                                         Envase</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Tip_Env }}
                                                     </div>
 
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Kilos
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Kilos
                                                         Netos</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.KNeto }}
@@ -131,13 +147,15 @@
 
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
                                                         Envases</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.NEnv }}
                                                     </div>
 
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
+                                                    <label
+                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
                                                         Frutos</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.NFruto }}
@@ -145,7 +163,8 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="form-label col-xl-3 col-md-6 col-sm-6 font-12 my-2">Hidro
+                                                    <label
+                                                        class="form-label col-xl-3 col-md-6 col-sm-6 font-12 my-2">Hidro
                                                         Campo</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6 my-2">
                                                         {{ r.Hidro }}
@@ -1031,6 +1050,61 @@
 </div>
 
 </div> <!-- container -->
+
+
+
+<script>
+    var select_productor = $('select[name="productor"]');
+    $(function () {
+
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="exportadora"]').on('change', function () {
+            var id = $(this).val();
+            var options = '<option value="">--------------------</option>';
+            if (id === '') {
+                select_productor.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_productor_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_productor.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_productor.html(options);
+            });
+        });
+
+        select_productor.on('change', function () {
+            var value = select_productor.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+
+
 
 <script type="text/javascript">
 

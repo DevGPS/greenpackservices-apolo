@@ -33,6 +33,10 @@ class Exportadora(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
+        return '{}'.format(self.nombre_FTS) 
+
+
+    def __str__(self):
             return '{}'.format(self.nombre)       
 
     def toJSON(self):
@@ -57,7 +61,7 @@ class Transporte(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}/{}'.format(self.patente1, self.patente2) 
+        return '{} / {}'.format(self.patente1, self.patente2) 
 
     def toJSON(self):
         item = model_to_dict(self)
@@ -81,7 +85,7 @@ class Productor(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}/{}'.format(self.codigo, self.nombre) 
+        return '{}'.format(self.nombre) 
 
     def toJSON(self):
         item = model_to_dict(self)
@@ -120,7 +124,7 @@ class Variedad(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}'.format(self.nombre) 
+        return '{} / {}'.format(self.nombre,self.especie) 
 
     def toJSON(self):
         item = model_to_dict(self)

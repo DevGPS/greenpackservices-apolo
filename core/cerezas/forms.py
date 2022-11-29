@@ -143,9 +143,9 @@ class PrincipalForms(ModelForm):
         widgets = {
             # Informacion General
             'Lote': forms.TextInput(attrs={"class": "form-control font-12 text-center", "id": "Lote", 'name': 'Lote', "required": True}),
-            'Exportadora': forms.Select(attrs={"class": "form-select font-12 text-center"}),
-            'Productor': forms.Select(attrs={"class": "form-select font-12 text-center"}),
-            'Variedad': forms.Select(attrs={"class": "form-select font-12 text-center"}),
+            'Exportadora': forms.Select(attrs={"class": "form-control select2 font-12 text-center", "id": "exportadora", 'name': 'exportadora'}),
+            'Productor': forms.Select(attrs={"class": "form-select font-12 text-center", "name": "productor", "id": "productor"}),
+            'Variedad': forms.Select(attrs={"class": "form-control select2 font-12 text-center", 'name':'variedad' }),
             'Fecha_Recepcion': forms.DateInput(attrs={"class": "form-control font-12 text-center ", "type": "date"}),
             'Hora_Recepcion': forms.TimeInput(attrs={"class": "form-control font-12 text-center", "type": "time"}),
             'Hora_Analisis': forms.TimeInput(attrs={"class": "form-control font-12 text-center", "type": "time"}),
