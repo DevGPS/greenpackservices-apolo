@@ -20,6 +20,7 @@ class Temporada(models.Model):
             verbose_name = 'Temporada'
             verbose_name_plural = 'Temporadas'
 
+
 class Exportadora(models.Model):
     codigo = models.CharField(max_length=70, unique=True)
     nombre = models.CharField(max_length=70, unique=True)
