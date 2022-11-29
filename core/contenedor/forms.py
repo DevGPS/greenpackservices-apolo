@@ -17,7 +17,7 @@ class ExportadoraForm(ModelForm):
             'direccion': forms.TextInput(attrs={"class": "form-control","name": "direccion",}),
             'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),            
             'email': forms.EmailInput(attrs={"class": "form-control"}),  
-            'temporada': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),          
+            'temporada': forms.Select(attrs={"class": "form-control","name": "temporada"}),        
         }
         
     def save(self, commit=True):
