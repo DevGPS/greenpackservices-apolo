@@ -29,7 +29,7 @@ company.nombre = 'CYD COMERCIO Y DESARROLLO INTERNACIONAL S.A.'
 company.direccion = 'LAS CONDES s/n'
 company.telefono = '0979014552'
 company.email = 'contacto@cyd.cl'
-company.temporada = {'codigo':'T11'}
+company.temporada = 'T11'
 company.save()
 print('Exportadora creado correctamente')
 

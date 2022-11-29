@@ -2,6 +2,12 @@ from django.contrib import admin
 from core.contenedor.models import *
 
 # Register your models here.
+class TemporadasAdmin(admin.ModelAdmin):
+    list_display = ("codigo","nombre",)
+    search_fields = ("nombre")
+    list_filter = ("nombre",)
+    readonly_fields = ('created_at', 'updated_at')
+
 class ExportadoraAdmin(admin.ModelAdmin):
     list_display = ("codigo","nombre", "telefono", "email")
     search_fields = ("nombre", "email")
@@ -37,3 +43,5 @@ admin.site.register(Productor, ProductorAdmin)
 admin.site.register(Especie)
 admin.site.register(Variedad, VariedadAdmin)
 admin.site.register(Transporte, TransporteAdmin)
+admin.site.register(Temporada, TemporadasAdmin)
+
