@@ -83,7 +83,7 @@
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Productor }}
                                                     </div>
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
+                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Especie</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
                                                         {{ r.Especie }}
                                                     </div>
@@ -99,7 +99,7 @@
                                                     </div>
                                                     <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
                                                     <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Variedad }}
+                                                        {{ r.Variedad | Variedad.especie == 'CE' }}
                                                     </div>
                                                    
 
