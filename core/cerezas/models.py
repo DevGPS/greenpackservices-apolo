@@ -21,12 +21,14 @@ CALIBRES = (
 
 )
 
+
+
+
 class FormCerezaModels(models.Model):
     #principal
     Lote = models.PositiveIntegerField(primary_key=True)
     Exportadora = models.ForeignKey(Exportadora, on_delete=models.CASCADE)
     Productor = models.ForeignKey(Productor, on_delete=models.CASCADE)
-    Especie = models.ForeignKey(Especie,on_delete=models.CASCADE)
     Variedad = models.ForeignKey(Variedad,on_delete=models.CASCADE)
     Fecha_Recepcion = models.DateField()
     Hora_Recepcion = models.TimeField()
