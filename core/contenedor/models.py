@@ -23,6 +23,7 @@ class Temporada(models.Model):
 
 class Exportadora(models.Model):
     codigo = models.CharField(max_length=70, unique=True)
+    nombre_FTS = models.CharField(max_length=70)
     nombre = models.CharField(max_length=70, unique=True)
     direccion = models.CharField(max_length=70)
     telefono = models.CharField(max_length=20, null=True)
@@ -69,6 +70,7 @@ class Transporte(models.Model):
 
 class Productor(models.Model):
     codigo = models.CharField(max_length=70, unique=True)
+    nombre_FTS = models.CharField(max_length=70)
     nombre = models.CharField(max_length=70, unique=True)
     CSG = models.IntegerField(null=False, unique=True)
     direccion = models.CharField(max_length=70, null=True)
@@ -93,11 +95,12 @@ class Productor(models.Model):
 class Especie(models.Model):
     codigo = models.CharField(max_length=70, unique=True)
     nombre = models.CharField(max_length=70, unique=True)
+    temporada = models.ForeignKey(Temporada, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}/{}'.format(self.codigo, self.nombre) 
+        return '{}'.format(self.nombre) 
 
     def toJSON(self):
         item = model_to_dict(self)
@@ -117,7 +120,7 @@ class Variedad(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}/{}'.format(self.codigo, self.nombre) 
+        return '{}'.format(self.nombre) 
 
     def toJSON(self):
         item = model_to_dict(self)

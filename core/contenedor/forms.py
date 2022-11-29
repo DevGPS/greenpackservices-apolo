@@ -83,14 +83,17 @@ class EspecieForm(ModelForm):
     
     class Meta:
         model = Especie
-        fields = ['codigo','nombre']
+        fields = ['codigo','nombre', 'temporada']
         labels = {
             'codigo': 'Código',
-            'nombre': 'Nombre Especie',           
+            'nombre': 'Nombre Especie',
+            'temporada': 'Temporada',           
+
         }
         widgets = {
             'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo",}),
-            'nombre': forms.TextInput(attrs={"class": "form-control","name": "especie"}),           
+            'nombre': forms.TextInput(attrs={"class": "form-control","name": "especie"}),
+            'temporada': forms.Select(attrs={"class": "form-control"}),           
         }
 
     def save(self, commit=True):

@@ -35,14 +35,7 @@ class EspecieListView(ValidatePermissionRequiredMixin, ListView):
         context['entity'] = 'Especie'
         return context
 
-    def test_func(self):
-        # obtenemos todos los grupos del usuario logueado
-        grupos = self.request.user.groups.all()
-        # comparamos que el usuario pertenezca al grupo VENDEDOR o SUPERVISOR
-        for grupo in grupos:
-            if grupo in ['Post-Cosecha ', 'Admin']:
-                return True
-        return False
+    
 
 
 class EspecieCreateView(ValidatePermissionRequiredMixin, CreateView):
@@ -73,14 +66,7 @@ class EspecieCreateView(ValidatePermissionRequiredMixin, CreateView):
         context['list_url'] = self.success_url
         context['action'] = 'add'
         return context
-    def test_func(self):
-        # obtenemos todos los grupos del usuario logueado
-        grupos = self.request.user.groups.all()
-        # comparamos que el usuario pertenezca al grupo VENDEDOR o SUPERVISOR
-        for grupo in grupos:
-            if grupo in ['Post-Cosecha ', 'Admin']:
-                return True
-        return False
+   
 
 
 class EspecieUpdateView(ValidatePermissionRequiredMixin, UpdateView):
@@ -115,14 +101,7 @@ class EspecieUpdateView(ValidatePermissionRequiredMixin, UpdateView):
         context['list_url'] = self.success_url
         context['action'] = 'edit'
         return context
-    def test_func(self):
-        # obtenemos todos los grupos del usuario logueado
-        grupos = self.request.user.groups.all()
-        # comparamos que el usuario pertenezca al grupo VENDEDOR o SUPERVISOR
-        for grupo in grupos:
-            if grupo in ['Post-Cosecha ', 'Admin']:
-                return True
-        return False
+    
 
 
 class EspecieDeleteView(ValidatePermissionRequiredMixin, DeleteView):
@@ -150,11 +129,4 @@ class EspecieDeleteView(ValidatePermissionRequiredMixin, DeleteView):
         context['entity'] = 'Especie'
         context['list_url'] = self.success_url
         return context
-    def test_func(self):
-        # obtenemos todos los grupos del usuario logueado
-        grupos = self.request.user.groups.all()
-        # comparamos que el usuario pertenezca al grupo VENDEDOR o SUPERVISOR
-        for grupo in grupos:
-            if grupo in ['Post-Cosecha ', 'Admin']:
-                return True
-        return False
+    
