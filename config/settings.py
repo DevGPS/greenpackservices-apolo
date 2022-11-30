@@ -18,16 +18,10 @@ from config import db
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+-q801b67uu&j)5jt*tc)7d#58^(r2pvacn=mxm12khm^)1p2u'
 
-
-
 # Application definition
-
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -129,11 +123,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-
-
 LOGIN_REDIRECT_URL = '/pos/dashboard/'
 
 LOGOUT_REDIRECT_URL = '/login/'
@@ -165,24 +154,26 @@ REST_FRAMEWORK = {
     # ]
 }
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 DEBUG = True
-if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
+if not DEBUG:    
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATIC_TMP = os.path.join(BASE_DIR, 'static/')
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 STATIC_TMP = os.path.join(BASE_DIR, 'static/')
+
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
 
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
+
+ALLOWED_HOSTS = []

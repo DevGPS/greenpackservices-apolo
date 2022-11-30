@@ -1,11 +1,11 @@
 {% extends 'list.html' %}
+{% load widget_tweaks %}
 {% load static %}
-{% block head_form %}
-<link href="{% static 'cereza/lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet" />
-<link href="{% static 'cereza/lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet" />
-<script src="{% static 'cereza/lib/select2-4.0.13/js/select2.min.js' %}"></script>
-<script src="{% static 'cereza/lib/select2-4.0.13/js/i18n/es.js' %}"></script>
-<script src="{% static 'cereza/js/form.js' %}"></script>
+{% block head %}
+<link href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet" />
+<link href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet" />
+<script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+<script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
 {% endblock %}
 
 
@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form id="form_create_cereza" action="#" method="POST" enctype="multipart/form-data">
+                    <form id="form_create_cereza" action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row text-center">
                             <div class="col-xl-5 col-md-12 col-sm-12">
@@ -45,131 +45,145 @@
                                                 <br>
                                                 <div class="form-group row">
                                                     <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 form-label font-12">Lote</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Lote }}
+                                                        class="col-xl-2 col-md-6 col-sm-6 form-label font-12">Lote</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Lote }}
                                                     </div>
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 form-label font-12">Fecha
+                                                    <label class="col-xl-2 col-md-6 col-sm-6 form-label font-12">Fecha
                                                         Recepción</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Fecha_Recepcion }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Fecha_Recepcion }}
                                                     </div>
 
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 form-label font-12">N° de
+                                                    <label class="col-xl-2 col-md-6 col-sm-6 form-label font-12">N° de
                                                         Guia</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Nguia }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Nguia }}
                                                     </div>
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 form-label font-12">Hora
+                                                    <label class="col-xl-2 col-md-6 col-sm-6 form-label font-12">Hora
                                                         Recepción</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Hora_Recepcion }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Hora_Recepcion }}
                                                     </div>
 
                                                 </div>
                                                 <div class="form-group row">
 
                                                     <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Exportadora</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Exportadora }}
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Exportadora</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.exportadora }}
                                                     </div>
 
                                                     <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Hora
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Hora
                                                         Análisis</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Hora_Analisis }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Hora_Analisis }}
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
 
 
-                                                    <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Productor</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Productor }}
-                                                    </div>
-                                                    <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Variedad }}
-                                                    </div>
-
-                                                </div>
 
                                                 <div class="form-group row">
 
                                                     <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Tipo
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Productor</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.productor }}
+                                                    </div>
+
+
+                                                    <label
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Especie</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.especie }}
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+
+                                                    <label
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Tipo
                                                         Transporte</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Tip_Trans }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Tip_Trans }}
                                                     </div>
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">T°
+
+                                                    <label
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Variedad</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.variedad }}
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Patente</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.transporte }}
+                                                    </div>
+
+                                                    <label class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">T°
                                                         Minima</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Tmin }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Tmin }}
                                                     </div>
 
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Patente</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Patente }}
-                                                    </div>
-                                                    <label class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">T°
-                                                        Maxima</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Tmax }}
-                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Tipo
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Tipo
                                                         de
                                                         Envase</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.Tip_Env }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Tip_Env }}
+                                                    </div>
+                                                    <label class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">T°
+                                                        Maxima</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.Tmax }}
                                                     </div>
 
-                                                    <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Kilos
-                                                        Netos</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.KNeto }}
-                                                    </div>
 
                                                 </div>
                                                 <div class="form-group row">
                                                     <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Cantidad
                                                         Envases</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.NEnv }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.NEnv }}
+                                                    </div>
+                                                    <label
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Kilos
+                                                        Netos</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.KNeto }}
                                                     </div>
 
-                                                    <label
-                                                        class="col-xl-3 col-md-6 col-sm-6 col-form-label font-12">Cantidad
-                                                        Frutos</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6">
-                                                        {{ r.NFruto }}
-                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label
-                                                        class="form-label col-xl-3 col-md-6 col-sm-6 font-12 my-2">Hidro
+                                                        class="form-label col-xl-2 col-md-6 col-sm-6 font-12 my-2">Hidro
                                                         Campo</label>
-                                                    <div class="col-xl-3 col-md-6 col-sm-6 my-2">
-                                                        {{ r.Hidro }}
+                                                    <div class="col-xl-4 col-md-6 col-sm-6 my-2">
+                                                        {{ form.Hidro }}
                                                         <label for="switch3" data-on-label="Si"
                                                             data-off-label="No"></label>
+                                                    </div>
+
+                                                    <label
+                                                        class="col-xl-2 col-md-6 col-sm-6 col-form-label font-12">Cantidad
+                                                        Frutos</label>
+                                                    <div class="col-xl-4 col-md-6 col-sm-6">
+                                                        {{ form.NFruto }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -183,7 +197,7 @@
                                     <div class="row p-2">
                                         <div class="col-xl-6 col-md-6 col-sm-12">
                                             <h6 style="background-color:  #007bff; color: aliceblue;"
-                                                class="text-center"> <strong>Por Calibre</strong>
+                                                class="text-center"> <strong>POR CALIBRE</strong>
                                             </h6>
 
                                             <div class="col-xl-12 col-md-12 col-sm-12">
@@ -200,14 +214,14 @@
                                                     <label for="Precalibre"
                                                         class="col-6 col-form-label font-12">Pre-Calibre</label>
                                                     <div class="col-6">
-                                                        {{ r.PC }}
+                                                        {{ form.PC }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" style=" margin-right: 2px;">
                                                     <label for="Precalibre" class="col-6 col-form-label font-12">Large
                                                         (L)</label>
                                                     <div class="col-6">
-                                                        {{ r.L }}
+                                                        {{ form.L }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" style=" margin-right: 2px;">
@@ -215,7 +229,7 @@
                                                         Large
                                                         (XL)</label>
                                                     <div class="col-6">
-                                                        {{ r.XL }}
+                                                        {{ form.XL }}
                                                     </div>
 
                                                 </div>
@@ -223,7 +237,7 @@
                                                     <label for="Precalibre" class="col-6 col-form-label font-12">Jumbo
                                                         (J)</label>
                                                     <div class="col-6">
-                                                        {{ r.J }}
+                                                        {{ form.J }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" style=" margin-right: 2px;">
@@ -231,7 +245,7 @@
                                                         Jumbo
                                                         (2J)</label>
                                                     <div class="col-6">
-                                                        {{ r.J2 }}
+                                                        {{ form.J2 }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" style=" margin-right: 2px;">
@@ -239,7 +253,7 @@
                                                         Jumbo
                                                         (3J)</label>
                                                     <div class="col-6">
-                                                        {{ r.J3 }}
+                                                        {{ form.J3 }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" style=" margin-right: 2px;">
@@ -247,7 +261,7 @@
                                                         Jumbo
                                                         (4J)</label>
                                                     <div class="col-6">
-                                                        {{ r.J4 }}
+                                                        {{ form.J4 }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -255,7 +269,7 @@
                                         <div class="col-xl-6 col-md-6 col-sm-12">
                                             <h6 style="background-color:  #007bff; color: aliceblue;"
                                                 class="text-center">
-                                                <strong>Por Color</strong>
+                                                <strong>POR COLOR</strong>
                                             </h6>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
@@ -267,35 +281,35 @@
                                                 <label for="Precalibre"
                                                     class="col-6 col-form-label font-12">Rojo</label>
                                                 <div class="col-6">
-                                                    {{ r.Rojo }}
+                                                    {{ form.Rojo }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-6 col-form-label font-12">Rojo
                                                     Caoba</label>
                                                 <div class="col-6">
-                                                    {{ r.RojoCaoba }}
+                                                    {{ form.RojoCaoba }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
                                                     class="col-6 col-form-label font-12">Caoba</label>
                                                 <div class="col-6">
-                                                    {{ r.Caoba }}
+                                                    {{ form.Caoba }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-6 col-form-label font-12">Caoba
                                                     Oscuro</label>
                                                 <div class="col-6">
-                                                    {{ r.CaobaOscuro }}
+                                                    {{ form.CaobaOscuro }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
                                                     class="col-6 col-form-label font-12">Negro</label>
                                                 <div class="col-6">
-                                                    {{ r.Negro }}
+                                                    {{ form.Negro }}
                                                 </div>
                                             </div>
 
@@ -310,7 +324,7 @@
                                         <div class="col-xl-12 col-md-12 col-sm-12 ">
                                             <h6 style="background-color:  #007bff; color: aliceblue;"
                                                 class="text-center">
-                                                <strong>Distribución FirmPro</strong>
+                                                <strong>DISTRIBUCIÓN FIRMPRO</strong>
                                             </h6>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
@@ -322,28 +336,28 @@
                                                 <label for="Precalibre"
                                                     class="col-6 col-form-label font-12">Blandos</label>
                                                 <div class="col-6">
-                                                    {{ r.Blando }}
+                                                    {{ form.Blando }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
                                                     class="col-6 col-form-label font-12">Sensibles</label>
                                                 <div class="col-6">
-                                                    {{ r.Sensible }}
+                                                    {{ form.Sensible }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
                                                     class="col-6 col-form-label font-12">Firmes</label>
                                                 <div class="col-6">
-                                                    {{ r.Firme }}
+                                                    {{ form.Firme }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-6 col-form-label font-12">Muy
                                                     Firmes</label>
                                                 <div class="col-6">
-                                                    {{ r.MuyFirme }}
+                                                    {{ form.MuyFirme }}
                                                 </div>
                                             </div>
 
@@ -353,7 +367,7 @@
                                                 <label for="Precalibre" class="col-6 col-form-label font-12">Large
                                                     (L)</label>
                                                 <div class="col-6">
-                                                    {{ r.FP_L }}
+                                                    {{ form.FP_L }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -361,7 +375,7 @@
                                                     Large
                                                     (XL)</label>
                                                 <div class="col-6">
-                                                    {{ r.FP_XL }}
+                                                    {{ form.FP_XL }}
                                                 </div>
 
                                             </div>
@@ -369,7 +383,7 @@
                                                 <label for="Precalibre" class="col-6 col-form-label font-12">Jumbo
                                                     (J)</label>
                                                 <div class="col-6">
-                                                    {{ r.FP_J }}
+                                                    {{ form.FP_J }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -377,7 +391,7 @@
                                                     Jumbo
                                                     (2J)</label>
                                                 <div class="col-6">
-                                                    {{ r.FP_J2 }}
+                                                    {{ form.FP_J2 }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -385,7 +399,7 @@
                                                     Jumbo
                                                     (3J)</label>
                                                 <div class="col-6">
-                                                    {{ r.FP_J3 }}
+                                                    {{ form.FP_J3 }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -393,7 +407,7 @@
                                                     Jumbo
                                                     (4J)</label>
                                                 <div class="col-6">
-                                                    {{ r.FP_J4 }}
+                                                    {{ form.FP_J4 }}
                                                 </div>
                                             </div>
                                             <br>
@@ -402,7 +416,7 @@
                                                 <label for="Precalibre" class="col-6 col-form-label font-12">
                                                     <u>PROMEDIO</u> </label>
                                                 <div class="col-6">
-                                                    {{ r.FPProm }}
+                                                    {{ form.FPProm }}
                                                 </div>
                                             </div>
                                             <br>
@@ -428,60 +442,60 @@
                                                     class="col-4 col-form-label font-12"><U>CALIBRES</U>
                                                 </label>
                                                 <div class="col-4">
-                                                    {{ r.CalibreLight }}
+                                                    {{ form.CalibreLight }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.CalibreDark }}
+                                                    {{ form.CalibreDark }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
                                                     1</label>
                                                 <div class="col-4">
-                                                    {{ r.C1F1 }}
+                                                    {{ form.C1F1 }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.C2F1 }}
+                                                    {{ form.C2F1 }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
                                                     2</label>
                                                 <div class="col-4">
-                                                    {{ r.C1F2 }}
+                                                    {{ form.C1F2 }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.C2F2 }}
+                                                    {{ form.C2F2 }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
                                                     3</label>
                                                 <div class="col-4">
-                                                    {{ r.C1F3 }}
+                                                    {{ form.C1F3 }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.C2F3 }}
+                                                    {{ form.C2F3 }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
                                                     4</label>
                                                 <div class="col-4">
-                                                    {{ r.C1F4 }}
+                                                    {{ form.C1F4 }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.C2F4 }}
+                                                    {{ form.C2F4 }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Fruto
                                                     5</label>
                                                 <div class="col-4">
-                                                    {{ r.C1F5 }}
+                                                    {{ form.C1F5 }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.C2F5 }}
+                                                    {{ form.C2F5 }}
                                                 </div>
                                             </div>
 
@@ -493,12 +507,12 @@
                                                 <div class="mb-3 col-6 col-form-label font-12 ">
                                                     <label for="example-readonly" class="form-label">Promedio Calibre
                                                         1</label>
-                                                    {{ r.PromMasa1 }}
+                                                    {{ form.PromMasa1 }}
                                                 </div>
                                                 <div class="mb-3 col-6 col-form-label font-12">
                                                     <label for="example-readonly" class="form-label">Promedio Calibre
                                                         2</label>
-                                                    {{ r.PromMasa2 }}
+                                                    {{ form.PromMasa2 }}
                                                 </div>
                                             </div>
                                         </div>
@@ -526,60 +540,60 @@
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Large
                                                     (L)</label>
                                                 <div class="col-4">
-                                                    {{ r.ssLL }}
+                                                    {{ form.ssLL }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.ssLD }}
+                                                    {{ form.ssLD }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Extra Large
                                                     (XL)</label>
                                                 <div class="col-4">
-                                                    {{ r.ssXLL }}
+                                                    {{ form.ssXLL }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.ssXLD }}
+                                                    {{ form.ssXLD }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">Jumbo
                                                     (J)</label>
                                                 <div class="col-4">
-                                                    {{ r.ssJL }}
+                                                    {{ form.ssJL }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.ssJD }}
+                                                    {{ form.ssJD }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">2 Jumbo
                                                     (2J)</label>
                                                 <div class="col-4">
-                                                    {{ r.ss2JL }}
+                                                    {{ form.ss2JL }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.ss2JD }}
+                                                    {{ form.ss2JD }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">3 Jumbo
                                                     (3J)</label>
                                                 <div class="col-4">
-                                                    {{ r.ss3JL }}
+                                                    {{ form.ss3JL }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.ss3JD }}
+                                                    {{ form.ss3JD }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-4 col-form-label font-12">4 Jumbo
                                                     (4J)</label>
                                                 <div class="col-4">
-                                                    {{ r.ss4JL }}
+                                                    {{ form.ss4JL }}
                                                 </div>
                                                 <div class="col-4">
-                                                    {{ r.ss4JD }}
+                                                    {{ form.ss4JD }}
                                                 </div>
                                             </div>
                                             <br>
@@ -590,12 +604,12 @@
                                                 <div class="mb-2 col-6 col-form-label font-12 ">
                                                     <label for="example-readonly" class="form-label">Promedio
                                                         Light</label>
-                                                    {{ r.PromLight }}
+                                                    {{ form.PromLight }}
                                                 </div>
                                                 <div class="mb-2 col-6 col-form-label font-12">
                                                     <label for="example-readonly" class="form-label">Promedio
                                                         Dark</label>
-                                                    {{ r.PromDark }}
+                                                    {{ form.PromDark }}
                                                 </div>
                                             </div>
                                         </div>
@@ -628,52 +642,52 @@
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Daño
                                                     Trips</label>
                                                 <div class="col-3">
-                                                    {{ r.DTrips }}
+                                                    {{ form.DTrips }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Falta
                                                     Color</label>
                                                 <div class="col-3">
-                                                    {{ r.FaltaColor }}
+                                                    {{ form.FaltaColor }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
                                                     Deforme</label>
                                                 <div class="col-3">
-                                                    {{ r.FrutoDeforme }}
+                                                    {{ form.FrutoDeforme }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
                                                     Doble</label>
                                                 <div class="col-3">
-                                                    {{ r.FrutoDoble }}
+                                                    {{ form.FrutoDoble }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Sin
                                                     Pedicelo</label>
                                                 <div class="col-3">
-                                                    {{ r.SinPedicelo }}
+                                                    {{ form.SinPedicelo }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Guata
                                                     Blanca</label>
                                                 <div class="col-3">
-                                                    {{ r.GuataBlanca }}
+                                                    {{ form.GuataBlanca }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Herida
                                                     Cicatrizada</label>
                                                 <div class="col-3">
-                                                    {{ r.HeridaCicatrizada }}
+                                                    {{ form.HeridaCicatrizada }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Piel de
                                                     Lagarto</label>
                                                 <div class="col-3">
-                                                    {{ r.PielLagarto }}
+                                                    {{ form.PielLagarto }}
                                                 </div>
                                             </div>
 
@@ -683,65 +697,65 @@
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Daño
                                                     Insecto</label>
                                                 <div class="col-3">
-                                                    {{ r.DInsecto }}
+                                                    {{ form.DInsecto }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Con
                                                     Hijuelos</label>
                                                 <div class="col-3">
-                                                    {{ r.Hijuelo }}
+                                                    {{ form.Hijuelo }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Manchas</label>
                                                 <div class="col-3">
-                                                    {{ r.Manchas }}
+                                                    {{ form.Manchas }}
                                                 </div>
 
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Medialuna</label>
                                                 <div class="col-3">
-                                                    {{ r.Medialuna }}
+                                                    {{ form.Medialuna }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Mezcla
                                                     Variedad</label>
                                                 <div class="col-3">
-                                                    {{ r.MezclaVariedad }}
+                                                    {{ form.MezclaVariedad }}
                                                 </div>
 
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Roce</label>
                                                 <div class="col-3">
-                                                    {{ r.Roce }}
+                                                    {{ form.Roce }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Russet</label>
                                                 <div class="col-3">
-                                                    {{ r.Russet }}
+                                                    {{ form.Russet }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Restos
                                                     Florales</label>
                                                 <div class="col-3">
-                                                    {{ r.RestosFlorales }}
+                                                    {{ form.RestosFlorales }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Golpe de
                                                     Sol</label>
                                                 <div class="col-3">
-                                                    {{ r.GolpeSol }}
+                                                    {{ form.GolpeSol }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Residuo
                                                     Productos</label>
                                                 <div class="col-3">
-                                                    {{ r.ResiduoProducto }}
+                                                    {{ form.ResiduoProducto }}
                                                 </div>
                                             </div>
                                         </div>
@@ -751,7 +765,7 @@
                                         <label for="totDFC" class="col-6 col-form-label font-12"> <u>TOTAL DEFECTO
                                                 CALIDAD</u> </label>
                                         <div class="col-3">
-                                            {{ r.TotCalidad }}
+                                            {{ form.TotCalidad }}
                                         </div>
                                     </div>
                                 </div>
@@ -783,52 +797,52 @@
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Daño
                                                     Pajaros</label>
                                                 <div class="col-3">
-                                                    {{ r.DPajaro }}
+                                                    {{ form.DPajaro }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Depresion
                                                     Severa</label>
                                                 <div class="col-3">
-                                                    {{ r.DepresionSevera }}
+                                                    {{ form.DepresionSevera }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
                                                     BLando</label>
                                                 <div class="col-3">
-                                                    {{ r.FrutoBlando }}
+                                                    {{ form.FrutoBlando }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Fruto
                                                     Deshidratado</label>
                                                 <div class="col-3">
-                                                    {{ r.FrutoDeshidratado }}
+                                                    {{ form.FrutoDeshidratado }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Herida
                                                     Abierta</label>
                                                 <div class="col-3">
-                                                    {{ r.HeridaAbierta }}
+                                                    {{ form.HeridaAbierta }}
                                                 </div>
 
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Machucón</label>
                                                 <div class="col-3">
-                                                    {{ r.Machucon }}
+                                                    {{ form.Machucon }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Mancha
                                                     Pudrición</label>
                                                 <div class="col-3">
-                                                    {{ r.ManchaPudricion }}
+                                                    {{ form.ManchaPudricion }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Descarro
                                                     Pedicelar</label>
                                                 <div class="col-3">
-                                                    {{ r.DescarroPedicelar }}
+                                                    {{ form.DescarroPedicelar }}
                                                 </div>
                                             </div>
 
@@ -837,59 +851,59 @@
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Adhesion</label>
                                                 <div class="col-3">
-                                                    {{ r.Adhesion }}
+                                                    {{ form.Adhesion }}
                                                 </div>
 
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Partidura</label>
                                                 <div class="col-3">
-                                                    {{ r.Partidura }}
+                                                    {{ form.Partidura }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Partidura
                                                     Apical</label>
                                                 <div class="col-3">
-                                                    {{ r.PartiduraApical }}
+                                                    {{ form.PartiduraApical }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Pedicelo
                                                     Deshidratado</label>
                                                 <div class="col-3">
-                                                    {{ r.PediceloDeshidratado }}
+                                                    {{ form.PediceloDeshidratado }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Pitting
                                                     Punteadura</label>
                                                 <div class="col-3">
-                                                    {{ r.PittingPunteadura }}
+                                                    {{ form.PittingPunteadura }}
                                                 </div>
 
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Pudrición</label>
                                                 <div class="col-3">
-                                                    {{ r.Pudricion }}
+                                                    {{ form.Pudricion }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label font-12">Sobremadurez</label>
                                                 <div class="col-3">
-                                                    {{ r.Sobremadurez }}
+                                                    {{ form.Sobremadurez }}
                                                 </div>
 
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Sutura
                                                     Abierta</label>
                                                 <div class="col-3">
-                                                    {{ r.SuturaAbierta }}
+                                                    {{ form.SuturaAbierta }}
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Partidura
                                                     Basal</label>
                                                 <div class="col-3">
-                                                    {{ r.PartiduraBasal }}
+                                                    {{ formr.PartiduraBasal }}
                                                 </div>
                                             </div>
 
@@ -899,7 +913,7 @@
                                             <label for="totDFC" class="col-6 col-form-label font-12"> <u>TOTAL DEFECTO
                                                     CALIDAD</u> </label>
                                             <div class="col-3">
-                                                {{ r.TotCondicion }}
+                                                {{ form.TotCondicion }}
                                             </div>
                                         </div>
                                     </div>
@@ -920,7 +934,7 @@
                                                         <u>PRECALIBRE
                                                             (%)</u> </label>
                                                     <div class="col-3">
-                                                        {{ r.PrecalibreTot }}
+                                                        {{ form.PrecalibreTot }}
                                                     </div>
                                                 </div>
                                                 <div class="row text-center p-2">
@@ -929,7 +943,7 @@
                                                             DE
                                                             CALIDAD (%)</u> </label>
                                                     <div class="col-3">
-                                                        {{ r.CalidadTotal }}
+                                                        {{ colform.CalidadTotal }}
                                                     </div>
 
                                                 </div>
@@ -939,7 +953,7 @@
                                                             DE
                                                             CODICIÓN (%)</u> </label>
                                                     <div class="col-3">
-                                                        {{ r.CondicionTotal }}
+                                                        {{ form.CondicionTotal }}
                                                     </div>
 
                                                 </div>
@@ -951,7 +965,7 @@
                                                             <strong><u>TOTAL EXPORTABLE MUESTRA (%)</u></strong>
                                                         </label>
                                                         <div class="col-3">
-                                                            {{ r.TotalExportable }}
+                                                            {{ form.TotalExportable }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -963,7 +977,7 @@
                                                     <strong>Observaciones:</strong>
                                                 </h4>
                                                 <div class="col-xl-12 col-md-12 col-sm-12 my-4 ">
-                                                    {{ r.observaciones }}
+                                                    {{ form.observaciones }}
                                                 </div>
                                                 <!-- <div class="row col-xl-12 col-md-12 col-sm-12 my-4 text-center"
                                                     style="border: 1px solid; padding: auto;">
@@ -974,28 +988,19 @@
 
                                                 <div class="col-xl-12 col-md-12 col-sm-12 my-2">
 
-
-                                                    <a class="btn btn-secondary mb-2 me-2 col-12" type="submit"
-                                                        id="submit" style="background-color: #007bff;"
-                                                        target="_blank"><i class="fas fa-plus"></i>
-                                                        Agregar Registro
-                                                    </a>
+                                                    <button type="submit" class="btn btn-primary  mb-2 me-2 col-12"
+                                                        style="background-color: #007bff;"> Agregar Registro</button>
                                                     <!-- fas fa-marker  || icono para actualizar -->
                                                     <br>
                                                     <br>
+                                                    <button type="back" class="btn btn-primary  mb-2 me-2 col-12"
+                                                        style="background-color: #1D6F42;"> No realizar ningun
+                                                        cambio</button>
 
-                                                    <a class="btn btn-secondary  mb-2 me-2 col-12" type="back" id="back"
-                                                        style="background-color: #1D6F42;" target="_blank"><i
-                                                            class="fas fa-minus "></i>
-                                                        No realizar ningun cambio
-                                                    </a>
                                                     <br>
                                                     <br>
-                                                    <a class="btn btn-secondary  mb-2 me-2 col-12" type="reset"
-                                                        id="reset" style="background-color: #F40F02;" target="_blank"><i
-                                                            class="fas fa-trash "></i>
-                                                        Limpiar Formulario
-                                                    </a>
+                                                    <button type="reset" class="btn btn-primary  mb-2 me-2 col-12"
+                                                        style="background-color: #F40F02;"> Limpiar Formulario</button>
 
                                                 </div>
 
@@ -1019,20 +1024,20 @@
                             </div>
 
                             <div class="col-xl-6 col-sm-6 p-2">
-                                {{ r.images1 }}
+                                {{ form.images1 }}
                             </div>
                             <div class="col-xl-6 col-sm-6 p-2">
-                                {{ r.images2 }}
-                            </div>
-                            <br>
-                            <div class="col-xl-6 col-sm-6 p-2">
-
-                                {{ r.images3 }}
+                                {{ form.images2 }}
                             </div>
                             <br>
                             <div class="col-xl-6 col-sm-6 p-2">
 
-                                {{ r.images4 }}
+                                {{ form.images3 }}
+                            </div>
+                            <br>
+                            <div class="col-xl-6 col-sm-6 p-2">
+
+                                {{ form.images4 }}
                                 <br>
 
                             </div>
@@ -1055,8 +1060,8 @@
 
 <script>
     var select_productor = $('select[name="productor"]');
-    $(function () {
 
+    $(function () {
         $('.select2').select2({
             theme: "bootstrap4",
             language: 'es'
@@ -1064,7 +1069,8 @@
 
         $('select[name="exportadora"]').on('change', function () {
             var id = $(this).val();
-            var options = '<option value="">--------------------</option>';
+
+            var options = '<option value="">-- Vacio --</option>';
             if (id === '') {
                 select_productor.html(options);
                 return false;
@@ -1099,6 +1105,58 @@
 
         select_productor.on('change', function () {
             var value = select_productor.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+
+<script>
+    var select_variedad = $('select[name="variedad"]');
+
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="especie"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_variedad.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_variedad_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_variedad.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_variedad.html(options);
+            });
+        });
+
+        select_variedad.on('change', function () {
+            var value = select_variedad.select2('data')[0];
             console.log(value);
         });
     });

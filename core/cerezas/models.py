@@ -3,13 +3,13 @@ from core.contenedor.models import *
 #from choices import TIPO_TRANSPORTE,TIPO_ENVASE,CALIBRES
 # Create your models here.
 TIPO_TRANSPORTE = (
-    ('T', 'Termo'),
-    ('C', 'Conteiner'),
+    ('T', 'TERMO'),
+    ('C', 'CONTAINER'),
 )
 
 TIPO_ENVASE = (
-    ('T', 'Totem'),
-    ('B', 'Bins'),
+    ('T', 'TOTEM'),
+    ('B', 'BINS'),
 )
 CALIBRES = (
     ('L', 'L'),
@@ -21,13 +21,9 @@ CALIBRES = (
 
 )
 
-
-
-
 class FormCerezaModels(models.Model):
     #principal
     Lote = models.PositiveIntegerField(primary_key=True)
-    Exportadora = models.ForeignKey(Exportadora, on_delete=models.CASCADE)
     Productor = models.ForeignKey(Productor, on_delete=models.CASCADE)
     Variedad = models.ForeignKey(Variedad,on_delete=models.CASCADE)
     Fecha_Recepcion = models.DateField()

@@ -1,24 +1,43 @@
 from django import forms
 from core.cerezas.models import FormCerezaModels
 from django.forms import ModelForm
+from django.forms import ModelChoiceField,Select
+from core.contenedor.models import *
 
 
-class formCerezas(forms.Form):
-    asunto = forms.CharField(max_length=60)
-    email = forms.EmailField(max_length=60)
-    message = forms.CharField()
+class TestForm(ModelForm):
+    exportadora = ModelChoiceField(queryset=Exportadora.objects.all(), widget=Select(attrs={
+        'class': 'form-control select2',
+        'style': 'width: 100%'
+    }))
 
+    productor = ModelChoiceField(queryset=Productor.objects.none(), widget=Select(attrs={
+        'class': 'form-control select2',
+        'style': 'width: 100%'
+    }))
 
-class PrincipalForms(ModelForm):
+    transporte = ModelChoiceField(queryset=Transporte.objects.none(), widget=Select(attrs={
+        'class': 'form-control select2',
+        'style': 'width: 100%'
+    }))
 
+    ################################
+
+    especie = ModelChoiceField(queryset=Especie.objects.all(), widget=Select(attrs={
+        'class': 'form-control select2',
+        'style': 'width: 100%'
+    }))
+    variedad = ModelChoiceField(queryset=Variedad.objects.none(), widget=Select(attrs={
+        'class': 'form-control select2',
+        'style': 'width: 100%'
+    }))
     class Meta:
         model = FormCerezaModels
 
         fields = [
             'Lote',
-            'Exportadora',
-            'Productor',
-            'Variedad',
+            # 'Exportadora',
+            # 'Productor',
             'Fecha_Recepcion',
             'Hora_Recepcion',
             'Hora_Analisis',
@@ -26,7 +45,6 @@ class PrincipalForms(ModelForm):
             'Tmax',
             'Tip_Trans',
             'Nguia',
-            'Patente',
             'Tip_Env',
             'NEnv',
             'KNeto',
@@ -143,9 +161,6 @@ class PrincipalForms(ModelForm):
         widgets = {
             # Informacion General
             'Lote': forms.TextInput(attrs={"class": "form-control font-12 text-center", "id": "Lote", 'name': 'Lote', "required": True}),
-            'Exportadora': forms.Select(attrs={"class": "form-control select2 font-12 text-center", "id": "exportadora", 'name': 'exportadora'}),
-            'Productor': forms.Select(attrs={"class": "form-select font-12 text-center", "name": "productor", "id": "productor"}),
-            'Variedad': forms.Select(attrs={"class": "form-control select2 font-12 text-center", 'name':'variedad' }),
             'Fecha_Recepcion': forms.DateInput(attrs={"class": "form-control font-12 text-center ", "type": "date"}),
             'Hora_Recepcion': forms.TimeInput(attrs={"class": "form-control font-12 text-center", "type": "time"}),
             'Hora_Analisis': forms.TimeInput(attrs={"class": "form-control font-12 text-center", "type": "time"}),
@@ -153,7 +168,6 @@ class PrincipalForms(ModelForm):
             'Tmax': forms.TextInput(attrs={"class": "form-control font-12 text-center"}),
             'Tip_Trans': forms.Select(attrs={"class": "form-select font-12 text-center"}),
             'Nguia': forms.TextInput(attrs={"class": "form-control font-12 text-center"}),
-            'Patente': forms.Select(attrs={"class": "form-select font-12 text-center"}),
             'Tip_Env': forms.Select(attrs={"class": "form-select font-12 text-center"}),
             'NEnv': forms.NumberInput(attrs={"class": "form-control font-12 text-center"}),
             'KNeto': forms.NumberInput(attrs={"class": "form-control font-12 text-center"}),
@@ -255,7 +269,6 @@ class PrincipalForms(ModelForm):
             'DescarroPedicelar': forms.NumberInput(attrs={"class": "form-control font-12 text-center", "data-toggle": "input-mask", "data-mask-format": "000", "id": "DFCo16", "onchange": "calcularTodo();"}),
             'PartiduraBasal': forms.NumberInput(attrs={"class": "form-control font-12 text-center", "data-toggle": "input-mask", "data-mask-format": "000", "id": "DFCo17", "onchange": "calcularTodo();"}),
             'TotCondicion': forms.TextInput(attrs={"class": "form-control font-12 text-center", "id": "TotCondicion", "name": "TotCondicion", "readonly": "", "onchange": "calcularTodo();", }),
-
 
             'observaciones': forms.Textarea(attrs={"class": "form-control", "rows": "3", "placeholder": "Ingresa observaciones aqui....."}),
             # Resultados

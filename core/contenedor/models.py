@@ -85,7 +85,7 @@ class Productor(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}'.format(self.nombre) 
+        return '{}'.format(self.nombre_FTS) 
 
     def toJSON(self):
         item = model_to_dict(self)

@@ -39,7 +39,8 @@
 
             $('select[name="exportadora"]').on('change', function () {
                 var id = $(this).val();
-                var options = '<option value="">--------------------</option>';
+                // alert(id);
+                var options = '<option value="">----------------</option>';
                 if (id === '') {
                     select_productor.html(options);
                     return false;

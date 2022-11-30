@@ -145,13 +145,3 @@ class ProductorForm(ModelForm):
             data['error'] = str(e)
         return data
 
-class TestForm(Form):
-    exportadora = ModelChoiceField(queryset=Exportadora.objects.all(), widget=Select(attrs={
-        'class': 'form-control select2',
-        'style': 'width: 100%'
-    }))
-
-    productor = ModelChoiceField(queryset=Productor.objects.none(), widget=Select(attrs={
-        'class': 'form-control select2',
-        'style': 'width: 100%'
-    }))
