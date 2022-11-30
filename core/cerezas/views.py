@@ -5,9 +5,45 @@ from django.contrib import messages
 from django.views.generic import View
 from core.cerezas.models import FormCerezaModels
 from .utils import render_to_pdf
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from datetime import datetime
+from core.contenedor.models import *
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
+
+from core.contenedor.forms import TestForm
+from core.contenedor.models import Productor
+
+
+class TestView(TemplateView):
+    template_name = 'tests.html'
+
+    @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'search_product_id':
+                data = [{'id': '', 'text': '------------'}]
+                for i in Productor.objects.filter(id=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.name, 'data': i.cat.toJSON()})
+            else:
+                data['error'] = 'Ha ocurrido un error'
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Select Aninados | Django'
+        context['form'] = TestForm()
+        return context
 
 class FormCerezaPdf(View):
     def get(self, request, *args, **kwargs):
@@ -19,6 +55,20 @@ class FormCerezaPdf(View):
         }
         pdf = render_to_pdf('cerezas/report-cereza/report-list-cereza.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'search_product_id':
+                data = [{'id': '', 'text': '------------'}]
+                for i in Productor.objects.filter(cat_id=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.name, 'data': i.cat.toJSON()})
+            else:
+                data['error'] = 'Ha ocurrido un error'
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
 
 @login_required
 def PDF_form_cereza(request, Lote):

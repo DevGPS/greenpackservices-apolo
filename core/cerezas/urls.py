@@ -1,6 +1,7 @@
 # URLS POSTCOSECHA
 from django.urls import path
 from core.cerezas import views
+from core.cerezas.views import TestView
 
 
 urlpatterns = [
@@ -12,5 +13,6 @@ urlpatterns = [
 
     path('report-list-cereza/',views.FormCerezaPdf.as_view(),name='pdf-list-cereza'),
     path('report-lote-cereza/<Lote>/',views.PDF_form_cereza,name='report-lote-cereza'),
+    path('test/', TestView.as_view(), name='test'),
 
 ]

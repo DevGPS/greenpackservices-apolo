@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import *
 
 from core.contenedor.models import *
 
@@ -11,14 +11,7 @@ class ExportadoraForm(ModelForm):
         model = Exportadora
         fields = ['codigo','nombre', 'direccion','temporada', 'telefono', 'email']
         
-        widgets = {
-            'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo","type": "text"}),
-            'nombre': forms.TextInput(attrs={"class": "form-control","name": "nombre","type": "text"}),
-            'direccion': forms.TextInput(attrs={"class": "form-control","name": "direccion",}),
-            'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono"}),            
-            'email': forms.EmailInput(attrs={"class": "form-control"}),  
-            'temporada': forms.Select(attrs={"class": "form-control","name": "temporada"}),        
-        }
+       
         
     def save(self, commit=True):
         data = {}
@@ -31,7 +24,6 @@ class ExportadoraForm(ModelForm):
         except Exception as e:
             data['error'] = str(e)
         return data
-
         
 class TransporteForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -52,17 +44,8 @@ class TransporteForm(ModelForm):
             'telefono': 'Telefono',
             'exportadora': 'Nombre Exportadora',
         }
-        widgets = {
-            'codigo': forms.TextInput(attrs={"class": "form-control", "name": "codigo", "type": "text"}),
-            'nombres': forms.TextInput(attrs={"class": "form-control"}),
-            'apellidos': forms.TextInput(attrs={"class": "form-control"}),
-            'rut': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "00.000.000-A", }),
-            'patente1': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "AA-AA-00", }),
-            'patente2': forms.TextInput(attrs={"class": "form-control", "data-toggle": "input-mask", "data-mask-format": "AA-AA-00", }),
-            'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono","data-toggle": "input-mask", "data-mask-format": "(+56) 0 0000 0000",}),
-            'exportadora': forms.Select(attrs={"class": "form-control"}),
+       
 
-        }
 
     def save(self, commit=True):
         data = {}
@@ -90,11 +73,7 @@ class EspecieForm(ModelForm):
             'temporada': 'Temporada',           
 
         }
-        widgets = {
-            'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo",}),
-            'nombre': forms.TextInput(attrs={"class": "form-control","name": "especie"}),
-            'temporada': forms.Select(attrs={"class": "form-control"}),           
-        }
+       
 
     def save(self, commit=True):
         data = {}
@@ -121,11 +100,7 @@ class VariedadForm(ModelForm):
             'especie': 'Nombre Especie',
             
         }
-        widgets = {
-            'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo"}),
-            'nombre': forms.TextInput(attrs={"class": "form-control","name": "variedad"}),
-            'especie': forms.Select(attrs={"class": "form-control","name": "especie"}),
-        }
+        
 
     def save(self, commit=True):
         data = {}
@@ -156,15 +131,7 @@ class ProductorForm(ModelForm):
             'email': 'Correo Electrónico',
             'exportadora': 'Exportadora',             
         }
-        widgets = {
-            'codigo': forms.TextInput(attrs={"class": "form-control","name": "codigo","type": "text"}),
-            'nombre': forms.TextInput(attrs={"class": "form-control","name": "nombre",}),
-            'CSG': forms.TextInput(attrs={"class": "form-control","name": "CSG",}),
-            'direccion': forms.TextInput(attrs={"class": "form-control","name": "direccion",}),
-            'telefono': forms.TextInput(attrs={"class": "form-control","name": "telefono","data-toggle": "input-mask", "data-mask-format": "(+56) 0 0000 0000",}),
-            'email': forms.EmailInput(attrs={"class": "form-control"}),  
-            'exportadora': forms.Select(attrs={"class": "form-control","name": "exportadora",}),          
-        }
+        
         
     def save(self, commit=True):
         data = {}
@@ -177,3 +144,14 @@ class ProductorForm(ModelForm):
         except Exception as e:
             data['error'] = str(e)
         return data
+
+class TestForm(Form):
+    exportadora = ModelChoiceField(queryset=Exportadora.objects.all(), widget=Select(attrs={
+        'class': 'form-control select2',
+        'style': 'width: 100%'
+    }))
+
+    productor = ModelChoiceField(queryset=Productor.objects.none(), widget=Select(attrs={
+        'class': 'form-control select2',
+        'style': 'width: 100%'
+    }))
