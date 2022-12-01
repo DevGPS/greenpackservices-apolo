@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ContenedorConfig(AppConfig):
+class SademaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'core.contenedor'
+    name = 'core.sadema'

@@ -34,9 +34,15 @@ class VariedadAdmin(admin.ModelAdmin):
     list_filter = ("especie",)
     readonly_fields = ('created_at', 'updated_at')
 
+class PrincipalAdmin(admin.ModelAdmin):
+    list_display = ("Lote", "Fecha_Recepcion","PrecalibreTot", "CalidadTotal","CondicionTotal","TotalExportable")
+    search_fields = ("Lote", "Fecha_Recepcion", "Nguia")
+    list_filter = ("Fecha_Recepcion", "productor", "variedad",)
+    date_hierarchy = ("Fecha_Recepcion")
+    readonly_fields = ('created_at', 'updated_at')
 
 
-
+admin.site.register(FormCerezaModels, PrincipalAdmin)
 admin.site.register(Exportadora, ExportadoraAdmin)
 admin.site.register(Productor, ProductorAdmin)
 admin.site.register(Especie)

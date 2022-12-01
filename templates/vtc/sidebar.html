@@ -31,12 +31,128 @@
             <div class="info">
                 <a  style="color:rgb(29, 35, 54) ; font-size: 16px; margin-left: 33px;" >{{ request.user.get_short_name }}</a>
             </div>
-        </div>
+        </div>              
+        
+        
+
+        {% if perms.Administrador %}
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header"><b>Usuarios</b> </li>   
+               
+                <li class="nav-item">
+                    <a href="{% url 'user_list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-user-friends"></i>
+                        <p>
+                            Usuarios
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'access_users_list' %}" class="nav-link">
+                        <i class="fas fa-user-clock"></i> &nbsp;&nbsp;<p>Control de Accesos</p>
+                    </a>
+                </li>              
+                
+            </ul>
+        </nav>        
+        {% endif %}
+
+       
+
+        
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                {% if perms.postcosecha %}
+                <li class="nav-header"><b>Formularios Post-Cosecha</b> </li>              
+                
+                <li class="nav-item">
+                    <a href="{% url 'formCereza_list' %}" class="nav-link">
+                        <i class="nav-icon 	fas fa-list"></i>
+                        <p>
+                            Listado Recepción
+                        </p>
+                    </a>
+                    <a href="{% url 'formCereza_create' %}" class="nav-link">
+                        <i class="nav-icon fab fa-wpforms"></i>
+                        <p>
+                            Formulario Recepción
+                        </p>
+                    </a>
+                    
+                </li> 
+                {% endif  %} 
+
+                {% if perms.sadema %}
+                <li class="nav-header"><b>Formularios Sadema</b> </li>              
+                
+                <li class="nav-item">
+                    <a href="{% url 'formCereza_list' %}" class="nav-link">
+                        <i class="nav-icon 	fas fa-list"></i>
+                        <p>
+                            Listar
+                        </p>
+                    </a>
+                    <a href="{% url 'formCereza_create' %}" class="nav-link">
+                        <i class="nav-icon fab fa-wpforms"></i>
+                        <p>
+                            Crear
+                        </p>
+                    </a>
+                    
+                </li> 
+                {% endif  %}              
+                
+            </ul>
+        </nav>
+        
+
+
         
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"><b>Mantenedores</b> </li>
+
+                {% if perms.sadema %}
+                <li class="nav-item">
+                    <a href="{% url 'ubicacion_list' %}" class="nav-link">
+                        <i class="fas fa-regular fa-microchip"></i>&nbsp;&nbsp;
+                        <p>
+                            Ubicaciones
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'equipo_list' %}" class="nav-link">
+                        <i class="fas fa-regular fa-microchip"></i>&nbsp;&nbsp;
+                        <p>
+                            Equipos
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'labor_list' %}" class="nav-link">
+                        <i class="fas fa-certificate"></i>&nbsp;&nbsp;
+                        <p>
+                            Tipos de Trabajo
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'trabajador_list' %}" class="nav-link">
+                        <i class="fas fa-user-alt"></i>&nbsp;&nbsp;
+                        <p>
+                            Trabajadores
+                        </p>
+                    </a>
+                </li>   
                 
+                <hr>
+                
+                {% endif  %}
+
+                {% if perms.contenedor %}
+                   
                 <li class="nav-item">
                     <a href="{% url 'transporte_list' %}" class="nav-link">
                         <i class="nav-icon fas fa-truck"></i>
@@ -77,85 +193,81 @@
                         </p>
                     </a>
                 </li> 
-            </ul>
-        </nav>
-        
-        
+                {% endif  %}
 
-        {% if request.user.is_staff %}
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header"><b>Usuarios</b> </li>   
-               
-                <li class="nav-item">
-                    <a href="{% url 'user_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-user-friends"></i>
-                        <p>
-                            Usuarios
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'access_users_list' %}" class="nav-link">
-                        <i class="fas fa-user-clock"></i> &nbsp;&nbsp;<p>Control de Accesos</p>
-                    </a>
-                </li>              
-                
-            </ul>
+
+            </ul>            
         </nav>
-        {% endif %}
-        {% if request.user.is_staff %}
+
+
+        <!-- <hr style="color: #007bff; border: 2px solid;"> -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header"><b>Reportes</b> </li>                
+                <li class="nav-header"><b>Reportes: </b> </li>                
                
+
+                {% if perms.contenedor %}
                 <li class="nav-item">
                     <a href="{% url 'sale_report' %}" class="nav-link">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>
-                            Reporte de Recepciones
+                            Reporte 1 Post-Cosecha
                         </p>
                     </a>
                     <a href="{% url 'sale_report' %}" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Reporte de Producciones
+                            Reporte 2 Post-Cosecha
                         </p>
                     </a>
                     <a href="{% url 'sale_report' %}" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>
-                            Reporte de Despachos
+                            Reporte 3 Post-Cosecha
                         </p>
                     </a>
-                </li>               
+                </li> 
+                {% endif  %} 
                 
-            </ul>
-        </nav>
-        {% endif %}
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header"><b>Todo Cerezas</b> </li>                
-               
+                {% if perms.sadema %}
                 <li class="nav-item">
-                    <a href="{% url 'read_cerezas' %}" class="nav-link">
-                        <i class="nav-icon 	fas fa-list"></i>
+                    <a href="{% url 'sale_report' %}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-line"></i>
                         <p>
-                            Listado Recepción
+                            Reporte 1 Sadema
                         </p>
                     </a>
-                    <a href="{% url 'create_cerezas' %}" class="nav-link">
-                        <i class="nav-icon fab fa-wpforms"></i>
+                    <a href="{% url 'sale_report' %}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Formulario Recepción
+                            Reporte 2 Sadema
                         </p>
-                    </a>
-                    
-                </li>               
-                
+                    </a>                   
+                </li> 
+                {% endif  %}    
             </ul>
         </nav>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+
+
+
     </div>
     
- 
+   
+    
 </aside>
