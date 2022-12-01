@@ -17,8 +17,8 @@ from core.cerezas.forms import TestForm
 from core.contenedor.models import Productor
 
 class TestView(TemplateView):
-    template_name = 'cerezas/create.html'
 
+    template_name = 'cerezas/create.html'
     @method_decorator(csrf_exempt)
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -26,16 +26,23 @@ class TestView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         data = {}
+        print (data)
         try:
             action = request.POST['action']
             if action == 'search_productor_id':
                 data = [{'id': '', 'text': '--Productores Cargados--'}]
                 for i in Productor.objects.filter(exportadora_id=request.POST['id']):
                     data.append({'id': i.id, 'text': i.nombre, 'data': i.exportadora.toJSON()})
-            if  action == 'search_variedad_id':
+                
+            elif action == 'search_transporte_id':
+                data = [{'id': '', 'text': '--Camiones Cargados--'}]             
+                for i in Transporte.objects.filter(exportadora_id=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.patente1, 'data': i.exportadora.toJSON()})
+                      
+            elif  action == 'search_variedad_id':
                 data = [{'id': '', 'text': '--Variedades Cargadas--'}]
                 for i in Variedad.objects.filter(especie_id=request.POST['id']):
-                    data.append({'id': i.id, 'text': i.nombre, 'data': i.especie.toJSON()})
+                    data.append({'id': i.id, 'text': i.nombre, 'data': i.especie.toJSON()})           
             else:
                 data['error'] = 'Ha ocurrido un error'  
         except Exception as e:
@@ -86,7 +93,22 @@ class TestView(TemplateView):
     #     return render(request, "cerezas/create.html", {"form": form})
 
 
-       
+# def save_form_cereza(request):
+#     if request.method == 'POST':
+#         registros = FormCerezaModels.objects.all()
+#         form = TestForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             new_registro = form.save(commit=False)
+#             new_registro.user = request.user
+#             new_registro.save()
+#             messages.success(request, '!Registrado Exitosamente!')
+#             return redirect('read_cerezas')
+#         else:
+#             messages.success(request, '!No se pudo realizar el registro!')
+#             return redirect('create_cerezas')       
+#     else:
+#         form = TestForm()
+#         return render(request, "cerezas/create.html", {"form": form})       
        
         
         
@@ -117,22 +139,7 @@ def PDF_form_cereza(request, Lote):
     return HttpResponse(pdf, content_type='application/pdf')
 
 
-# def create_form_cereza(request):
-#     if request.method == 'POST':
-#         registros = FormCerezaModels.objects.all()
-#         form = TestForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             new_registro = form.save(commit=False)
-#             new_registro.user = request.user
-#             new_registro.save()
-#             messages.success(request, '!Registrado Exitosamente!')
-#             return redirect('read_cerezas')
-#         else:
-#             messages.success(request, '!No se pudo realizar el registro!')
-#             return redirect('create_cerezas')       
-#     else:
-#         form = TestForm()
-#         return render(request, "cerezas/create.html", {"r": form})
+
 
 
 

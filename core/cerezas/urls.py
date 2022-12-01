@@ -6,7 +6,7 @@ from core.cerezas.views import TestView
 
 urlpatterns = [
     path('read_form_cereza/', views.read_form_cereza, name='read_cerezas'),
-    # path('formulario_recepcion/', views.create_form_cereza, name='create_cerezas'),
+    # path('formulario_recepcion/', views.save_form_cereza, name='save_cerezas'),
     path('delete_form_cereza/<Lote>/', views.delete_form_cereza, name='delete_form_cereza'),
     path('update_form_cereza/<Lote>/', views.update_form_cereza, name='update_form_cereza'),
 

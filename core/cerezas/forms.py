@@ -36,8 +36,6 @@ class TestForm(ModelForm):
 
         fields = [
             'Lote',
-            # 'Exportadora',
-            # 'Productor',
             'Fecha_Recepcion',
             'Hora_Recepcion',
             'Hora_Analisis',

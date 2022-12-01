@@ -1,7 +1,6 @@
 from django.db import models
 from core.contenedor.models import *
-#from choices import TIPO_TRANSPORTE,TIPO_ENVASE,CALIBRES
-# Create your models here.
+
 TIPO_TRANSPORTE = (
     ('T', 'TERMO'),
     ('C', 'CONTAINER'),

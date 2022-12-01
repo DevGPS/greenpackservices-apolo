@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form id="form_create_cereza" action="" method="post" enctype="multipart/form-data">
+                    <form id="form_create_cereza" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row text-center">
                             <div class="col-xl-5 col-md-12 col-sm-12">
@@ -412,7 +412,6 @@
                                             </div>
                                             <br>
                                             <div class="row text-center">
-
                                                 <label for="Precalibre" class="col-6 col-form-label font-12">
                                                     <u>PROMEDIO</u> </label>
                                                 <div class="col-6">
@@ -424,11 +423,9 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row text-center">
-
                             <div class="col-xl-3 col-md-6 col-sm-12">
                                 <div class="card ">
                                     <div class="row p-2">
@@ -498,7 +495,6 @@
                                                     {{ form.C2F5 }}
                                                 </div>
                                             </div>
-
                                             <br>
                                             <br>
                                             <br>
@@ -636,7 +632,6 @@
                                                 <label for="Precalibre"
                                                     class="col-3 col-form-label text-center"><u><strong>N°</strong></u></label>
 
-
                                             </div>
                                             <div class="form-group row">
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Daño
@@ -690,7 +685,6 @@
                                                     {{ form.PielLagarto }}
                                                 </div>
                                             </div>
-
 
                                             <div class="form-group row">
 
@@ -988,7 +982,7 @@
 
                                                 <div class="col-xl-12 col-md-12 col-sm-12 my-2">
 
-                                                    <button type="submit" class="btn btn-primary  mb-2 me-2 col-12"
+                                                    <button type="submit" class="btn btn-primary  mb-2 me-2 col-12" 
                                                         style="background-color: #007bff;"> Agregar Registro</button>
                                                     <!-- fas fa-marker  || icono para actualizar -->
                                                     <br>
@@ -1003,13 +997,10 @@
                                                         style="background-color: #F40F02;"> Limpiar Formulario</button>
 
                                                 </div>
-
                                                 <hr style="border: 2px solid; background-color: #313a46;">
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -1022,7 +1013,6 @@
                                 <h4 class="text-center p-2" style="color: rgb(255, 255, 255);"><b><u>AGREGAR IMAGENES AL
                                             INFORME:</u></b></h4>
                             </div>
-
                             <div class="col-xl-6 col-sm-6 p-2">
                                 {{ form.images1 }}
                             </div>
@@ -1031,17 +1021,13 @@
                             </div>
                             <br>
                             <div class="col-xl-6 col-sm-6 p-2">
-
                                 {{ form.images3 }}
                             </div>
                             <br>
                             <div class="col-xl-6 col-sm-6 p-2">
-
                                 {{ form.images4 }}
                                 <br>
-
                             </div>
-
                         </div>
                         <hr style="border: 2px solid; background-color: #313a46;">
                         <!-- end imagenes -->
@@ -1053,11 +1039,59 @@
 </div> <!-- end card-->
 </div> <!-- end col -->
 </div>
-
 </div> <!-- container -->
 
 
+<script>
+    var select_transporte = $('select[name="transporte"]');
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
 
+        $('select[name="exportadora"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_transporte.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_transporte_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_transporte.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_transporte.html(options);
+            });
+        });
+
+        select_transporte.on('change', function () {
+            var value = select_transporte.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
 <script>
     var select_productor = $('select[name="productor"]');
 
@@ -1112,7 +1146,6 @@
 
 <script>
     var select_variedad = $('select[name="variedad"]');
-
     $(function () {
         $('.select2').select2({
             theme: "bootstrap4",
