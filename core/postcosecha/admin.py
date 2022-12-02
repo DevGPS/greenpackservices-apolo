@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.contenedor.models import *
+from core.postcosecha.models import *
 
 # Register your models here.
 class TemporadasAdmin(admin.ModelAdmin):

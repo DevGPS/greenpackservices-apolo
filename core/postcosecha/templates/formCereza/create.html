@@ -9,26 +9,32 @@
 {% endblock %}
 {% block content %}
 
+
 <div class="container-fluid">
 
-    <!-- start page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-                <h2 class="text-center" style="color: #007bff;">
-                    <strong><u>REGISTRO DE CONTROL DE RECEPCIÓN CEREZAS FRESCAS</u></strong>
-                </h2>
-            </div>
-        </div>
-    </div>
-    <!-- end page title -->
 
+    <!-- end page title -->
+    <div class="card-header">
+        <h3 class="card-title">
+            {% if action == 'add' %}
+            <h2 style="color: #007bff;"><i class="fas fa-plus" style="color: #007bff;"></i> &nbsp;
+                <strong><u>AGREGAR UN REGISTRO DE CONTROL DE RECEPCIÓN CEREZAS FRESCAS</u></strong>
+            </h2>
+            {% else %}
+            <h2 style="color: #007bff;"><i class="fas fa-edit" style="color: #007bff;"></i></i> &nbsp;
+                <strong><u>EDITAR UN REGISTRO DE RECEPCIÓN CEREZAS FRESCAS</u></strong>
+            </h2>
+
+            {% endif %}
+
+        </h3>
+    </div>
     <div class="row">
         <div class="row col-xl-12 col-sm-12">
             <div class="card">
                 <div class="card-body">
 
-                    <form  method="post" enctype="multipart/form-data">
+                    <form method="post" action="." enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row text-center">
                             <div class="col-xl-5 col-md-12 col-sm-12">
@@ -879,7 +885,7 @@
                                                 <label for="Precalibre" class="col-3 col-form-label font-12">Partidura
                                                     Basal</label>
                                                 <div class="col-3">
-                                                    {{ formr.PartiduraBasal }}
+                                                    {{ form.PartiduraBasal }}
                                                 </div>
                                             </div>
 
@@ -919,7 +925,7 @@
                                                             DE
                                                             CALIDAD (%)</u> </label>
                                                     <div class="col-3">
-                                                        {{ colform.CalidadTotal }}
+                                                        {{ form.CalidadTotal }}
                                                     </div>
 
                                                 </div>
@@ -962,22 +968,13 @@
                                                 </div> -->
                                                 <hr style="border: 2px solid; background-color: #313a46;">
 
-                                                <div class="col-xl-12 col-md-12 col-sm-12 my-2">
-
-                                                    <button type="submit" class="btn submit-btn  mb-2 me-2 col-12" 
-                                                        style="background-color: #007bff;"> <b>+</b> Agregar Registro</button>
-                                                    <!-- fas fa-marker  || icono para actualizar -->
-                                                    <br>
-                                                    <br>
-                                                    <button type="back" class="btn btn-primary  mb-2 me-2 col-12"
-                                                        style="background-color: #1D6F42;"> No realizar ningun
-                                                        cambio</button>
-
-                                                    <br>
-                                                    <br>
-                                                    <button type="reset" class="btn btn-primary  mb-2 me-2 col-12"
-                                                        style="background-color: #F40F02;"> Limpiar Formulario</button>
-
+                                                <div class="card-footer">
+                                                    <button type="submit" class="btn btn-primary btn-flat">
+                                                        <i class="fas fa-save"></i> Guardar registro
+                                                    </button>
+                                                    <a href="{{ list_url }}" class="btn btn-danger btn-flat">
+                                                        <i class="fas fa-times"></i> Cancelar
+                                                    </a>
                                                 </div>
                                                 <hr style="border: 2px solid; background-color: #313a46;">
                                             </div>
@@ -1014,6 +1011,7 @@
                         <hr style="border: 2px solid; background-color: #313a46;">
                         <!-- end imagenes -->
                     </form>
+
                 </div>
             </div>
         </div>
@@ -1074,7 +1072,6 @@
         });
     });
 </script>
-
 <script>
     var select_productor = $('select[name="productor"]');
 
@@ -1126,7 +1123,6 @@
         });
     });
 </script>
-
 <script>
     var select_variedad = $('select[name="variedad"]');
     $(function () {
@@ -1178,6 +1174,27 @@
     });
 </script>
 
+<script>
+
+    $(function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            var parameters = new FormData(this);
+            submit_with_ajax(pathname, 'Notificación', '¿Estas seguro de realizar el Registro?', parameters, function () {
+                location.href = '{{ list_url }}';
+            });
+        });
+        $.ajax({
+            url: window.location.pathname,
+            type: 'POST',
+            data: {
+                'action': 'search_productor_id',
+                'id': id
+            },
+            dataType: 'json',
+        });
+    });
+</script>
 
 
 <script type="text/javascript">
@@ -1363,7 +1380,5 @@
 
 </script>
 
-<!-- Validar Formulario js -->
-<script src="{% static 'js/validarForm.js' %}"></script>
-<!-- -->
+
 {% endblock %}

@@ -38,7 +38,7 @@ LOCAL_APPS = [
     'core.homepage',
     'core.pos',
     'core.security',
-    'core.contenedor',
+    'core.postcosecha',
     'core.sadema',
 ]
 
@@ -147,11 +147,11 @@ EMAIL_HOST_PASSWORD = '0m4gATi3rr@'
 # django rest framework
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    # 'PAGE_SIZE': 5,
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ]
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+    'DEFAULT_PERMISSION_CLASSES': [
+         'rest_framework.permissions.IsAuthenticated',
+    ]
 }
 
 
@@ -176,7 +176,7 @@ STATICFILES_DIRS = [
 
 
 
-# ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
-# CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
+ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []

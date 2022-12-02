@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('core.login.urls')),
     path('pos/', include('core.pos.urls')),
-    path('post-cosecha/', include('core.contenedor.urls')),
+    path('postcosecha/', include('core.postcosecha.urls')),
     path('sadema/', include('core.sadema.urls')),
     path('reports/', include('core.reports.urls')),
     path('user/', include('core.user.urls')),

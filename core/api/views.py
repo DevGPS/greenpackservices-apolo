@@ -7,7 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from core.api.serializers import *
 from core.pos.models import Category, Product, Client
-from core.contenedor.models import Exportadora
+from core.postcosecha.models import Exportadora
 
 
 class ClientViewSet(ModelViewSet):

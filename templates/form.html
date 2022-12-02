@@ -2,88 +2,227 @@
 {% load widget_tweaks %}
 {% load pos_extras %}
 {% block head %}
-    {% block head_form %}
+{% block head_form %}
 
-    {% endblock %}
+
+{% endblock %}
 {% endblock %}
 {% block content %}
-    <form method="post" action="." enctype="multipart/form-data">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">
-                    {% if action == 'add' %}
-                        <i class="fas fa-plus"></i>
-                    {% else %}
-                        <i class="fas fa-edit"></i>
-                    {% endif %}
-                    <b>{{ title }}</b>
-                </h3>
-            </div>
-            <div class="card-body">
-                <div class="container-fluid">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="{{ action }}">
-                    {% if form.errors %}
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
-                            <ul>
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                    {% for field in form.visible_fields %}
-                        <div class="form-group">
-                            <label for="email">{{ field.label }}:</label>
-                            {% if field|is_checkbox %}
-                               <br>{{ field }}
-                            {% else %}
-                                {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+<form method="post" action="." enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                {% if action == 'add' %}
+                <i class="fas fa-plus"></i>
+                {% else %}
+                <i class="fas fa-edit"></i>
+                {% endif %}
+                <b>{{ title }}</b>
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
+                    <ul>
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
                 </div>
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-flat">
-                    <i class="fas fa-save"></i> Guardar registro
-                </button>
-                <a href="{{ list_url }}" class="btn btn-danger btn-flat">
-                    <i class="fas fa-times"></i> Cancelar
-                </a>
+                {% endif %}
+                {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label for="email">{{ field.label }}:</label>
+                    {% if field|is_checkbox %}
+                    <br>{{ field }}
+                    {% else %}
+                    {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                    {% endif %}
+                </div>
+                {% endfor %}
             </div>
         </div>
-    </form>
-    <script>
-        {% if form.errors %}
-            var errors = '';
-            {% for field in form %}
-                {% for error in field.errors %}
-                    errors += '{{ error }}\n';
-                {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-                errors += '{{ error }}\n';
-            {% endfor %}
-            Swal.fire({
-                title: 'Error!',
-                text: errors,
-                icon: 'error'
-            });
-        {% endif %}
-
-        $(function () {
-            $('form').on('submit', function (e) {
-                e.preventDefault();
-                var parameters = new FormData(this);
-                submit_with_ajax(pathname, 'Notificación', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
-                    location.href = '{{ list_url }}';
-                });
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-flat">
+                <i class="fas fa-save"></i> Guardar registro
+            </button>
+            <a href="{{ list_url }}" class="btn btn-danger btn-flat">
+                <i class="fas fa-times"></i> Cancelar
+            </a>
+        </div>
+    </div>
+</form>
+<script>
+  
+    $(function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            var parameters = new FormData(this);
+            submit_with_ajax(pathname, 'Notificación', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
+                location.href = '{{ list_url }}';
             });
         });
-    </script>
+    });
+</script>
+
+<script>
+    var select_transporte = $('select[name="transporte"]');
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="exportadora"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_transporte.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_transporte_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_transporte.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_transporte.html(options);
+            });
+        });
+
+        select_transporte.on('change', function () {
+            var value = select_transporte.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+<script>
+    var select_productor = $('select[name="productor"]');
+
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="exportadora"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_productor.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_productor_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_productor.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_productor.html(options);
+            });
+        });
+
+        select_productor.on('change', function () {
+            var value = select_productor.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+<script>
+    var select_variedad = $('select[name="variedad"]');
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="especie"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_variedad.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_variedad_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_variedad.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_variedad.html(options);
+            });
+        });
+
+        select_variedad.on('change', function () {
+            var value = select_variedad.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+
+
 {% endblock %}

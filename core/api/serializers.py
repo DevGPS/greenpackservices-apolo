@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from core.pos.models import Category, Product, Client
-from core.contenedor.models import Exportadora
+from core.postcosecha.models import Exportadora
 
 
 

@@ -2,16 +2,15 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from core.contenedor.forms import ExportadoraForm
+from core.postcosecha.forms import EspecieForm
 from core.pos.mixins import ValidatePermissionRequiredMixin
-from core.contenedor.models import Exportadora
+from core.postcosecha.models import Especie
 
 
-
-class ExportadoraListView(ValidatePermissionRequiredMixin, ListView):
-    model = Exportadora
-    template_name = 'exportadora/list.html'
-    permission_required = 'view_exportadora'
+class EspecieListView(ValidatePermissionRequiredMixin, ListView):
+    model = Especie
+    template_name = 'especie/list.html'
+    permission_required = 'view_especie'
     url_redirect = reverse_lazy('dashboard')
 
     def post(self, request, *args, **kwargs):
@@ -20,7 +19,7 @@ class ExportadoraListView(ValidatePermissionRequiredMixin, ListView):
             action = request.POST['action']
             if action == 'search':
                 data = []
-                for i in Exportadora.objects.all():
+                for i in Especie.objects.all():
                     data.append(i.toJSON())
             else:
                 data['error'] = 'Ha ocurrido un error'
@@ -30,20 +29,22 @@ class ExportadoraListView(ValidatePermissionRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de Exportadora'
-        context['create_url'] = reverse_lazy('exportadora_create')
-        context['list_url'] = reverse_lazy('exportadora_list')
-        context['entity'] = 'Exportadora'
+        context['title'] = 'Listado de Especies'
+        context['create_url'] = reverse_lazy('especie_create')
+        context['list_url'] = reverse_lazy('especie_list')
+        context['entity'] = 'Especie'
         return context
 
+    
 
-class ExportadoraCreateView(ValidatePermissionRequiredMixin, CreateView):
-    model = Exportadora
-    form_class = ExportadoraForm
-    template_name = 'exportadora/create.html'
-    success_url = reverse_lazy('exportadora_list')
+
+class EspecieCreateView(ValidatePermissionRequiredMixin, CreateView):
+    model = Especie
+    form_class = EspecieForm
+    template_name = 'especie/create.html'
+    success_url = reverse_lazy('especie_list')
     url_redirect = success_url
-    permission_required = 'add_exportadora'
+    permission_required = 'add_especie'
 
     def post(self, request, *args, **kwargs):
         data = {}
@@ -60,20 +61,21 @@ class ExportadoraCreateView(ValidatePermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Creación de una Exportadora'
-        context['entity'] = 'Exportadora'
+        context['title'] = 'Creación de un Especie'
+        context['entity'] = 'Especie'
         context['list_url'] = self.success_url
         context['action'] = 'add'
         return context
+   
 
 
-class ExportadoraUpdateView(ValidatePermissionRequiredMixin, UpdateView):
-    model = Exportadora
-    form_class = ExportadoraForm
-    template_name = 'exportadora/create.html'
-    success_url = reverse_lazy('exportadora_list')
+class EspecieUpdateView(ValidatePermissionRequiredMixin, UpdateView):
+    model = Especie
+    form_class = EspecieForm
+    template_name = 'especie/create.html'
+    success_url = reverse_lazy('especie_list')
     url_redirect = success_url
-    permission_required = 'change_exportadora'
+    permission_required = 'change_especie'
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -94,19 +96,20 @@ class ExportadoraUpdateView(ValidatePermissionRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Edición de una Exportadora'
-        context['entity'] = 'Exportadora'
+        context['title'] = 'Edición una Especie'
+        context['entity'] = 'Especie'
         context['list_url'] = self.success_url
         context['action'] = 'edit'
         return context
+    
 
 
-class ExportadoraDeleteView(ValidatePermissionRequiredMixin, DeleteView):
-    model = Exportadora
-    template_name = 'exportadora/delete.html'
-    success_url = reverse_lazy('exportadora_list')
+class EspecieDeleteView(ValidatePermissionRequiredMixin, DeleteView):
+    model = Especie
+    template_name = 'especie/delete.html'
+    success_url = reverse_lazy('especie_list')
     url_redirect = success_url
-    permission_required = 'delete_exportadora'
+    permission_required = 'delete_especie'
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -122,7 +125,8 @@ class ExportadoraDeleteView(ValidatePermissionRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Eliminación de una Exportadora'
-        context['entity'] = 'Exportadora'
+        context['title'] = 'Eliminación de una Especie'
+        context['entity'] = 'Especie'
         context['list_url'] = self.success_url
         return context
+    

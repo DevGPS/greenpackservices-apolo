@@ -5,6 +5,8 @@ from core.sadema.views.ubicacion.views import *
 from core.sadema.views.equipo.views import *
 from core.sadema.views.labor.views import *
 from core.sadema.views.trabajador.views import *
+from core.sadema.views.registro.views import *
+
 
 
 urlpatterns = [
@@ -29,6 +31,12 @@ urlpatterns = [
     path('trabajador/add/', TrabajadorCreateView.as_view(), name='trabajador_create'),
     path('trabajador/update/<int:pk>/', TrabajadorUpdateView.as_view(), name='trabajador_update'),
     path('trabajador/delete/<int:pk>/', TrabajadorDeleteView.as_view(), name='trabajador_delete'),
+
+     # Registros
+    path('registro/', RegistroListView.as_view(), name='registro_list'),
+    path('registro/add/', RegistroCreateView.as_view(), name='registro_create'),
+    path('registro/update/<int:pk>/', RegistroUpdateView.as_view(), name='registro_update'),
+    path('registro/delete/<int:pk>/', RegistroDeleteView.as_view(), name='registro_delete'),
     
    
 ]

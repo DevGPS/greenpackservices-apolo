@@ -50,11 +50,7 @@ class Exportadora(models.Model):
     email = models.EmailField(max_length=70)
     temporada = models.ForeignKey(Temporada, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return '{}'.format(self.nombre_FTS) 
-
+    updated_at = models.DateTimeField(auto_now_add=True)    
 
     def __str__(self):
             return '{}'.format(self.nombre)       
@@ -62,7 +58,6 @@ class Exportadora(models.Model):
     def toJSON(self):
             item = model_to_dict(self)
             return item
-
     class Meta:
             verbose_name = 'Exportadora'
             verbose_name_plural = 'Exportadoras'      
@@ -152,9 +147,6 @@ class Variedad(models.Model):
     class Meta:
         verbose_name = 'Variedad'
         verbose_name_plural = 'Variedades'
-
-    
-
 
 
 class FormCerezaModels(models.Model):

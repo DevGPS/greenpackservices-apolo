@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import ModelChoiceField,Select
-from core.contenedor.models import *
+from core.postcosecha.models import *
 from django.forms import ModelChoiceField,Select,ModelForm
 
 
@@ -144,6 +143,8 @@ class ProductorForm(ModelForm):
             data['error'] = str(e)
         return data
 
+
+
 class CerezaForm(ModelForm):
     exportadora = ModelChoiceField(queryset=Exportadora.objects.all(), widget=Select(attrs={
         'class': 'form-control select2',
@@ -175,6 +176,8 @@ class CerezaForm(ModelForm):
 
         fields = [
             'Lote',
+            'productor',
+            'variedad',
             'Fecha_Recepcion',
             'Hora_Recepcion',
             'Hora_Analisis',
@@ -182,11 +185,13 @@ class CerezaForm(ModelForm):
             'Tmax',
             'Tip_Trans',
             'Nguia',
+            'transporte',
             'Tip_Env',
             'NEnv',
             'KNeto',
             'NFruto',
             'Hidro',
+            'observaciones',
             # Distribucion por Calibre
             'PC',
             'L',
@@ -282,7 +287,6 @@ class CerezaForm(ModelForm):
             'DescarroPedicelar',
             'PartiduraBasal',
             'TotCondicion',
-            'observaciones',
             # Resultados
             'PrecalibreTot',
             'CalidadTotal',
@@ -421,16 +425,6 @@ class CerezaForm(ModelForm):
 
 
         }
-        def save(self, commit=True):
-            data = {}
-            form = super()
-            try:
-                if form.is_valid():
-                    form.save()
-                else:
-                    data['error'] = form.errors
-            except Exception as e:
-                data['error'] = str(e)
-            return data
+        
 
 

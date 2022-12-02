@@ -1,13 +1,13 @@
 from django.urls import path
 
 # aqui debo exportar los views
-from core.contenedor.views.transporte.views import *
-from core.contenedor.views.exportadora.views import *
-from core.contenedor.views.especie.views import *
-from core.contenedor.views.variedad.views import *
-from core.contenedor.views.productor.views import *
-from core.contenedor.views.formCereza.views import *
-from core.contenedor.views.formCereza import views
+from core.postcosecha.views.transporte.views import *
+from core.postcosecha.views.exportadora.views import *
+from core.postcosecha.views.especie.views import *
+from core.postcosecha.views.variedad.views import *
+from core.postcosecha.views.productor.views import *
+from core.postcosecha.views.formCereza.views import *
+from core.postcosecha.views.formCereza import views
 
 
 
@@ -41,10 +41,14 @@ urlpatterns = [
     path('productor/delete/<int:pk>/', ProductorDeleteView.as_view(), name='productor_delete'),
 
 
-    path('read_form_cereza/', FormCerezaListView.as_view(), name='formCereza_list'),
-    path('create_form_cereza/add/', FormCerezaCreateView.as_view(), name='formCereza_create'),
+    path('form_cereza/', FormCerezaListView.as_view(), name='formCereza_list'),
+
+    path('create_form_cereza/add/',formCerezaCreateView.as_view(), name='formCereza_create'),
+
     path('delete_form_cereza/<Lote>/', FormCerezaDeleteView.as_view(), name='formCereza_delete'),
     path('update_form_cereza/<Lote>/', FormCerezaUpdateView.as_view(), name='formCereza_update'),
+    # path('delete_form_cereza/<int:pk>/', FormCerezaDeleteView.as_view(), name='formCereza_delete'),
+    # path('update_form_cereza/<int:pk>/', FormCerezaUpdateView.as_view(), name='formCereza_update'),
 
 
     path('report-list-cereza/',FormCerezaPdf.as_view(),name='pdf-list-cereza'),

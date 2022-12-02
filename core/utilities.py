@@ -3,7 +3,7 @@ from random import randint
 
 from config import wsgi
 import json
-from core.contenedor.models import *
+from core.postcosecha.models import *
 from core.user.models import User
 
 user = User()

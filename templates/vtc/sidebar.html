@@ -13,6 +13,13 @@
 <link href="{% static 'css/vendor/select.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'css/vendor/fixedHeader.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'css/vendor/fixedColumns.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+
+
+<link href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet" />
+<link href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet" />
+<script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+<script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+
 <!-- third party css end -->
 <aside class="main-sidebar sidebar-light-primary elevation-1">
     <a href="{% url 'dashboard' %}" class="brand-link">
@@ -87,13 +94,13 @@
                 <li class="nav-header"><b>Formularios Sadema</b> </li>              
                 
                 <li class="nav-item">
-                    <a href="{% url 'formCereza_list' %}" class="nav-link">
+                    <a href="{% url 'registro_list' %}" class="nav-link">
                         <i class="nav-icon 	fas fa-list"></i>
                         <p>
                             Listar
                         </p>
                     </a>
-                    <a href="{% url 'formCereza_create' %}" class="nav-link">
+                    <a href="{% url 'registro_create' %}" class="nav-link">
                         <i class="nav-icon fab fa-wpforms"></i>
                         <p>
                             Crear

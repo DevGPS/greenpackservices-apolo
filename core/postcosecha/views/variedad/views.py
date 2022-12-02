@@ -2,15 +2,15 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from core.contenedor.forms import TransporteForm
+from core.postcosecha.forms import VariedadForm
 from core.pos.mixins import ValidatePermissionRequiredMixin
-from core.contenedor.models import Transporte
+from core.postcosecha.models import Variedad
 
 
-class TransporteListView(ValidatePermissionRequiredMixin, ListView):
-    model = Transporte
-    template_name = 'transporte/list.html'
-    permission_required = 'view_transporte'
+class VariedadListView(ValidatePermissionRequiredMixin, ListView):
+    model = Variedad
+    template_name = 'variedad/list.html'
+    permission_required = 'view_variedad'
     url_redirect = reverse_lazy('dashboard')
 
     def post(self, request, *args, **kwargs):
@@ -19,7 +19,7 @@ class TransporteListView(ValidatePermissionRequiredMixin, ListView):
             action = request.POST['action']
             if action == 'search':
                 data = []
-                for i in Transporte.objects.all():
+                for i in Variedad.objects.all():
                     data.append(i.toJSON())
             else:
                 data['error'] = 'Ha ocurrido un error'
@@ -29,20 +29,20 @@ class TransporteListView(ValidatePermissionRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de Transportes'
-        context['create_url'] = reverse_lazy('transporte_create')
-        context['list_url'] = reverse_lazy('transporte_list')
-        context['entity'] = 'Transporte'
+        context['title'] = 'Listado de Variedades'
+        context['create_url'] = reverse_lazy('variedad_create')
+        context['list_url'] = reverse_lazy('variedad_list')
+        context['entity'] = 'Variedad'
         return context
 
 
-class TransporteCreateView(ValidatePermissionRequiredMixin, CreateView):
-    model = Transporte
-    form_class = TransporteForm
-    template_name = 'transporte/create.html'
-    success_url = reverse_lazy('transporte_list')
+class VariedadCreateView(ValidatePermissionRequiredMixin, CreateView):
+    model = Variedad
+    form_class = VariedadForm
+    template_name = 'variedad/create.html'
+    success_url = reverse_lazy('variedad_list')
     url_redirect = success_url
-    permission_required = 'add_transporte'
+    permission_required = 'add_variedad'
 
     def post(self, request, *args, **kwargs):
         data = {}
@@ -59,20 +59,20 @@ class TransporteCreateView(ValidatePermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Creación de un Transporte'
-        context['entity'] = 'Transporte'
+        context['title'] = 'Creación de un Variedad'
+        context['entity'] = 'Variedad'
         context['list_url'] = self.success_url
         context['action'] = 'add'
         return context
 
 
-class TransporteUpdateView(ValidatePermissionRequiredMixin, UpdateView):
-    model = Transporte
-    form_class = TransporteForm
-    template_name = 'transporte/create.html'
-    success_url = reverse_lazy('transporte_list')
+class VariedadUpdateView(ValidatePermissionRequiredMixin, UpdateView):
+    model = Variedad
+    form_class = VariedadForm
+    template_name = 'variedad/create.html'
+    success_url = reverse_lazy('variedad_list')
     url_redirect = success_url
-    permission_required = 'change_transporte'
+    permission_required = 'change_variedad'
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -93,19 +93,19 @@ class TransporteUpdateView(ValidatePermissionRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Edición de un Transporte'
-        context['entity'] = 'Transporte'
+        context['title'] = 'Edición una Variedad'
+        context['entity'] = 'Variedad'
         context['list_url'] = self.success_url
         context['action'] = 'edit'
         return context
 
 
-class TransporteDeleteView(ValidatePermissionRequiredMixin, DeleteView):
-    model = Transporte
-    template_name = 'transporte/delete.html'
-    success_url = reverse_lazy('transporte_list')
+class VariedadDeleteView(ValidatePermissionRequiredMixin, DeleteView):
+    model = Variedad
+    template_name = 'variedad/delete.html'
+    success_url = reverse_lazy('variedad_list')
     url_redirect = success_url
-    permission_required = 'delete_transporte'
+    permission_required = 'delete_variedad'
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -121,7 +121,7 @@ class TransporteDeleteView(ValidatePermissionRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Eliminación de un Transporte'
-        context['entity'] = 'Transporte'
+        context['title'] = 'Eliminación de una Variedad'
+        context['entity'] = 'Variedad'
         context['list_url'] = self.success_url
         return context
