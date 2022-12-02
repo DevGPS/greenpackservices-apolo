@@ -36,7 +36,6 @@ LOCAL_APPS = [
     'core.reports',
     'core.user',
     'core.homepage',
-    'core.pos',
     'core.security',
     'core.postcosecha',
     'core.sadema',
