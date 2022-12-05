@@ -23,100 +23,118 @@
 <!-- third party css end -->
 <aside class="main-sidebar sidebar-light-primary elevation-1">
     <a href="{% url 'dashboard' %}" class="brand-link">
-        <img src="{% static 'img/logo.png' %}"
-             alt="AdminLTE Logo"
-             class="brand-image img-circle"
-             style="opacity: .8">
-        <span class="brand-text font-weight-bold" style="color:rgb(245, 84, 35) ; font-size: 18px;  margin-left: -10px;"><b style="color: rgba(7, 170, 21, 0.644);">Green</b> Pack
+        <img src="{% static 'img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle" style="opacity: .8">
+        <span class="brand-text font-weight-bold"
+            style="color:rgb(245, 84, 35) ; font-size: 18px;  margin-left: -10px;"><b
+                style="color: rgba(7, 170, 21, 0.644);">Green</b> Pack
             Services</span>
     </a>
-    
-    
-   
+
+
+
     <div class="sidebar">
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">            
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
-                <a  style="color:rgb(29, 35, 54) ; font-size: 16px; margin-left: 33px;" >{{ request.user.get_short_name }}</a>
+                <a style="color:rgb(29, 35, 54) ; font-size: 16px; margin-left: 33px;">{{ request.user.get_short_name }}</a>
             </div>
-        </div>              
-        
-        
+        </div>
 
         {% if perms.Administrador %}
-        <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header"><b>Usuarios</b> </li>   
-               
-                <li class="nav-item">
-                    <a href="{% url 'user_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-user-friends"></i>
+                <li class="nav-header"><b>Administración</b> </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-sharp fa-solid fa-users"></i>
                         <p>
-                            Usuarios
+                            <b>Usuarios</b> 
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'user_list' %}" class="nav-link">
+                                <i class="fas fa-solid fa-user-plus"></i>
+                                <p style="color: #007bff;">Crear Usuarios</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'access_users_list' %}" class="nav-link">
+                                <i class="fas fa-regular fa-user-clock"></i>
+                                <p style="color: #007bff;">Control de Accesos</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'access_users_list' %}" class="nav-link">
-                        <i class="fas fa-user-clock"></i> &nbsp;&nbsp;<p>Control de Accesos</p>
-                    </a>
-                </li>              
-                
             </ul>
-        </nav>        
+        </ul>
         {% endif %}
 
-       
 
-        
-        <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header"><b>Formularios</b> </li>
                 {% if perms.postcosecha %}
-                <li class="nav-header"><b>Formularios Post-Cosecha</b> </li>              
-                
-                <li class="nav-item">
-                    <a href="{% url 'formCereza_list' %}" class="nav-link">
-                        <i class="nav-icon 	fas fa-list"></i>
-                        <p>
-                            Listado Recepción
-                        </p>
-                    </a>
-                    <a href="{% url 'formCereza_create' %}" class="nav-link">
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fab fa-wpforms"></i>
                         <p>
-                            Formulario Recepción
+                             <b>Post-Cosecha</b>
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    
-                </li> 
-                {% endif  %} 
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'formCereza_list' %}" class="nav-link">
+                                <i class="nav-icon 	fas fa-list"></i>
+                                <p style="color: #007bff;">Listado Recepción</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'formCereza_create' %}" class="nav-link">
+                                <i class="nav-icon fab fa-wpforms"></i>
+                                <p style="color: #007bff;">Formulario Recepción</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
 
                 {% if perms.sadema %}
-                <li class="nav-header"><b>Formularios Sadema</b> </li>              
-                
-                <li class="nav-item">
-                    <a href="{% url 'registro_list' %}" class="nav-link">
-                        <i class="nav-icon 	fas fa-list"></i>
-                        <p>
-                            Listar
-                        </p>
-                    </a>
-                    <a href="{% url 'registro_create' %}" class="nav-link">
+                <li class="nav-item has-treeview" aria-haspopup="false" aria-expanded="false">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fab fa-wpforms"></i>
                         <p>
-                            Crear
+                            <b>Sadema</b>
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    
-                </li> 
-                {% endif  %}              
-                
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'registro_list' %}" class="nav-link">
+                                <i class="nav-icon 	fas fa-list"></i>
+                                <p style="color: #007bff;">Listado Registros</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'registro_create' %}" class="nav-link">
+                                <i class="nav-icon fab fa-wpforms"></i>
+                                <p style="color: #007bff;">Crear Registro</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
             </ul>
-        </nav>
-        
+        </ul>
 
 
-        
-        <nav class="mt-2">
+
+
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            {% if perms.postcosecha %}
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"><b>Mantenedores</b> </li>
 
@@ -124,7 +142,7 @@
                 <li class="nav-item">
                     <a href="{% url 'ubicacion_list' %}" class="nav-link">
                         <i class="fas fa-regular fa-microchip"></i>&nbsp;&nbsp;
-                        <p>
+                        <p >
                             Ubicaciones
                         </p>
                     </a>
@@ -152,14 +170,14 @@
                             Trabajadores
                         </p>
                     </a>
-                </li>   
-                
+                </li>
+
                 <hr>
-                
-                {% endif  %}
+
+                {% endif %}
 
                 {% if perms.contenedor %}
-                   
+
                 <li class="nav-item">
                     <a href="{% url 'transporte_list' %}" class="nav-link">
                         <i class="nav-icon fas fa-truck"></i>
@@ -199,62 +217,84 @@
                             Productores
                         </p>
                     </a>
-                </li> 
-                {% endif  %}
+                </li>
+                {% endif %}
 
 
-            </ul>            
-        </nav>
-
-
-        <!-- <hr style="color: #007bff; border: 2px solid;"> -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header"><b>Reportes: </b> </li>                
-               
-
-                {% if perms.contenedor %}
-                <li class="nav-item">
-                    <a href="{% url 'sale_report' %}" class="nav-link">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>
-                            Reporte 1 Post-Cosecha
-                        </p>
-                    </a>
-                    <a href="{% url 'sale_report' %}" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            Reporte 2 Post-Cosecha
-                        </p>
-                    </a>
-                    <a href="{% url 'sale_report' %}" class="nav-link">
-                        <i class="nav-icon fas fa-chart-bar"></i>
-                        <p>
-                            Reporte 3 Post-Cosecha
-                        </p>
-                    </a>
-                </li> 
-                {% endif  %} 
-                
-                {% if perms.sadema %}
-                <li class="nav-item">
-                    <a href="{% url 'sale_report' %}" class="nav-link">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>
-                            Reporte 1 Sadema
-                        </p>
-                    </a>
-                    <a href="{% url 'sale_report' %}" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            Reporte 2 Sadema
-                        </p>
-                    </a>                   
-                </li> 
-                {% endif  %}    
             </ul>
-        </nav>
-        
+            {% endif %}
+
+        </ul>
+
+
+
+
+
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header"><b>Reportes</b> </li>
+                {% if perms.postcosecha %}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-sharp fa-solid fa-users"></i>
+                        <p>
+                            <b>Post-Cosecha</b> 
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'sale_report' %}" class="nav-link">
+                                <i class="nav-icon 	fas fa-list"></i>
+                                <p style="color: #007bff;">Reporte 1 Post-Cosecha</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'sale_report' %}" class="nav-link">
+                                <i class="nav-icon fab fa-wpforms"></i>
+                                <p style="color: #007bff;">Reporte 2 Post-Cosecha</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                
+                {% endif %}
+
+                {% if perms.sadema %}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-sharp fa-solid fa-users"></i>
+                        <p>
+                           <b>Sadema</b> 
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'sale_report' %}" class="nav-link">
+                                <i class="nav-icon 	fas fa-list"></i>
+                                <p style="color: #007bff;">Reporte 1 Sadema</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'sale_report' %}" class="nav-link">
+                                <i class="nav-icon fab fa-wpforms"></i>
+                                <p style="color: #007bff;">Reporte 2 Sadema</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </ul>
+     
+
+      
+
         <br>
         <br>
         <br>
@@ -274,7 +314,7 @@
 
 
     </div>
-    
-   
-    
+
+
+
 </aside>

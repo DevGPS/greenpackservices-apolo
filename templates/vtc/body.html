@@ -52,5 +52,159 @@
             });
         {% endif %}
     </script>
+
+    
+<script>
+    var select_equipo = $('select[name="equipo"]');
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="exportadora"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_transporte.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_transporte_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_transporte.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_transporte.html(options);
+            });
+        });
+
+        select_transporte.on('change', function () {
+            var value = select_transporte.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+<script>
+    var select_productor = $('select[name="productor"]');
+
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="exportadora"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_productor.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_productor_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_productor.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_productor.html(options);
+            });
+        });
+
+        select_productor.on('change', function () {
+            var value = select_productor.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+<script>
+    var select_variedad = $('select[name="variedad"]');
+    $(function () {
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: 'es'
+        });
+
+        $('select[name="especie"]').on('change', function () {
+            var id = $(this).val();
+
+            var options = '<option value="">-- Vacio --</option>';
+            if (id === '') {
+                select_variedad.html(options);
+                return false;
+            }
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {
+                    'action': 'search_variedad_id',
+                    'id': id
+                },
+                dataType: 'json',
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    select_variedad.html('').select2({
+                        theme: "bootstrap4",
+                        language: 'es',
+                        data: data
+                    });
+                    /*$.each(data, function (key, value) {
+                        options += '<option value="' + value.id + '">' + value.name + '</option>';
+                    });*/
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function (data) {
+                //select_variedad.html(options);
+            });
+        });
+
+        select_variedad.on('change', function () {
+            var value = select_variedad.select2('data')[0];
+            console.log(value);
+        });
+    });
+</script>
+
     </body>
 {% endblock %}

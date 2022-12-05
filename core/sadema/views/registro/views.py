@@ -4,7 +4,11 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from core.sadema.forms import RegistroForm
 from core.pos.mixins import ValidatePermissionRequiredMixin
-from core.sadema.models import Registro
+from core.sadema.models import *
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 class RegistroListView(ValidatePermissionRequiredMixin, ListView):
@@ -29,7 +33,7 @@ class RegistroListView(ValidatePermissionRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de registross'
+        context['title'] = 'Listado de registros'
         context['create_url'] = reverse_lazy('registro_create')
         context['list_url'] = reverse_lazy('registro_list')
         context['entity'] = 'Registro'
@@ -46,18 +50,35 @@ class RegistroCreateView(ValidatePermissionRequiredMixin, CreateView):
     url_redirect = success_url
     permission_required = 'add_registro'
 
+    @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def post(self, request, *args, **kwargs):
         data = {}
-        try:
+        try:            
             action = request.POST['action']
             if action == 'add':
                 form = self.get_form()
                 data = form.save()
+            elif action == 'search_equipo_id':
+                data = [{'id': '', 'text': '--Equipos Cargados--'}]
+                for i in Equipo.objects.filter(ubicacion_id=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.nombre,'data': i.ubicacion.toJSON()})
+            elif action == 'search_labor_id':
+                data = [{'id': '', 'text': '--Labores Cargados--'}]
+                for i in Labor.objects.filter(ubicacion_id=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.nombre,'data': i.ubicacion.toJSON()})
+            elif action == 'search_trabajador_id':
+                data = [{'id': '', 'text': '--Trabajadores Cargadas--'}]
+                for i in Trabajador.objects.filter(ubicacion_id=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.nombre,'data': i.ubicacion.toJSON()})
             else:
                 data['error'] = 'No ha ingresado a ninguna opción'
         except Exception as e:
             data['error'] = str(e)
-        return JsonResponse(data)
+        return JsonResponse(data, safe=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

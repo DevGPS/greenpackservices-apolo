@@ -152,7 +152,10 @@ class Variedad(models.Model):
 class FormCerezaModels(models.Model):
     #principal
     Lote = models.PositiveIntegerField(primary_key=True)
+    exportadora = models.ForeignKey(Exportadora, on_delete=models.CASCADE)
     productor = models.ForeignKey(Productor, on_delete=models.CASCADE)
+    transporte = models.ForeignKey(Transporte,on_delete=models.CASCADE)
+    especie = models.ForeignKey(Especie,on_delete=models.CASCADE)
     variedad = models.ForeignKey(Variedad,on_delete=models.CASCADE)
     Fecha_Recepcion = models.DateField()
     Hora_Recepcion = models.TimeField()
@@ -162,7 +165,7 @@ class FormCerezaModels(models.Model):
     Tip_Trans = models.CharField(
         max_length=55, choices=TIPO_TRANSPORTE, default='Terrestre', verbose_name='Tipo Transporte')
     Nguia = models.PositiveIntegerField(verbose_name='N° Guia')
-    transporte = models.ForeignKey(Transporte,on_delete=models.CASCADE)
+   
     Tip_Env = models.CharField(
         max_length=55, choices=TIPO_ENVASE, default='Envase1', verbose_name='Tipo Envase')
     NEnv = models.PositiveIntegerField(verbose_name='N° Envases')

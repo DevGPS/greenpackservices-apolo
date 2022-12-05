@@ -24,20 +24,20 @@
         style="text-align:center;width:auto;height:17px;">
         <thead class="table-light">
             <tr style="background-color: rgb(248, 243, 172); color: rgb(0, 0, 0);">
-                <th class="col" width="100px" rowspan="2" style="font-size: 32px; background-color: rgb(255, 255, 255)"> <u><b>Lote</b></u><br>
+                <th class="col" width="7%" rowspan="2" style="font-size: 32px; background-color: rgb(255, 255, 255)"> <u><b>Lote</b></u><br>
                     {{registros.Lote}}</th>
-                <th scope="col">Exportadora</th>
-                <th scope="col" width="290px">Productor</th>
-                <th scope="col" width="60px">CSG</th>
-                <th scope="col">Variedad</th>
+                <th scope="col" width="40%">Exportadora</th>
+                <th scope="col" width="25%">Productor</th>
+                <th scope="col" width="8%">CSG</th>
+                <th scope="col" width="20%">Variedad</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{registros.Exportadora}}</td>
-                <td>{{registros.Productor}}</td>
-                <td>{{registros.Productor.CSG}}</td>
-                <td>{{registros.Variedad}}</td>
+                <td>{{registros.exportadora}}</td>
+                <td>{{registros.productor}}</td>
+                <td>{{registros.productor.CSG}}</td>
+                <td>{{registros.variedad}}</td>
             </tr>
         </tbody>
     </table>

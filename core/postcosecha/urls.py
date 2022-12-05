@@ -41,17 +41,20 @@ urlpatterns = [
     path('productor/delete/<int:pk>/', ProductorDeleteView.as_view(), name='productor_delete'),
 
 
-    path('form_cereza/', FormCerezaListView.as_view(), name='formCereza_list'),
-
+    path('form_cereza/', views.FormCerezaListView, name='formCereza_list'),
     path('create_form_cereza/add/',formCerezaCreateView.as_view(), name='formCereza_create'),
-
-    path('delete_form_cereza/<Lote>/', FormCerezaDeleteView.as_view(), name='formCereza_delete'),
-    path('update_form_cereza/<Lote>/', FormCerezaUpdateView.as_view(), name='formCereza_update'),
+    path('delete_form_cereza/<int:pk>/', FormCerezaDeleteView.as_view(), name='formCereza_delete'),
+    path('update_form_cereza/<int:pk>/', FormCerezaUpdateView.as_view(), name='formCereza_update'),
+    
     # path('delete_form_cereza/<int:pk>/', FormCerezaDeleteView.as_view(), name='formCereza_delete'),
     # path('update_form_cereza/<int:pk>/', FormCerezaUpdateView.as_view(), name='formCereza_update'),
 
 
     path('report-list-cereza/',FormCerezaPdf.as_view(),name='pdf-list-cereza'),
-    path('report-lote-cereza/<Lote>/',views.PDF_form_cereza,name='report-lote-cereza'),
+    path('report-lote-cereza/<int:pk>/', CerezaPdfView.as_view(), name='report-lote-cereza'),
+
+    # path('report-lote-cereza/<Lote>/',views.PDF_form_cereza,name='report-lote-cereza'),
+
+     
    
 ]

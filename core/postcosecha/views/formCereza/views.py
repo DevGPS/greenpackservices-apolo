@@ -1,20 +1,23 @@
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponseRedirect,HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-
+from django.views.generic import CreateView, UpdateView, DeleteView,View
+from django.conf import settings
+import os
 from core.postcosecha.forms import CerezaForm
-from core.pos.mixins import ValidatePermissionRequiredMixin
 from core.postcosecha.models import *
-from django.views.generic import View
-from django.utils.decorators import method_decorator
-
 from core.postcosecha.utils import render_to_pdf
-from django.http import HttpResponse, JsonResponse
+
+from core.pos.mixins import ValidatePermissionRequiredMixin
+
 from datetime import datetime
-from django.shortcuts import get_object_or_404,redirect,render, redirect
+
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
+
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.shortcuts import render
 
 
 
@@ -58,92 +61,26 @@ class formCerezaCreateView(ValidatePermissionRequiredMixin, CreateView):
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Agregar un registro de Cerezas 22-23'
+        context['title'] = 'Creación de un Registro de Cerezas'
         context['entity'] = 'FormCerezaModels'
         context['list_url'] = self.success_url
         context['action'] = 'add'
         return context
-
-class FormCerezaListView(ValidatePermissionRequiredMixin, ListView):
-    model = FormCerezaModels
-    template_name = 'formCereza/list.html'
-    permission_required = 'view_formCereza'
-    url_redirect = reverse_lazy('dashboard')
-        
-    def post(self, request, *args, **kwargs):
-        data = {}
-        try:
-            action = request.POST['action']
-            if action == 'search':
-                data = []
-                for i in FormCerezaModels.objects.all():
-                    data.append(i.toJSON())
-
-            else:
-                data['error'] = 'Ha ocurrido un error'
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de Formularios'
-        context['create_url'] = reverse_lazy('formCereza_create')
-        context['list_url'] = reverse_lazy('formCereza_list')
-        context['entity'] = 'FormCerezaModels'
-        return context
+    
+def FormCerezaListView(request):    
+    registros = FormCerezaModels.objects.all()
+    return render(request, "formCereza/list.html", {"registros": registros})
 
         
-# class FormCerezaCreateView(ValidatePermissionRequiredMixin, CreateView):
-#     model = FormCerezaModels
-#     form_class = CerezaForm
-#     success_url = reverse_lazy('formCereza_list')
-#     url_redirect = success_url
-#     template_name = 'formCereza/create.html'
-
-#     @method_decorator(csrf_exempt)
-#     @method_decorator(login_required)
-#     def dispatch(self, request, *args, **kwargs):
-#         return super().dispatch(request, *args, **kwargs)
-
-#     def post(self, request, *args, **kwargs):
-#         data = {}
-#         try:
-#             action = request.POST['action']
-#             form = CerezaForm(request.POST)
-#             if action == 'add':
-#                 if form.is_valid():
-#                     new_principal = form.save(commit=False)
-#                     new_principal.user = request.user
-#                     new_principal.save()
-#                     messages.success(request, '!Registro de Cereza creado Exitosamente!')
-#                     return redirect('read_cerezas')            
-#             else:
-#                 data['error'] = 'No ha ingresado a ninguna opción'               
-
-#         except Exception as e:
-#             data['error'] = str(e)
-#         return JsonResponse(data, safe=False)
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = 'Formulario Cereza 22-23 | Green Pack Services'
-#         context['entity'] = 'FormCerezaModels'
-#         context['list_url'] = self.success_url
-#         context['action'] = 'add'
-#         return context
-
-
-
 
 
 class FormCerezaUpdateView(ValidatePermissionRequiredMixin, UpdateView):
     model = FormCerezaModels
     form_class = CerezaForm
-    template_name = 'formCereza/create.html'
+    template_name = 'formCereza/update.html'
     success_url = reverse_lazy('formCereza_list')
     url_redirect = success_url
     permission_required = 'change_formCereza'
@@ -214,15 +151,51 @@ class FormCerezaPdf(View):
         return HttpResponse(pdf, content_type='application/pdf')
 
 
-@login_required
-def PDF_form_cereza(request, Lote):
-    registros = get_object_or_404(FormCerezaModels, Lote=Lote)
-    fecha = datetime.now()
+class CerezaPdfView(View):
 
-    data = {
-        'fecha': fecha,
-        'registros': registros,
-    }
-    pdf = render_to_pdf(
-        'formCereza/report-cereza/report-lote-cereza.html', data)
-    return HttpResponse(pdf, content_type='application/pdf')
+    def link_callback(self, uri, rel):
+        """
+        Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+        resources
+        """
+        # use short variable names
+        sUrl = settings.STATIC_URL  # Typically /static/
+        sRoot = settings.STATIC_ROOT  # Typically /home/userX/project_static/
+        mUrl = settings.MEDIA_URL  # Typically /static/media/
+        mRoot = settings.MEDIA_ROOT  # Typically /home/userX/project_static/media/
+
+        # convert URIs to absolute system paths
+        if uri.startswith(mUrl):
+            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+        elif uri.startswith(sUrl):
+            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+        else:
+            return uri  # handle absolute uri (ie: http://some.tld/foo.png)
+
+        # make sure that file exists
+        if not os.path.isfile(path):
+            raise Exception(
+                'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+        return path
+
+    def get(self, request, *args, **kwargs):
+        try:
+            fecha = datetime.now()
+            template = get_template('formCereza/report-cereza/report-lote-cereza.html')
+            context = {
+                'fecha': fecha,
+                'registros': FormCerezaModels.objects.get(pk=self.kwargs['pk']),
+                'icon': '{}{}'.format(settings.MEDIA_URL, 'logo.png')
+            }
+            html = template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+            pisaStatus = pisa.CreatePDF(
+                html, dest=response,
+                link_callback=self.link_callback
+            )
+            return response
+        except:
+            pass
+        return HttpResponseRedirect(reverse_lazy('formCereza_list'))

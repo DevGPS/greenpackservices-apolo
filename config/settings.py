@@ -36,6 +36,7 @@ LOCAL_APPS = [
     'core.reports',
     'core.user',
     'core.homepage',
+    'core.pos',
     'core.security',
     'core.postcosecha',
     'core.sadema',
@@ -156,16 +157,16 @@ REST_FRAMEWORK = {
 
 STATIC_URL = '/static/'
 DEBUG = True
-# if not DEBUG:    
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     STATIC_TMP = os.path.join(BASE_DIR, 'static/')
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if not DEBUG:    
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATIC_TMP = os.path.join(BASE_DIR, 'static/')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-# STATIC_TMP = os.path.join(BASE_DIR, 'static/')
+STATIC_TMP = os.path.join(BASE_DIR, 'static/')
 
 
 
@@ -175,7 +176,7 @@ STATICFILES_DIRS = [
 
 
 
-ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
+# ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []

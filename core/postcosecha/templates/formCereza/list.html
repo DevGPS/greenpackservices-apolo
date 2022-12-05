@@ -15,7 +15,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <a class="btn btn-secondary  mb-2 me-2" href="{% url 'formCereza_create' %}"
-                                style="background-color: #007bff;" target="_blank"><i class="fas fa-plus"></i>
+                                style="background-color: #007bff;"><i class="fas fa-plus"></i>
                                 Agregar Registro
                             </a>
                             &nbsp; &nbsp; &nbsp;
@@ -65,14 +65,14 @@
                                 {% for registro in registros %}
                                 <tr>
                                     <td>{{registro.Lote}}</td>
-                                    <td>{{registro.Exportadora}}</td>
+                                    <td>{{registro.exportadora}}</td>
                                     <td>{{registro.Nguia}}</td>
                                     <td>{{registro.Fecha_Recepcion}}</td>
                                     <td>{{registro.Hora_Recepcion}}</td>
                                     <td>{{registro.PrecalibreTot}}</td>
                                     <td>{{registro.CalidadTotal}}</td>
                                     <td>{{registro.CondicionTotal}}</td>
-                                    <td style="background-color: #007bff; color: rgb(255, 255, 255);">
+                                    <td style="color: rgb(6, 35, 255);">
                                         <b>{{registro.TotalExportable}}</b>
                                     </td>
                                     <td>
@@ -83,10 +83,10 @@
                                             target="_blank">
                                             <i class="far fa-file-pdf" style="font-size:16px;color:#d3131d"></i></a>
 
-                                        <a class="action-icon" href="{% url 'update_form_cereza' registro.Lote %}">
+                                        <a class="action-icon" href="{% url 'formCereza_update' registro.Lote %}">
                                             <i class="far fa-edit" style="font-size:16px;color:#000000"></i></a>
 
-                                        <a class="action-icon" href="{% url 'delete_form_cereza' registro.Lote %}">
+                                        <a class="action-icon" href="{% url 'formCereza_delete' registro.Lote %}">
                                             <i class="far fa-trash-alt"
                                                 style="font-size:16px;color:#d3131d"></i></i></a>
 

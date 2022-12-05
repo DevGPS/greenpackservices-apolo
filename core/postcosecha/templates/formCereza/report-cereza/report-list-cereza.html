@@ -23,15 +23,15 @@
         style="text-align:center;width:auto;height:25px;">
         <thead class="table-light">
             <tr style="background-color: rgb(245, 238, 174); color: rgb(0, 0, 0);">
-                <th class="all" width="40">Lote</th>
-                <th scope="col" width="70">Exportadora</th>
-                <th scope="col" width="70">N° de Guia</th>
-                <th scope="col" width="80">Fecha de Recepción</th>
-                <th scope="col" width="80">Hora de Recepción</th>
-                <th scope="col" width="80">PreCalibre</th>
-                <th scope="col" width="80">% Def Calidad</th>
-                <th scope="col" width="80">% Def Condición</th>
-                <th scope="col" width="80">% Exportable</th>
+                <th class="all" width="5%">Lote</th>
+                <th scope="col" width="25%">Exportadora</th>
+                <th scope="col" width="5%">N° de Guia</th>
+                <th scope="col" width="15%">Fecha de Recepción</th>
+                <th scope="col" width="10%">Hora de Recepción</th>
+                <th scope="col" width="10%">PreCalibre</th>
+                <th scope="col" width="10%">% Def Calidad</th>
+                <th scope="col" width="10%">% Def Condición</th>
+                <th scope="col" width="10%">% Exportable</th>
 
 
             </tr>
@@ -41,7 +41,7 @@
             {% for registro in registros %}
             <tr>
                 <td>{{registro.Lote}}</td>
-                <td>{{registro.Exportadora}}</td>
+                <td>{{registro.exportadora}}</td>
                 <td>{{registro.Nguia}}</td>
                 <td>{{registro.Fecha_Recepcion}}</td>
                 <td>{{registro.Hora_Recepcion}}</td>
