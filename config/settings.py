@@ -174,7 +174,7 @@ REST_FRAMEWORK = {
 
 
 STATIC_URL = '/static/'
-DEBUG = False
+DEBUG = True
 # if not DEBUG:    
 #     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #     STATIC_TMP = os.path.join(BASE_DIR, 'static/')
