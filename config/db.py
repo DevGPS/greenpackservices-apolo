@@ -14,10 +14,10 @@ SQLITE = {
 POSTGRESQL = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd32l4k43t7i16f',
-        'USER': 'vrkgkreqnqsypj',
-        'PASSWORD': '15694e42e5f7a5d0851d8d09b40aab32ec71ffec5168c2fc3f443f3c704a3de2',
-        'HOST': 'ec2-52-1-17-228.compute-1.amazonaws.com',
+        'NAME': 'dcj14bm8nuuvrt',
+        'USER': 'mhfowjhcniekvh',
+        'PASSWORD': '956f24b228d2c464a8036a83fd046a39b70715629c873b2e5ad93ec6bb9c8ad7',
+        'HOST': 'ec2-54-86-106-48.compute-1.amazonaws.com',
         'DATABASE_PORT': '5432',
     }
 }
