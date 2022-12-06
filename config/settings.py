@@ -174,7 +174,7 @@ STATICFILES_DIRS = [
 
 
 
-ALLOWED_HOSTS = ['greenpacksevices.herokuapp.com/']
+ALLOWED_HOSTS = ['greenpacksevices.herokuapp.com']
 CSRF_TRUSTED_ORIGINS = ['https://greenpacksevices.herokuapp.com/']
 
 # ALLOWED_HOSTS = []
