@@ -156,7 +156,7 @@ REST_FRAMEWORK = {
 }
 
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 DEBUG = True
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
