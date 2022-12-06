@@ -162,11 +162,9 @@ if not DEBUG:
     STATIC_TMP = os.path.join(BASE_DIR, 'static/')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-STATIC_TMP = os.path.join(BASE_DIR, 'static/')
 
 
 
@@ -176,7 +174,7 @@ STATICFILES_DIRS = [
 
 
 
-ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
+ALLOWED_HOSTS = ['https://apolo-gps.herokuapp.com/']
 CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
 
 # ALLOWED_HOSTS = []
