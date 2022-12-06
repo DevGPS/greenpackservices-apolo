@@ -24,7 +24,7 @@ var transporte = {
                 {"data": "rut"},
                 {"data": "patente1"},
                 {"data": "patente2"},
-                {"data": "telefono"},
+                {"data": "patente2"},
 
             ],
             columnDefs: [
