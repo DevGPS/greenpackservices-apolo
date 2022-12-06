@@ -129,7 +129,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 LOGIN_URL = '/login/'
 
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 MEDIA_URL = '/media/'
 
@@ -155,36 +155,26 @@ REST_FRAMEWORK = {
 }
 
 
-# STATIC_URL = '/static/'
-# DEBUG = True
-# if not DEBUG:    
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     STATIC_TMP = os.path.join(BASE_DIR, 'static/')
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-
-
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-
-STATIC_URL = 'static/'
-DEBUG = False
-if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
+STATIC_URL = '/static/'
+DEBUG = True
+if not DEBUG:    
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
+    STATIC_TMP = os.path.join(BASE_DIR, 'static/')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_URL = '/media/'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 
-ALLOWED_HOSTS = ['greenpacksevices.herokuapp.com']
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+
+
+ALLOWED_HOSTS = ['greenpacksevices.herokuapp.com/']
 CSRF_TRUSTED_ORIGINS = ['https://greenpacksevices.herokuapp.com/']
 
 # ALLOWED_HOSTS = []
