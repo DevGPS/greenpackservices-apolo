@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = db.SQLITE
+DATABASES = db.POSTGRESQL
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -176,7 +176,7 @@ STATICFILES_DIRS = [
 
 
 
-# ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
-# CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
+ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
