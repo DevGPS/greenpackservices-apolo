@@ -156,7 +156,7 @@ REST_FRAMEWORK = {
 }
 
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 DEBUG = True
 # if not DEBUG:    
 #     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -172,13 +172,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 
 ALLOWED_HOSTS = ['greenpacksevices.herokuapp.com']
 CSRF_TRUSTED_ORIGINS = ['https://greenpacksevices.herokuapp.com/']
-# ALLOWED_HOSTS = ['apolo-gps.herokuapp.com']
-# CSRF_TRUSTED_ORIGINS = ['https://apolo-gps.herokuapp.com/']
+
 
 # ALLOWED_HOSTS = []
